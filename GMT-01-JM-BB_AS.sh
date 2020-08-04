@@ -40,9 +40,9 @@ gmt grdimage bb_relief.nc -Cmyocean.cpt -R74/100/2/23 -JPoly/6.0i -P -I+a15+ne0.
 gmt psbasemap -R -J \
     -Bpx10f5a5 -Bpyg10f5a5 -Bsxg5 -Bsyg5 \
     --MAP_TITLE_OFFSET=0.8c \
-    --FONT_TITLE=13p,Helvetica,black \
+    --FONT_TITLE=12p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=7p,Helvetica,black \
-    -B+t"Bathymetric map of the Bay of Bengal and Andaman Sea region, Indian Ocean" -O -K >> $ps
+    -B+t"Topographic map of the Bay of Bengal and Andaman Sea region, Indian Ocean" -O -K >> $ps
     
 # Add shorelines
 gmt grdcontour bb_relief.nc -R -J -C1000 -W0.1p -O -K >> $ps
@@ -52,48 +52,131 @@ gmt psbasemap -R -J \
     --FONT=8p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=9p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
-    -Lx12.7c/-2.5c+c50+w800k+l"American polyconic projection. Scale: km"+f \
-    -UBL/-5p/-75p -O -K >> $ps
+    -Lx12.7c/-2.4c+c50+w800k+l"American polyconic projection. Scale: km"+f \
+    -UBL/-5p/-70p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -P \
     -Ia/thinnest,blue -Na -N1/thinner,red -W0.1p -Df -O -K >> $ps
 
-# Add color scale
-gmt psscale -Dg74/-0.5+w15.2c/0.4c+h+o0.0/0i+ml -R -J -Cmyocean.cpt \
-    --FONT_LABEL=6p,Helvetica,black \
+# Add color scale -Baf+l
+gmt psscale -Dg74/-0.3+w15.2c/0.4c+h+o0.0/0i+ml -R -J -Cmyocean.cpt \
+    --FONT_LABEL=7p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
-    -Baf+l"Color scale 'geo': Colors for global bathymetry/topography relief [R=-5339/3206, H=0, C=RGB]" \
+    -Bg500f100a1000+l"Color scale 'geo': Colors for global bathymetry/topography relief [R=-5339/3206, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Texts
 gmt pstext -R -J -N -O -K \
--F+jTL+f13p,Helvetica,blue+jLB >> $ps << EOF
-87.0 16.5 Bay of
-87.0 14.5 Bengal
+-F+jTL+f13p,Helvetica,white+jLB >> $ps << EOF
+87.3 16.5 Bengal Fan
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,Helvetica,white+jLB >> $ps << EOF
+86.8 11.8 Bay of
+86.0 10.8 B e n g a l
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,Helvetica,white+jLB >> $ps << EOF
-75.0 17.0 I  n  d  i  a
+75.5 17.4 I  N  D  I  A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f13p,Helvetica,black+jLB+a-80 -Gwhite@40 >> $ps << EOF
-99.0 19.0 Thailand
+-F+jTL+f9p,Helvetica,blue+jLB+a-265 >> $ps << EOF
+95.8 18.5 Irrawaddy
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,Helvetica,white+jLB+a-54 >> $ps << EOF
-101.0 5.6 Malaysia
+-F+jTL+f9p,Helvetica,blue+jLB+a-350 -Gwhite@35 >> $ps << EOF
+88.2 21.0 Ganges Fan
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,Helvetica,black+jLB -Gwhite@40 >> $ps << EOF
-81.2 9.5 Sri
-81.4 8.7 Lanka
+-F+jTL+f9p,Helvetica,black+jLB -Gwhite@30 >> $ps << EOF
+97.7 18.0 Thailand
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB -Gwhite@30 >> $ps << EOF
+94.0 21.7 Myanmar
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB+a-54 -Gwhite@30 >> $ps << EOF
+98.3 9.5 Malaysia
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB+a-48 -Gwhite@30 >> $ps << EOF
+96.5 4.8 Indonesia
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB -Gwhite@30 >> $ps << EOF
+89.1 22.5 Bangladesh
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,white+jLB >> $ps << EOF
+80.1 8.6 Sri
+80.1 7.9 Lanka
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,blue+jLB -Gwhite@30 >> $ps << EOF
+94.5 10.5 Andaman
+95.3 9.2 Sea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB -Gwhite@35 >> $ps << EOF
+93.3 13.0 Andaman
+93.3 12.4 Islands
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB -Gwhite@35 >> $ps << EOF
+94.0 8.0 Nicobar
+94.2 7.4 Islands
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,white+jLB+a-275 >> $ps << EOF
+89.8 2.5 Ninety East Ridge
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,white+jLB >> $ps << EOF
+81.0 3.0 Ceylon Plain
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,Helvetica,blue+jLB+a-35 >> $ps << EOF
+97.8 6.2 Strait of
+97.8 5.5 Malacca
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,black+jLB+a-310 >> $ps << EOF
+79.3 9.0 Palk Strait
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,white+jLB >> $ps << EOF
+78.4 8.0 Gulf
+78.6 7.4 of
+77.8 6.8 Mannar
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,white+jLB+a-60 >> $ps << EOF
+74.6 9.2 Laccadive
+74.4 8.4 Sea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,blue+jLB+a-345 >> $ps << EOF
+78.0 16.3 Krishna
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,blue+jLB+a-53 >> $ps << EOF
+79.8 18.4 Godavari
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,blue+jLB+a-5 >> $ps << EOF
+78.0 10.5 Kaveri
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,Helvetica,blue+jLB >> $ps << EOF
+84.0 20.1 Mahanadi
 EOF
 #
 
 # Add GMT logo
-gmt logo -Dx6.2/-3.3+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx6.2/-3.2+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y2.0c -N -O \
