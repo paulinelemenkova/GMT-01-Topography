@@ -32,7 +32,7 @@ ps=Bathymetry_WS.ps
 #gmt grdimage ws_relief.nc -Cmyocean.cpt -R270/-80/371/-60r -JA315/-70/5.5i -P -I+a15+ne0.75 -Xc -K > $ps
 #gmt grdimage ws_relief.nc -Cmyocean.cpt -R270/360/-80/-60 -JM5.5i -P -I+a15+ne0.75 -Xc -K > $ps
 #polar stereo
-gmt grdimage ws_relief.nc -Cmyocean.cpt -R290/360/-80/-60 -Js325/-90/4.5i/-60 -I+a15+ne0.75 -Xc -K > $ps
+gmt grdimage ws_relief.nc -Cmyocean.cpt -R290/360/-80/-60 -Js325/-90/5.5i/-60 -I+a15+ne0.75 -Xc -K > $ps
 # Rectangular stereographic map
 #gmt grdimage ws_relief.nc -Cmyocean.cpt -R270/-80/371/-50r -JS315/-90/5.5i -P -I+a15+ne0.75 -Xc -K > $ps
 
@@ -41,9 +41,11 @@ gmt psbasemap -R -J \
     -Bpx104f5a10 -Bpyg10f5a5 -Bsxg5 -Bsyg5 \
     --MAP_TITLE_OFFSET=1.4c \
     --MAP_ANNOT_OFFSET=0.1c \
+    --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
+    --FONT_LABEL=7p,Helvetica,black \
     -B+t"Topographic map of the Weddell Sea region" \
-    -Lx9.6c/-3.0c+c318/-57+w1000k+l"Polar stereographic projection"+f \
-    -UBL/1.5c/-85p -O -K >> $ps
+    -Lx10.7c/-3.0c+c318/-57+w1000k+l"Polar stereographic projection"+f \
+    -UBL/2.8c/-85p -O -K >> $ps
 
 # Add shorelines
 gmt grdcontour ss_relief.nc -R -J -C2000 -W0.1p -O -K >> $ps
@@ -61,22 +63,22 @@ gmt pstext -R -J -N -O -K \
 EOF
 
 gmt psscale -R -J -Cmyocean.cpt\
-    -DjBC+o0.0c/-3.0c+w10c/0.5c+h\
-    --FONT_LABEL=7p,Helvetica,dimgray \
+    -DjBC+o0.0c/-3.1c+w10c/0.5c+h\
+    --FONT_LABEL=7p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,dimgray \
     --MAP_LABEL_OFFSET=0.1c \
     -Baf+l"Color scale: geo [R=-7160/4763, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Add GMT logo
-gmt logo -Dx5.2/-1.2+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx6.6/-1.2+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y4.7c -N -O \
     -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
 #2.1 7.4 ETOPO1 global terrain model, 1 arc min resolution grid
-2.1 7.4 GEBCO global terrain model, 15 arc sec resolution grid
--0.5 6.8 Polar stereographic conformal projection. Central meridian 35\232W, standard parallel 60\232S
+3.1 10.0 GEBCO global terrain model, 15 arc sec resolution grid
+0.5 9.1 Polar stereographic conformal projection. Central meridian 35\232W, standard parallel 60\232S
 EOF
 
 # Convert to image file using GhostScript
