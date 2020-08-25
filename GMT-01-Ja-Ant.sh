@@ -17,8 +17,8 @@ gmt set FORMAT_GEO_MAP=dddF \
 # Step-3. Overwrite defaults of GMT
 gmtdefaults -D > .gmtdefaults
 
-#grdcut ETOPO1_Ice_g_gmt4.grd -R-180/180/-90/-60 -Ga_relief.nc
-grdcut GEBCO_2019.nc -R-180/180/-90/-60 -Ga_relief.nc
+grdcut ETOPO1_Ice_g_gmt4.grd -R-180/180/-90/-60 -Ga_relief.nc
+#grdcut GEBCO_2019.nc -R-180/180/-90/-60 -Ga_relief.nc
 
 gdalinfo a_relief.nc -stats
 # Minimum=-6764.000, Maximum=3751.000
@@ -49,10 +49,17 @@ gmt psbasemap -R -J \
 gmt grdcontour a_relief.nc -R -J -C2000 -W0.1p -O -K >> $ps
 
 # Texts
+#gmt pstext -R -J -N -O -K \
+#-F+jTL+f11p,Helvetica,red+jLB >> $ps << EOF
+#195.5 -75.0 R O S S
+#193.0 -71.5 S E A
+#EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,Helvetica,red+jLB >> $ps << EOF
-195.5 -75.0 R O S S
-193.0 -71.5 S E A
+-F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
+#310 -71.5 S E A
+#305 -64.5 W E D D E L L
+310 -70.0 S E A
+308 -63.0 W E D D E L L
 EOF
 
 gmt psscale -R -J -Cmyocean.cpt\
@@ -69,7 +76,7 @@ gmt logo -Dx4.7/-3.5+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y4.7c -N -O \
     -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
-1.0 11.0 GEBCO global terrain model, 15 arc sec resolution grid
+1.0 11.0 ETOPO1 Global Relief Model 1 arc min resolution grid
 0.6 10.3 Polar stereographic conformal projection, scale 1:60,000,000
 EOF
 
