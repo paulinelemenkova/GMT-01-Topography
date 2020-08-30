@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the ETOPO1/GEBCO datasets (here: Ross Sea)
+# Purpose: topographic raster map from the ETOPO1 dataset (here: Antarctic)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 # Step-2. GMT set up
@@ -49,16 +49,6 @@ gmt psbasemap -R -J \
 gmt grdcontour a_relief.nc -R -J -C2000 -W0.1p -O -K >> $ps
 
 # Texts
-#gmt pstext -R -J -N -O -K \
-#-F+jTL+f11p,Helvetica,red+jLB >> $ps << EOF
-#195.5 -75.0 R O S S
-#193.0 -71.5 S E A
-#EOF
-#gmt pstext -R -J -N -O -K \
-#-F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
-#200.5 -71.5 R O S S
-#195.0 -68.0 S E A
-#EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
 210.5 -71.0 R O S S
