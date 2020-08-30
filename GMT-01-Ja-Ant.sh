@@ -24,7 +24,7 @@ gdalinfo a_relief.nc -stats
 # Minimum=-6764.000, Maximum=3751.000
 
 # Make color palette
-gmt makecpt -Cgeo.cpt -V -T-7160/4763 > myocean.cpt
+gmt makecpt -Cglobe.cpt -V -T-7160/4763 > myocean.cpt
 
 gmt set FONT_ANNOT_PRIMARY 12p FONT_LABEL 12p PROJ_ELLIPSOID WGS-84 FORMAT_GEO_MAP dddF
 
@@ -54,10 +54,18 @@ gmt grdcontour a_relief.nc -R -J -C2000 -W0.1p -O -K >> $ps
 #195.5 -75.0 R O S S
 #193.0 -71.5 S E A
 #EOF
+#gmt pstext -R -J -N -O -K \
+#-F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
+#200.5 -71.5 R O S S
+#195.0 -68.0 S E A
+#EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
-#310 -71.5 S E A
-#305 -64.5 W E D D E L L
+210.5 -71.0 R O S S
+200.0 -68.5 S E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,yellow+jLB >> $ps << EOF
 310 -70.0 S E A
 308 -63.0 W E D D E L L
 EOF
@@ -67,7 +75,7 @@ gmt psscale -R -J -Cmyocean.cpt\
     --FONT_LABEL=7p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,dimgray \
     --MAP_LABEL_OFFSET=0.1c \
-    -Bg1000f200a2000+l"Color scale: geo [R=-7160/4763, H=0, C=RGB]" \
+    -Bg1000f200a2000+l"Color scale 'globe' [R=-7160/4763, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Add GMT logo
