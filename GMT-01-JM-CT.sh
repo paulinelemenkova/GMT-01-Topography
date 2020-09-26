@@ -33,14 +33,15 @@ gmt grdimage ct_relief.nc -Cmyocean.cpt -R224/240/35/55 -JM6i -P -I+a15+ne0.75 -
 gmt psbasemap -R -J \
     -Bpxg8f2a4 -Bpyg6f3a3 -Bsxg4 -Bsyg3 \
     --MAP_TITLE_OFFSET=1.0c \
+    --FONT_ANNOT_PRIMARY=7p,Helvetica,black \
     -B+t"Topographic map of the Cascadia Subduction Zone region" -O -K >> $ps
     
 gmt psxy -R -J trench.gmt -Sf1.5c/0.2c+l+t -Wthick,yellow -Gyellow -O -K >> $ps
     
 # Add legend
 gmt psscale -Dg217/35+w15.0c/0.4c+h+o7.0/-1.5c+ml -Rct_relief.nc -J -Cmyocean.cpt \
-    --FONT_LABEL=8p,Helvetica,dimgray \
-    --FONT_ANNOT_PRIMARY=5p,Helvetica,dimgray \
+    --FONT_LABEL=8p,Helvetica,black \
+    --FONT_ANNOT_PRIMARY=8p,Helvetica,black \
     -Baf+l"Color scale: geo global bathymetry/topography relief [R=-6201/4161, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
@@ -49,7 +50,7 @@ gmt grdcontour ct_relief.nc -R -J -C1000 -W0.1p -O -K >> $ps
 
 # Add scale, directional rose
 gmt psbasemap -R -J \
-    --FONT=8p,Palatino-Roman,dimgray \
+    --FONT=8p,Helvetica,black \
     --MAP_TITLE_OFFSET=0.3c \
     -Lx13.4c/-2.7c+c50+w300k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-75p -O -K >> $ps
@@ -105,9 +106,9 @@ EOF
 gmt logo -Dx6.4/-3.5+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/14 -X0.5c -Y7.1c -N -O \
+gmt pstext -R0/10/0/15 -JX10/14 -X0.5c -Y7.0c -N -O \
     -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
-3.0 22.4 GEBCO global terrain model 15 arc-sec resolution grid
+3.0 22.7 GEBCO global terrain model 15 arc-sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
