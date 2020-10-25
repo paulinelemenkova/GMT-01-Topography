@@ -34,7 +34,10 @@ gmt grdimage cs_relief.nc -Cmyocean.cpt -R270/305/7/24 -JM6i -P -I+a15+ne0.75 -X
 # Add grid
 gmt psbasemap -R -J \
     -Bpx104f2.5a5 -Bpyg10f2.5a5 -Bsxg5 -Bsyg5 \
+    --FONT_ANNOT_PRIMARY=7p,Helvetica,dimgray \
+    --FONT_LABEL=7p,Helvetica,dimgray \
     --MAP_TITLE_OFFSET=0.8c \
+    --MAP_FRAME_AXES=wESN \
     -B+t"Topographic map of the Caribbean Sea region" -O -K >> $ps
     
 # Add shorelines
@@ -53,10 +56,10 @@ gmt pscoast -R -J -P \
     -Ia/thinnest,blue -Na -N1/thinner,red -W0.1p -Df -O -K >> $ps
 
 # Add legend
-gmt psscale -Dg264.5/7+w7.7c/0.4c+v+o0.3/0i+ml -R270/305/7/24 -J -Cmyocean.cpt \
+gmt psscale -Dg265.5/7+w7.7c/0.4c+v+o0.3/0i+ml -R270/305/7/24 -J -Cmyocean.cpt \
     --FONT_LABEL=6p,Helvetica,dimgray \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
-    -Baf+l"Color scale: geo global bathymetry/topography relief [R=-8620/5536, H=0, C=RGB]" \
+    -Ba2000f200+l"Color scale: geo global bathymetry/topography relief [R=-8620/5536, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Texts
@@ -70,10 +73,10 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,Helvetica,yellow+jLB >> $ps << EOF
-282.4 15.1 C A R I B B E A N  S E A
+282.4 15.6 C A R I B B E A N  S E A
 293 22.0 A T L A N T I C   O C E A N
 270.2 9.0 PACIFIC
-270.2 8.2.0 OCEAN
+270.2 8.2 OCEAN
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f8p,Helvetica,black+jLB+a-30 -Gwhite@40 >> $ps << EOF
@@ -129,6 +132,55 @@ gmt pstext -R -J -N -O -K \
 -F+jTL+f7p,Helvetica,white+jLB >> $ps << EOF
 275.5 20.6 Yucatan
 275.5 19.6 Basin
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,brown+jLB+a-85 -Gwhite@40 >> $ps << EOF
+296 16 Aves Ridge
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,brown+jLB+a-350 -Gwhite@40 >> $ps << EOF
+275.5 18.4 Cayman Ridge
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f6p,Helvetica,brown+jLB -Gwhite@45 >> $ps << EOF
+287.1 15.1 Beata
+287.1 14.4 Ridge
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,brown+jLB+a-345 -Gwhite@40 >> $ps << EOF
+277 15.6 Nicaraguan Rise
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,blue+jLB+a-350 -Gwhite@40 >> $ps << EOF
+295.5 8.5 Orinoco
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,red+jLB -Gwhite@40 >> $ps << EOF
+284 8.2 Colombia
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,red+jLB -Gwhite@40 >> $ps << EOF
+291 8.0 Venezuela
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,red+jLB -Gwhite@40 >> $ps << EOF
+273.5 12.5 Nicaragua
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,red+jLB -Gwhite@40 >> $ps << EOF
+271.5 14.7 Honduras
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f6p,Helvetica,red+jLB -Gwhite@40 >> $ps << EOF
+277.5 8.4 Panama
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f6p,Helvetica,red+jLB+a-15 -Gwhite@40 >> $ps << EOF
+274.5 10.2 Costa Rica
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,red+jLB+a-300 -Gwhite@40 >> $ps << EOF
+270.5 18.4 Mexico
 EOF
 
 # Add GMT logo
