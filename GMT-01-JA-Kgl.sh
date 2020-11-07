@@ -17,9 +17,10 @@ gmt set FORMAT_GEO_MAP=dddF \
 # Step-3. Overwrite defaults of GMT
 gmtdefaults -D > .gmtdefaults
 
-# grdcut ETOPO1_Ice_g_gmt4.grd -R20/101/-70/-35 -Gkgl_relief.nc
 # grdcut ETOPO1_Ice_g_gmt4.grd -R20/130/-75/-35 -Gkgl_relief.nc
 #grdcut GEBCO_2019.nc -R20/130/-75/-35 -Gkgl_relief.nc
+
+grdcut ETOPO1_Ice_g_gmt4.grd -R-50/150/-85/-10 -Gkgl_relief.nc
 
 gdalinfo ss_relief.nc -stats
 # Minimum=-8239.000, Maximum=6392.000
@@ -29,7 +30,9 @@ gmt makecpt -Cgeo.cpt -V -T-8239/6392 > myocean.cpt
 
 # Generate a file
 ps=Bathymetry_Kgl.ps
-gmt grdimage kgl_relief.nc -Cmyocean.cpt -R20/-70/101/-35r -JA60/-50/5.5i -P -I+a15+ne0.75 -Xc -K > $ps
+#gmt grdimage kgl_relief.nc -Cmyocean.cpt -R0/-70/101/-30r -JA60/-50/5.5i -P -I+a15+ne0.75 -Xc -K > $ps
+#gmt grdimage kgl_relief.nc -Cmyocean.cpt -R-50/-65/101/-20r -JA60/-50/7.5i -P -I+a15+ne0.75 -Xc -K > $ps
+gmt grdimage kgl_relief.nc -Cmyocean.cpt -R-25/-65/101/-10r -JA55/-50/7.5i -P -I+a15+ne0.75 -Xc -K > $ps
 
 # Add shorelines
 gmt grdcontour kgl_relief.nc -R -J -C2000 -W0.1p -O -K >> $ps
@@ -42,7 +45,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,dimgray \
     --FONT_LABEL=6p,Helvetica,dimgray \
     -B+t"Topographic map of the Kerguelen Plateau" \
-    -Lx12.0c/-1.3c+c318/-57+w1000k+l"Scale (km) at 60\232E 50\232S"+f \
+    -Lx15.0c/-1.3c+c318/-57+w2000k+l"Scale (km) at 60\232E 50\232S"+f \
     -UBL/-5p/-40p -O -K >> $ps
 
 # Texts
@@ -98,26 +101,26 @@ gmt pstext -R -J -X0.0c -Y0.0c -N -O -K \
 82.5 -58.0 Basin
 EOF
 gmt pstext -R -J -X0.0c -Y0.0c -N -O -K \
-    -F+jTL+f8p,Times-Roman,white+jLB >> $ps << EOF
-50.5 -72.0 A  N  T  A  R  C  T  I  C  A
+    -F+jTL+f8p,Helvetica,white+jLB >> $ps << EOF
+30.0 -76.0 A  N  T  A  R  C  T  I  C  A
 EOF
 
 # Add legend
-gmt psscale -Dg14.0/-67+w9.5c/0.4c+v+o-7.0c/-5.3c+ml -R270/340/-65/-45 -J -Cmyocean.cpt \
+gmt psscale -Dg-27.0/-60+w15.4c/0.4c+v+ml -R -J -Cmyocean.cpt \
     --FONT_LABEL=7p,Helvetica,dimgray \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
     -Bg1000f200a2000+l"Color scale: geo global bathymetry/topography relief [R=-8239/6392, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Add GMT logo
-gmt logo -Dx5.8/-2.2+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx5.0/-2.2+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.7c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.0c -N -O \
     -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
-1.8 6.1 ETOPO1 global terrain model, 1 arc min resolution grid
+4.0 6.1 ETOPO1 global terrain model, 1 arc min resolution grid
 #-0.5 7.4 GEBCO global terrain model, 15 arc sec resolution grid (GEBCO Compilation Group, 2020)
--0.5 5.5 Lambert Azimuthal Equal-Area projection. Central meridian 60\232E, standard parallel 50\232S
+2.0 5.5 Lambert Azimuthal Equal-Area projection. Central meridian 55\232E, standard parallel 50\232S
 EOF
 
 # Convert to image file using GhostScript
