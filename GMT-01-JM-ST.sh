@@ -58,6 +58,7 @@ gmt pscoast -R -J -P \
     -Ia/thinnest,blue -Na -N1/thinner,red -W0.1p -Df -O -K >> $ps
 
 # Add legend
+# gmt psscale -Dg85/-20+w11.4c/0.4c+v+o0.3/0i+ml -R -J -Cmyocean.cpt
 gmt psscale -Dg92/-22+w12.0c/0.4c+h+o0.3/0i+ml -R -J -Cmyocean.cpt \
     --FONT_LABEL=6p,Helvetica,dimgray \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
@@ -131,6 +132,7 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG110/5S/$w -Da -Gpeachpuff -A
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
+# gmt logo -Dx6.2/-2.0+o0.1i/0.1i+w2c -O -K >> $ps
 gmt logo -Dx6.2/-2.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
