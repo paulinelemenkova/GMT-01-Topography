@@ -12,8 +12,8 @@ gmt set FORMAT_GEO_MAP=dddF \
     MAP_GRID_PEN_PRIMARY=thin,white \
     MAP_GRID_PEN_SECONDARY=thinnest,white \
     FONT_TITLE=12p,Palatino-Roman,black \
-    FONT_ANNOT_PRIMARY=7p,Helvetica,dimgray \
-    FONT_LABEL=7p,Helvetica,dimgray \
+    FONT_ANNOT_PRIMARY=7p,0,dimgray \
+    FONT_LABEL=7p,0,dimgray \
 # Overwrite defaults of GMT
 gmtdefaults -D > .gmtdefaults
 
@@ -36,9 +36,9 @@ gmt grdimage pk_relief.nc -Cmyocean.cpt -R60.0/80.0/23.5/37.2 -JM6.5i -I+a15+ne0
 
 # Add legend
 gmt psscale -Dg57.3/23.5+w13.2c/0.15i+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
-	--FONT_LABEL=7p,Helvetica,black \
-    --FONT_ANNOT_PRIMARY=7p,Helvetica,black \
-    --FONT_TITLE=6p,Helvetica,black \
+	--FONT_LABEL=7p,0,black \
+    --FONT_ANNOT_PRIMARY=7p,0,black \
+    --FONT_TITLE=6p,0,black \
 	-Bg500f50a500+l"Color scale: geo [R=-3549/7966, H=0, C=HSV]" \
 	-I0.2 -By+lm -O -K >> $ps
     
@@ -53,15 +53,16 @@ gmt pscoast -R -J -P \
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=wESN \
     --MAP_TITLE_OFFSET=1.0c \
-    --FONT_ANNOT_PRIMARY=7p,Helvetica,black \
-    --FONT_LABEL=7p,Helvetica,black \
+    --FONT_ANNOT_PRIMARY=7p,0,black \
+    --FONT_LABEL=7p,0,black \
+    --FONT_TITLE=12p,0,black \
     -Bpxg2f1a2 -Bpyg2f1a2 -Bsxg2 -Bsyg1 \
     -B+t"Topographic map of Pakistan with its global location (insert map)" -O -K >> $ps
     
 # Add scale, directional rose
 gmt psbasemap -R -J \
-    --FONT=7p,Helvetica,black \
-    --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
+    --FONT=7p,0,black \
+    --FONT_ANNOT_PRIMARY=6p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
     -Tdx15.0c/0.4c+w0.3i+f2+l+o0.15i \
@@ -69,41 +70,103 @@ gmt psbasemap -R -J \
     -UBL/-15p/-38p -O -K >> $ps
 
 # Texts
+# Cities
 gmt pstext -R -J -N -O -K \
--F+f11p,Times-Roman,black+jLB -Gwhite@30 >> $ps << EOF
+-F+f11p,0,black+jLB -Gwhite@30 >> $ps << EOF
 67.3 24.6 Karachi
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 67.3 24.4 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,Helvetica,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+f11p,0,black+jLB -Gwhite@30 >> $ps << EOF
+73.2 33.2 Islamabad
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+73.0 33.4 0.2c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 69.0 30.5 P A K I S T A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 75.0 27.5 I N D I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 64.0 33.5 A F G H A N I S T A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 60.5 27.5 I R A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 77.0 36.5 CHINA
 EOF
-
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Times−Italic,white+jLB+a-324 >> $ps << EOF
 68.7 28.0 Indus River
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,Helvetica,white+jLB >> $ps << EOF
+-F+jTL+f11p,0,white+jLB >> $ps << EOF
 60.6 24.2  A r a b i a n  S e a
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,0,yellow+jLB+a-300 -Gdimgrey -Wthinnest >> $ps << EOF
+71.9 34.5 Khyber
+72.3 33.9 Pakhtunkhwa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,0,yellow+jLB -Gdimgrey -Wthinnest >> $ps << EOF
+64.0 28.0 Balochistan
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,yellow+jLB -Gdimgrey -Wthinnest>> $ps << EOF
+74.2 35.2 Nanga Parbat
+EOF
+gmt psxy -R -J -St0.4c -Wthinnest -Gred -O -K << EOF >> $ps
+74.0 35.0 0.12c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,0,yellow+jLB >> $ps << EOF
+72 31 Punjab
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,0,yellow+jLB >> $ps << EOF
+68.2 26.2 Sindh
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,yellow+jLB -Wthinnest >> $ps << EOF
+70.3 30.1 Sulaiman Mts.
+EOF
+gmt psxy -R -J -St0.4c -Wthinnest -Gred -O -K << EOF >> $ps
+70 30 0.12c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,yellow+jLB >> $ps << EOF
+73.3 32.5 Margalla Hills
+EOF
+gmt psxy -R -J -St0.4c -Wthinnest -Gred -O -K << EOF >> $ps
+73.0 32.7 0.12c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,yellow+jLB >> $ps << EOF
+72.3 31.7 Salt Range
+EOF
+gmt psxy -R -J -St0.4c -Wthinnest -Gred -O -K << EOF >> $ps
+72 32 0.12c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB -Gwhite@30 -Wthinnest>> $ps << EOF
+72.2 36.2 H  i  m  a  l  a  y  a
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,0,yellow+jLB >> $ps << EOF
+70.6 28.7 Cholistan
+70.7 28.3 Desert
 EOF
     
 # insert map
@@ -120,8 +183,8 @@ gmt logo -Dx7.0/-2.0+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.0c -N -O \
-    -F+f10p,Palatino-Roman,black+jLB >> $ps << EOF
-3.7 8.9 Digital elevation data: SRTM, 15 arc sec resolution grid
+    -F+f10p,0,black+jLB >> $ps << EOF
+3.0 8.9 Digital elevation data: SRTM, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
