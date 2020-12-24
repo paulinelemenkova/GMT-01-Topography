@@ -56,8 +56,8 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_LABEL=7p,0,black \
     --FONT_TITLE=12p,0,black \
-    -Bpxg2f1a2 -Bpyg2f1a2 -Bsxg2 -Bsyg1 \
-    -B+t"Topographic map of Pakistan with its global location (insert map)" -O -K >> $ps
+    -Bpxg4f1a2 -Bpyg2f1a2 -Bsxg2 -Bsyg1 \
+    -B+t"Topographic map of Pakistan with general location (insert global map)" -O -K >> $ps
     
 # Add scale, directional rose
 gmt psbasemap -R -J \
@@ -115,17 +115,18 @@ gmt pstext -R -J -N -O -K \
 60.6 24.2  A r a b i a n  S e a
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,yellow+jLB+a-300 -Gdimgrey -Wthinnest >> $ps << EOF
+-F+jTL+f9p,0,yellow+jLB+a-300 -Gdimgrey -Wthinnest >> $ps << EOF
 71.9 34.5 Khyber
-72.3 33.9 Pakhtunkhwa
+72.3 34.1 Pakhtunkhwa
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,0,yellow+jLB -Gdimgrey -Wthinnest >> $ps << EOF
 64.0 28.0 Balochistan
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,2,yellow+jLB -Gdimgrey -Wthinnest>> $ps << EOF
-74.2 35.2 Nanga Parbat
+-F+jTL+f9p,2,yellow+jLB -Gdimgrey -Wthinnest>> $ps << EOF
+74.2 35.3 Nanga
+74.2 34.9 Parbat
 EOF
 gmt psxy -R -J -St0.4c -Wthinnest -Gred -O -K << EOF >> $ps
 74.0 35.0 0.12c
@@ -168,13 +169,50 @@ gmt pstext -R -J -N -O -K \
 70.6 28.7 Cholistan
 70.7 28.3 Desert
 EOF
-    
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,0,yellow+jLB+a-312 >> $ps << EOF
+70.3 25.0 T  h  a  r     D  e  s  e  r  t
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@30 >> $ps << EOF
+67.2 30.2 Quetta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+67.0 30.0 0.15c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@30 >> $ps << EOF
+74.2 31.2 Lahore
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+74 31 0.15c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@30 >> $ps << EOF
+71.5 33.7 Peshawar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+71.3 34 0.15c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB -Gdimgrey -Wthinnest>> $ps << EOF
+73.5 37.0 Pamir
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB+a-45 -Gdimgrey -Wthinnest>> $ps << EOF
+75.0 35.8 Karakoram
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB+a-330 -Gdimgrey -Wthinnest>> $ps << EOF
+68.5 34.8 H i n d u  K u s h
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 #gmt psbasemap -R -J -O -K -DjTR+w1.5i+o0.15i/0.1i+stmp -F+gwhite+p1p+c0.1c+s >> $ps
 gmt psbasemap -R -J -O -K -DjTL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG70/30N/$w -Da -Gpeachpuff -A5000 -Bga -Wfaint -EPK+gred -Slightskyblue1 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG70/30N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EPK+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
@@ -184,7 +222,7 @@ gmt logo -Dx7.0/-2.0+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.0c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-3.0 8.9 Digital elevation data: SRTM, 15 arc sec resolution grid
+3.0 8.9 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
