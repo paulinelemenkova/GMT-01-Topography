@@ -19,7 +19,7 @@ gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the Iceland area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R43/65/24/40 -Gir_relief.nc
-#gmt grdcut GEBCO_2019.nc -R43/65/24/40 -Gir_relief.nc
+gmt grdcut GEBCO_2019.nc -R43/65/24/40 -Gir_relief.nc
 gdalinfo -stats ir_relief.nc
 # Minimum=-3487.000, Maximum=5149.000
 
@@ -61,29 +61,42 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=6p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Tdx15.0c/0.4c+w0.3i+f2+l+o0.15i \
     -Lx14.5c/-1.3c+c50+w300k+l"Mercator projection. Scale (km)"+f \
     -UBL/-15p/-38p -O -K >> $ps
 
+gmt psbasemap -R -J \
+    --FONT_TITLE=7p,0,white \
+    --MAP_TITLE_OFFSET=0.1c \
+    -Tdx15.0c/0.4c+w0.3i+f2+l+o0.15i \
+    -O -K >> $ps
+
 # Texts
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,0,blue+jLB >> $ps << EOF
+-F+jTL+f11p,26,blue+jLB >> $ps << EOF
 50.0 38.5 Caspian Sea
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,white+jLB >> $ps << EOF
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
 59.4 24.4 Gulf of Oman
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,BLUE+jLB+a-55 >> $ps << EOF
+-F+jTL+f10p,26,blue1+jLB+a-53 >> $ps << EOF
 50.0 28.5 P e r s i a n  G u l f
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,26,blue1+jLB+a-324 >> $ps << EOF
+54.3 25.3 Strait of
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue1+jLB+a-80 >> $ps << EOF
+56.7 26.0 Hormuz
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,0,white+jLB >> $ps << EOF
 44.5 32.2 I R A Q
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+-F+jTL+f10p,0,white+jLB >> $ps << EOF
 43.5 27.0 S A U D I  A R A B I A
 EOF
 gmt pstext -R -J -N -O -K \
@@ -91,16 +104,16 @@ gmt pstext -R -J -N -O -K \
 61.0 32.5 AFGHANISTAN
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
-53.0 33.5 I R A N
+-F+jTL+f14p,25,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
+53.0 33.2 I R A N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
 62.5 28.7 PAKISTAN
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
-56.0 39.0 TURKMENISTAN
+-F+jTL+f10p,0,white+jLB >> $ps << EOF
+56.1 39.1 TURKMENISTAN
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f8p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
@@ -111,69 +124,113 @@ gmt pstext -R -J -N -O -K \
 44.0 39.5 ARMENIA
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f8p,0,black+jLB+a-270 -Gwhite@40 -Wthinnest >> $ps << EOF
-51.3 24.6 QATAR
+-F+jTL+f8p,0,white+jLB+a-273 >> $ps << EOF
+51.3 24.7 QATAR
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f8p,0,black+jLB+a-270 -Gwhite@40 -Wthinnest >> $ps << EOF
 43.5 38.0 TURKEY
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f8p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
-54.3 24.2 U.A.E.
+-F+jTL+f8p,0,white+jLB >> $ps << EOF
+54.5 24.2 U.A.E.
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f8p,0,black+jLB -Gwhite@40 -Wthinnest >> $ps << EOF
-56.1 24.3 OMAN
+-F+jTL+f8p,0,white+jLB+a-55 >> $ps << EOF
+56.1 24.8 OMAN
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+-F+jTL+f8p,0,white+jLB+a-50 >> $ps << EOF
+47.1 29.8 KUWAIT
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
 51.2 35.2 Tehran
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sg -W0.5p -Gyellow -O -K << EOF >> $ps
 51.0 35.0 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
-59.2 36.2 Mashhad
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+59.0 35.6 Mashhad
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 59.0 36.0 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
 51.2 32.2 Isfahan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 51.0 32.0 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
 54.2 31.2 Yazd
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 54.0 31.0 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
 46.2 38.2 Tabriz
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 46.0 38.0 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
-52.2 29.2 Shiraz
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+52.2 28.8 Shiraz
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 52.0 29.0 0.15c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
-52.2 29.2 Zahedan
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+60.2 29.2 Zahedan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 60.0 29.0 0.15c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,3,yellow+jLB+a-47 -Gwhite@70 >> $ps << EOF
+48.3 34.5 Z a g r o s
+51.3 31.7 M o u n t a i n s
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB+a-20 -Gwhite@30 >> $ps << EOF
+49.5 36.8 E l b u r z
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB+a-30 -Gwhite@30 >> $ps << EOF
+57.0 37.5 K ö p e t  D a g
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,0,brown+jLB -Gwhite@30 >> $ps << EOF
+54.0 34.2 G r e a t
+55.8 32.8 S a l t
+57.4 31.2 D e s e r t
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,0,white+jLB+a-55 >> $ps << EOF
+46.2 32.1 Tigris
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,0,white+jLB+a-15 >> $ps << EOF
+45.0 30.8 Euphrates
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB -Gwhite@30 -Wthinnest>> $ps << EOF
+59.0 26.4 M  a  k  r  a  n
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB >> $ps << EOF
+53.8 34.6 Dasht-e Kavir
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,2,brown+jLB+a-60 >> $ps << EOF
+58.2 30.8 Dasht-e Lut
 EOF
 
 # insert map
