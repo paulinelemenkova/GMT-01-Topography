@@ -32,19 +32,11 @@ gmt pscoast -R29/42/-12/-1  -JM6.5i -Dh -M -ETZ > tanzania.txt
 #####################################################################
 
 ps=Topo_TZ.ps
-# Make raster image
+# Make raster image (with water areas)
 gmt grdimage tz_relief.nc -Cmyocean.cpt -R29/42/-13/1 -JM6.5i -I+a15+ne0.75 -Xc -P -K > $ps
 
-# Add color legend
-gmt psscale -Dg27.5/-13.0+w17.7c/0.15i+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
-	--FONT_LABEL=7p,0,black \
-    --FONT_ANNOT_PRIMARY=7p,0,black \
-    --FONT_TITLE=6p,0,black \
-	-Bg500f50a500+l"Color scale: 'geo' [R=-5358/3447, H=0, C=HSV]" \
-	-I0.2 -By+lm -O -K >> $ps
-
 #####################################################################
-# BACKGROUND IMAGE
+# BACKGROUND IMAGE OF LAND AREA (w/o water areas, monochrome)
 # pscoast to initiate clip path for country
 gmt pscoast -R -J -ETZ -Gc -O -K >> $ps
 # generate topography image w/shading
@@ -83,6 +75,14 @@ gmt pscoast -R -J -P \
 gmt psclip -C -O -K >> $ps
 #####################################################################
 
+# Add color legend
+gmt psscale -Dg27.5/-13.0+w17.7c/0.15i+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
+    --FONT_LABEL=7p,0,black \
+    --FONT_ANNOT_PRIMARY=7p,0,black \
+    --FONT_TITLE=6p,0,black \
+    -Bg500f50a500+l"Color scale: 'geo' [R=-5358/3447, H=0, C=HSV]" \
+    -I0.2 -By+lm -O -K >> $ps
+    
 # Add grid
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=wESN \
@@ -215,7 +215,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,25,chartreuse1+jLB -Gdimgray@60 >> $ps << EOF
-30.2 -0.5 U G A N D A
+30.1 -0.5 U G A N D A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,25,chartreuse1+jLB -Gdimgray@60 >> $ps << EOF
