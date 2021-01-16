@@ -65,11 +65,11 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
 
 # Add color legend
-gmt psscale -Dg34.7/32.68+w17.0c/0.15i+h+o0.3/0i+ml -R -J -Cmyocean.cpt \
+gmt psscale -Dg34.7/32.68+w16.7c/0.15i+h+o0.0/0i+ml -R -J -Cmyocean.cpt \
     --FONT_LABEL=7p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a500+l"Color scale: 'world' [R=-5358/3447, H=0, C=HSV]" \
+    -Bg500f50a500+l"Color scale: 'world' colors for bathymetry/topography [R=-2020/2973, H=0, C=HSV]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -78,7 +78,7 @@ gmt psbasemap -R -J \
     --MAP_TITLE_OFFSET=0.8c \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_LABEL=7p,25,black \
-    --FONT_TITLE=13p,13,black \
+    --FONT_TITLE=16p,13,black \
     -Bpxg1f0.1a1 -Bpyg1f0.1a1 -Bsxg1 -Bsyg1 \
     -B+t"Topographic map of Lebanon" -O -K >> $ps
     
@@ -91,6 +91,96 @@ gmt psbasemap -R -J \
     -UBL/-10p/-70p -O -K >> $ps
 
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB >> $ps << EOF
+34.9 34.3 M e d i t e r r a n e a n
+35.1 34.2 S e a
+EOF
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.47 33.93 Beiruth
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+35.45 33.90 0.40c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+36.4 34.32 Halba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.4 34.30 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+36.12 34.02 Baalbek
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.12 34.0 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.47 33.40 Joub Jannine
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.47 33.38 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.5 33.32 Rashaya
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.5 33.30 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.4 33.52 Baabda
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.4 33.50 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.29 33.23 Nabatieh
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.29 33.21 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.81 34.47 Tripoli
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.81 34.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.23 33.35 Sidon
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.23 33.33 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.15 33.18 Tyre
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.14 33.16 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.55 33.52 Zahlé
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.55 33.50 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.35 33.34 Jezzine
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.35 33.32 0.20c
+EOF
 
 # Add GMT logo
 gmt logo -Dx7.0/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
