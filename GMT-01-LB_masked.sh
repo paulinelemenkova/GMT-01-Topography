@@ -49,7 +49,9 @@ gmt pscoast -R -J -P \
 #####################################################################
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
-gmt psclip -JM -R Lebanon.txt -O -K >> $ps
+#gmt psclip -JM -R Lebanon.txt -O -K >> $ps
+
+gmt psclip -R34.7/36.7/32.8/34.8 -JM6.5i Lebanon.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
@@ -58,7 +60,7 @@ gmt grdimage lb_relief.nc -Cmyocean.cpt -R34.7/36.7/32.8/34.8 -JM6.5i -I+a15+ne0
 gmt grdcontour lb_relief.nc -R -J -C500 -Wthinner,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/2pt,red -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thick,red -W0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -75,16 +77,17 @@ gmt psscale -Dg34.7/32.68+w16.7c/0.15i+h+o0.0/0i+ml -R -J -Cmyocean.cpt \
 # Add grid
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
+    --FORMAT_GEO_MAP=ddd:mm:ss \
     --MAP_TITLE_OFFSET=0.8c \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_LABEL=7p,25,black \
     --FONT_TITLE=16p,13,black \
-    -Bpxg1f0.1a1 -Bpyg1f0.1a1 -Bsxg1 -Bsyg1 \
+    -Bpxg1f0.1a0.5 -Bpyg0.5f0.1a0.25 -Bsxg1 -Bsyg1 \
     -B+t"Topographic map of Lebanon" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
-    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_ANNOT_PRIMARY=7p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
     -Lx14.5c/-2.4c+c10+w50k+l"Mercator projection. Scale (km)"+f \
@@ -98,11 +101,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 # cities
 gmt pstext -R -J -N -O -K \
--F+f12p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.47 33.93 Beiruth
+-F+f13p,13,black+jLB -Gwhite@30 >> $ps << EOF
+35.51 33.90 Beiruth
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
-35.45 33.90 0.40c
+35.51 33.87 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
@@ -113,7 +116,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-36.12 34.02 Baalbek
+36.05 34.02 Baalbek
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 36.12 34.0 0.20c
@@ -127,7 +130,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.5 33.32 Rashaya
+35.53 33.30 Rashaya
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.5 33.30 0.20c
@@ -148,38 +151,50 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.81 34.47 Tripoli
+35.83 34.47 Tripoli
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.81 34.45 0.20c
+35.83 34.45 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.23 33.35 Sidon
+35.25 33.35 Sidon
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.23 33.33 0.20c
+35.24 33.33 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.15 33.18 Tyre
+35.20 33.19 Tyre
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.14 33.16 0.20c
+35.18 33.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.55 33.52 Zahlé
+35.57 33.48 Zahlé
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.55 33.50 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,13,black+jLB -Gwhite@30 >> $ps << EOF
-35.35 33.34 Jezzine
+35.37 33.33 Jezzine
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.35 33.32 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,white+jLB+a-300 -Gsaddlebrown@40 >> $ps << EOF
+35.95 34.02 Lebanon  Mts
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,darkbrown+jLB+a-310 -Gwhite@50 >> $ps << EOF
+35.85 33.7 Beqaa Valley
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,white+jLB+a-310 -Gsaddlebrown@40 >> $ps << EOF
+36.25 33.9 Anti-Lebanon Mts
 EOF
 
 # Add GMT logo
