@@ -24,7 +24,7 @@ gdalinfo -stats mw_relief.nc
 # Minimum=36.000, Maximum=2846.000
 
 # Make color palette
-gmt makecpt -Cturbo.cpt -V -T36/2846 > pauline.cpt
+gmt makecpt -Cdem2.cpt -V -T36/2846 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
 #####################################################################
@@ -42,7 +42,7 @@ gmt grdimage mw_relief.nc -Cpauline.cpt -R32/36/-17.5/-9 -JM5.0i -I+a15+ne0.75 -
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thick,dimgray -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -58,7 +58,7 @@ gmt grdimage mw_relief.nc -Cpauline.cpt -R32/36/-17.5/-9 -JM5.0i -I+a15+ne0.75 -
 gmt grdcontour mw_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thickest,red -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thick,dimgray -W0.1p -Df -O -K >> $ps
 #gmt pscoast -R -J \
     -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
 
@@ -77,12 +77,12 @@ gmt psscale -Dg32/-17.9+w12.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
 # Add grid
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
-    --FORMAT_GEO_MAP=ddd:mm:ss \
+    --FORMAT_GEO_MAP=ddd:mm:ssF \
     --MAP_TITLE_OFFSET=0.8c \
-    --FONT_ANNOT_PRIMARY=7p,0,black \
+    --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=16p,13,black \
-    -Bpxg2f1a0.5 -Bpyg2f1a1 -Bsxg2 -Bsyg1 \
+    -Bpxg2f1a0.5 -Bpyg2f1a0.5 -Bsxg2 -Bsyg1 \
     -B+t"Topographic map of Malawi" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -105,50 +105,65 @@ gmt pstext -R -J -N -O -K \
 34.1 -12.1 M a l a w i
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,26,white+jLB+a-80 >> $ps << EOF
-34.2 -13.1 (N y a s a)
+-F+jTL+f12p,26,white+jLB+a-85 >> $ps << EOF
+34.35 -12.9 (N y a s a)
 EOF
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40  >> $ps << EOF
+-F+jTL+f12p,0,black+jLB -Gwhite@60  >> $ps << EOF
 32.2 -12.8 Z A M B I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40 >> $ps << EOF
-32.3 -15.8 M O Z A M B I Q U E
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+32.4 -16.3 M O Z A M B I Q U E
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40 >> $ps << EOF
-34.7 -12.5 MOZAMBIQUE
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+34.8 -12.5 MOZAMBIQUE
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40 >> $ps << EOF
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
 32.15 -17.2 ZIMBABWE
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@40 >> $ps << EOF
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
 35.0 -10.7 TANZANIA
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f16p,13,black+jLB -Gwhite@40  >> $ps << EOF
-33.5 -13.9 M  A  L  A  W  I
+33.6 -14.2 M  A  L  A  W  I
 EOF
-
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
+33.5 -13.3 Bua River
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB+a-306 >> $ps << EOF
+32.25 -12.1 Luangwa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB+a-302 >> $ps << EOF
+32.7 -11.6 River
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB+a-60 -Gwhite@70 >> $ps << EOF
+32.7 -14.9 Zambezi River
+EOF
 
 # Cities
 gmt pstext -R -J -N -O -K \
 -F+f13p,0,black+jLB -Gwhite@40 >> $ps << EOF
-33.55 -13.55 Lilongwe
+33.85 -13.85 Lilongwe
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
-33.5 -13.6 0.40c
+33.8 -13.9 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
-35.05 -15.45 Blantyre
+35.05 -15.75 Blantyre
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.0 -15.5 0.20c
+35.0 -15.8 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
@@ -159,10 +174,10 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
-35.25 -15.15 Zomba
+35.25 -15.35 Zomba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.2 -15.2 0.20c
+35.2 -15.4 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
@@ -173,17 +188,17 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
-33.35 -12.95 Kasungu
+33.15 -12.95 Kasungu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.3 -13.0 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
-35.35 -14.35 Mangochi
+35.3 -14.45 Mangochi
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-35.3 -14.4 0.20c
+35.25 -14.5 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
