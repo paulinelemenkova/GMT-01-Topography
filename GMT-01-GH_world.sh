@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Malawi)
+# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Ghana)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 # GMT set up
