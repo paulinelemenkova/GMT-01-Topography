@@ -71,7 +71,7 @@ gmt psscale -Dg-4/3.4+w12.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a500+l"Colormap: 'geo' Google's Improved Rainbow CPT [R=-4696/915, H=0, C=HSV]" \
+    -Bg500f50a500+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-4696/915, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
