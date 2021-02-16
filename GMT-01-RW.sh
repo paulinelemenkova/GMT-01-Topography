@@ -24,7 +24,7 @@ gdalinfo -stats rw_relief.nc
 # Minimum=806.098, Maximum=4359.250
 
 # Make color palette
-gmt makecpt -Cworld.cpt -V -T806/4360 > pauline.cpt
+gmt makecpt -Cturbo.cpt -V -T806/4360 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief
 
 #####################################################################
@@ -95,6 +95,138 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
+# Lakes
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+29.2 -1.95 Lake
+29.2 -2.05 Kivu
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+30.32 -2.32 Lake
+30.32 -2.37 Rweru
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+30.75 -1.81 Lake
+30.75 -1.86 Ihema
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+30.31 -2.05 Lake
+30.31 -2.10 Mugesera
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+30.4 -1.85 Lake Muhazi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+29.78 -1.45 Lake Burera
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+29.74 -1.51 Lake Ruhondo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+30.0 -2.25 Lake
+29.9 -2.3 Cyohoha South
+EOF
+
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 U  G  A  N  D  A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -2.9 B U R U N D I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.55 -2.65 T A N Z A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+28.6 -1.6 C O N G O
+28.6 -1.7 (D.R.C.)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,26,white+jLB >> $ps << EOF
+29.6 -2.2 R    W    A    N    D    A
+EOF
+# Cities
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.08 -1.90 Kigali
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+30.06 -1.94 0.40c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.00 -1.5 Byumba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.06 -1.57 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.70 -2.30 Nyanza
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.73 -2.35 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.44 -1.97 Rwamagana
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.43 -1.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.70 -2.04 Muhanga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.75 -2.08 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.36 -2.03 Kibuye
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.35 -2.06 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.70 -2.55 Butare
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.75 -2.6 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+28.90 -2.46 Cyangugu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.89 -2.48 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.56 -2.10 Kibungo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.54 -2.15 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+30.33 -1.31 Nyagatare
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.32 -1.29 0.20c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
