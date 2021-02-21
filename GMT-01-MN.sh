@@ -18,13 +18,14 @@ gmt set FORMAT_GEO_MAP=dddF \
 gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R87.5/120/41.5/52.5 -Gmn_relief.nc
-#gmt grdcut GEBCO_2019.nc -R87.5/120/41.5/52.5 -Gmn_relief.nc
+#gmt grdcut ETOPO1_Ice_g_gmt4.grd -R87.5/120/41.5/52.5 -Gmn_relief.nc
+gmt grdcut GEBCO_2019.nc -R87.5/120/41.5/52.5 -Gmn_relief.nc
 gdalinfo -stats mn_relief.nc
 # Minimum=-155.000, Maximum=4848.000, Mean=1319.129, StdDev=571.535
 
 # Make color palette
-gmt makecpt -Cgeo.cpt -V -T-155/4848 > pauline.cpt
+#gmt makecpt -Cdem3.cpt -V -T-155/4848 > pauline.cpt
+gmt makecpt -Cgeo.cpt -V -T500/4848 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief
 
 #####################################################################
@@ -37,25 +38,16 @@ ps=Topo_MN.ps
 # Make background transparent image
 gmt grdimage mn_relief.nc -Cpauline.cpt -R87.5/120/41.5/52.5 -JM6.5i -I+a15+ne0.75 -t100 -Xc -P -K > $ps
     
-# Add isolines
-#gmt grdcontour mn_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
-
-# Add coastlines, borders, rivers
-#gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
-    
 #####################################################################
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
-#gmt psclip -JM -R Malawi.txt -O -K >> $ps
-
 gmt psclip -R87.5/120/41.5/52.5 -JM6.5i Mongolia.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
 gmt grdimage mn_relief.nc -Cpauline.cpt -R87.5/120/41.5/52.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour mn_relief.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour mn_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -97,12 +89,131 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
+# Hydrology
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,blue2+jLB -Gwhite@60 >> $ps << EOF
+92.3 50.1 Uvs Nuur
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,blue2+jLB >> $ps << EOF
+93.3 48.1 Khyargas
+93.3 47.7 Nuur
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB+a-340 -Gwhite@60 >> $ps << EOF
+103.5 49.63 Selenga
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB+a-335 -Gwhite@60 >> $ps << EOF
+110.3 47.4 Kherlen
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB+a-330 -Gwhite@60 >> $ps << EOF
+110.5 48.7 Onon
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB+a-45 -Gwhite@60 >> $ps << EOF
+93.06 49.47 Tes
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-280 >> $ps << EOF
+100.1 50.0 Khövsgöl
+EOF
+#
+# Mts
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB+a-40  >> $ps << EOF
+89.0 48.6  A  l  t  a  i   M  t  s
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB+a-10 >> $ps << EOF
+96.3 47.2 Khangai Mts
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-315 >> $ps << EOF
+107.3 47.3 Khentii Mts
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB+a-330  >> $ps << EOF
+105.1 42.0 G o b i  D e s e r t
+EOF
+# Cities
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@40 >> $ps << EOF
+103.70 48.20 Ulaanbaatar
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+106.92 47.92 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,black+jLB -Gwhite@20 >> $ps << EOF
+104.20 49.10 Erdenet
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+104.04 49.02 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,black+jLB -Gwhite@20 >> $ps << EOF
+106.10 49.50 Darkhan
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+105.95 49.46 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,black+jLB -Gwhite@30 >> $ps << EOF
+112.70 47.63 Choibalsan
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+114.53 48.07 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,yellow+jLB >> $ps << EOF
+99.30 49.25 Mörön
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+100.15 49.63 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,yellow+jLB >> $ps << EOF
+91.40 48.15 Khovd
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+91.64 48.00 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,yellow+jLB >> $ps << EOF
+90.20 49.00 Ölgii
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+89.97 48.96 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,yellow+jLB >> $ps << EOF
+100.90 45.80 Bayankhongor
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+100.72 46.19 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,yellow+jLB >> $ps << EOF
+102.93 46.36 Arvaikheer
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+102.77 46.26 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,0,black+jLB -Gwhite@40 >> $ps << EOF
+89.15 50.10 Ulaangom
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+92.06 49.98 0.20c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.0c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG102/47N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EMN+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG102/5N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EMN+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
