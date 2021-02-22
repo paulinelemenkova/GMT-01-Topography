@@ -30,7 +30,9 @@ gmt pscoast -R29/35/-1.5/4.3 -JM6.5i -Dh -M -EUG > Uganda.txt
 #####################################################################
 
 # Make color palette
-gmt makecpt -Cafrikakarte-topo -V -T443/5110 > pauline.cpt
+#gmt makecpt -Cafrikakarte-topo -V -T443/5110 > pauline.cpt
+gmt makecpt -Cwiki-schwarzwald-cont -V -T443/5110 > pauline.cpt
+#gmt makecpt -Cwiki-1.02 -V -T443/5110 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief costa-rica
 
 ps=Topo_UG.ps
@@ -71,7 +73,7 @@ gmt psscale -Dg29.0/-2.0+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a500+l"Colormap: 'afrikakarte-topo' scheme for maps of Africa by WikiMedia contributor Lilleskut. [R=443/5110, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'wiki-schwarzwald-cont' scheme for elevation of the Black Forest from Wikimedia Commons. [R=443/5110, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
