@@ -19,19 +19,19 @@ gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R29/35/-1.5/4.3 -Gug_relief.nc
-gmt grdcut GEBCO_2019.nc -R29/35/-1.5/4.3 -Gug_relief.nc
+#gmt grdcut GEBCO_2019.nc -R29/35/-1.5/4.3 -Gug_relief.nc
 gdalinfo -stats ug_relief.nc
 # Minimum=443.980, Maximum=4905.871, Mean=1121.985, StdDev=356.040
-
-# Make color palette
-gmt makecpt -Cgeo.cpt -V -T0/4906 > pauline.cpt
-# elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
 gmt pscoast -R29/35/-1.5/4.3 -JM6.5i -Dh -M -EUG > Uganda.txt
 #gmt pscoast -Dh -M -ELB > Malawi.txt
 #####################################################################
+
+# Make color palette
+gmt makecpt -Cafrikakarte-topo -V -T443/5110 > pauline.cpt
+# elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief costa-rica
 
 ps=Topo_UG.ps
 # Make background transparent image
@@ -71,7 +71,7 @@ gmt psscale -Dg29.0/-2.0+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a500+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=0/4906, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'afrikakarte-topo' scheme for maps of Africa by WikiMedia contributor Lilleskut. [R=443/5110, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
