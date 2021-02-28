@@ -19,8 +19,8 @@ gmt set FORMAT_GEO_MAP=dddF \
 gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R19.5/29.5/-27/-17.5 -Gbw_relief.nc
-#gmt grdcut GEBCO_2019.nc -R19.5/29.5/-27/-17.5 -Gbw_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R19.5/29.5/-27/-17.5 -Gbw_relief1.nc
+gmt grdcut GEBCO_2019.nc -R19.5/29.5/-27/-17.5 -Gbw_relief.nc
 gdalinfo -stats bw_relief.nc
 # Minimum=494.000, Maximum=1940.000, Mean=1103.457, StdDev=177.299
 
@@ -40,7 +40,7 @@ ps=Topo_BW.ps
 gmt grdimage bw_relief.nc -Cpauline.cpt -R19.5/29.5/-27/-17.5 -JM6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
     
 # Add isolines
-gmt grdcontour bw_relief.nc -R -J -C100 -A200+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour bw_relief1.nc -R -J -C200 -A200+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -57,7 +57,7 @@ gmt psclip -R19.5/29.5/-27/-17.5 -JM6.5i Botswana.txt -O -K >> $ps
 # Add raster image
 gmt grdimage bw_relief.nc -Cpauline.cpt -R19.5/29.5/-27/-17.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour bw_relief.nc -R -J -C100 -A100+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour bw_relief1.nc -R -J -C100 -A100+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -99,10 +99,10 @@ gmt psbasemap -R -J \
 # Texts
 # Cities
 gmt pstext -R -J -N -O -K \
--F+f13p,0,black+jLB -Gwhite@50 >> $ps << EOF
-25.96 -24.60 Gaborone
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
+25.0 -24.57 Gaborone
 EOF
-gmt psxy -R -J -Ss -W0.5p -Gcyan -O -K << EOF >> $ps
+gmt psxy -R -J -Ss -W0.5p -Ggreen1 -O -K << EOF >> $ps
 25.91 -24.65 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
@@ -127,15 +127,15 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 26.22 -20.56 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
-25.42 -21.27 Orapa
+-F+f10p,0,black+jLB >> $ps << EOF
+25.4 -21.26 Orapa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 25.37 -21.33 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
-24.65 -24.67 Jwaneng
+-F+f10p,0,black+jLB >> $ps << EOF
+24.1 -24.66 Jwaneng
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 24.60 -24.72 0.20c
@@ -148,7 +148,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 27.84 -21.98 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f10p,0,black+jLB >> $ps << EOF
 24.45 -20.99 Rakops
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -156,7 +156,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
-22.77 -20.47 Sehithwa
+22.78 -20.49 Sehithwa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 22.72 -20.47 0.20c
@@ -190,10 +190,55 @@ gmt pstext -R -J -N -O -K \
 27.1 -19.5 Z I M B A B W E
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f14p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-F+jTL+f15p,19,black+jLB -Gwhite@80 >> $ps << EOF
 22.5 -22.0 B  O  T  S  W  A  N  A
 EOF
-
+#
+gmt pstext -R -J -N -O -K \
+-F+f15p,20,salmon4+jLB >> $ps << EOF
+21.2 -23.8 K A L A H A R I
+21.2 -24.9 D E S E R T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+24.5 -20.45 Makgadikgadi
+24.6 -20.62 (salt pans)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB >> $ps << EOF
+22.3 -19.50 Okavango
+22.6 -19.67 Delta
+22.4 -19.84 (grassland)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-45 >> $ps << EOF
+22.1 -18.45 Okavango
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,23,darkolivegreen4+jLB >> $ps << EOF
+23.9 -18.6 Chobe
+23.5 -18.9 National Park
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-320 >> $ps << EOF
+26.1 -24.37 Ngotwane
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-318 >> $ps << EOF
+26.3 -24.57 Marico
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
+27.2 -23.4 Crocodile River
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a-345 -Gwhite@60 >> $ps << EOF
+28.2 -22.57 (Limpopo)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a-350 >> $ps << EOF
+22.5 -22.40 Okwa
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
