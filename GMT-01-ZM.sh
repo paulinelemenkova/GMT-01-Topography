@@ -99,6 +99,105 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
+28.38 -15.42 Lusaka
+EOF
+gmt psxy -R -J -Ss -W0.5p -Ggreen1 -O -K << EOF >> $ps
+28.28 -15.42 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+27.40 -12.90 Kitwe
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.20 -12.82 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+28.30 -12.86 Ndola
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.63 -12.96 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+27.50 -14.43 Kabwe
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.45 -14.43 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+26.7 -12.53 Chingola
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.85 -12.53 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+28.35 -12.56 Mufulira
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.24 -12.54 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+25.50 -17.70 Livingstone
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.86 -17.85 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+27.60 -13.35 Luanshya
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.4 -13.13 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+31.65 -13.60 Chipata
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+32.64 -13.64 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+31.30 -10.21 Kasama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+31.18 -10.21 0.20c
+EOF
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 A N G O L A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 N A M I B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 Z I M B A B W E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 M O Z A M B I Q U E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 M A L A W I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 T A N Z A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+29.4 -1.1 C O N G O
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
