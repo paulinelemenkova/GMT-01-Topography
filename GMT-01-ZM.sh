@@ -86,7 +86,7 @@ gmt psbasemap -R -J \
     --MAP_TITLE_OFFSET=0.8c \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
-    --FONT_TITLE=16p,25,black \
+    --FONT_TITLE=16p,19,black \
     -B+t"Topographic map of Zambia" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -129,7 +129,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
-26.7 -12.53 Chingola
+26.7 -12.50 Chingola
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 27.85 -12.53 0.20c
@@ -169,34 +169,125 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.18 -10.21 0.20c
 EOF
+#
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 A N G O L A
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+21.3 -12.0 A  N  G  O  L  A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 N A M I B I A
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+26.0 -10.5 C  O  N  G  O
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 Z I M B A B W E
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+31.5 -8.5 T A N Z A N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 M O Z A M B I Q U E
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+30.3 -15.5 M O Z A M B I Q U E
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 M A L A W I
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+30.0 -17.5 Z I M B A B W E
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 T A N Z A N I A
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+22.5 -18.8 B O T S W A N A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
-29.4 -1.1 C O N G O
+-F+jTL+f11p,19,black+jLB+a-350 -Gwhite@60 >> $ps << EOF
+21.5 -18.25 N A M I B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB+a-270 -Gwhite@60 >> $ps << EOF
+33.85 -13.5 M A L A W I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f17p,19,black+jLB -Gwhite@80 >> $ps << EOF
+26.6 -14.1 Z  A  M  B  I  A
+EOF
+#rivers
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-45 >> $ps << EOF
+23.4 -16.3 Zambezi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+24.2 -13.8 Dongwe
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+25.3 -14.0 Busanga
+25.3 -14.3 Swamp
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+27.1 -14.7 Lukanga
+27.1 -14.9 Swamp
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+30.1 -11.6 Bangweulu
+30.1 -11.9 Swamp
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB >> $ps << EOF
+29.5 -11.0 Lake
+29.5 -11.3 Bangweulu
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-320 >> $ps << EOF
+28.6 -9.3 Lake Mweru
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-300 >> $ps << EOF
+31.8 -12.9 Luangwa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-315 >> $ps << EOF
+30.7 -11.2 Chambeshi
+EOF
+#Mts
+gmt pstext -R -J -N -O -K \
+-F+f13p,20,darkbrown+jLB+a-300 -Gwhite@70 >> $ps << EOF
+30.3 -13.6 Muchinga Mountains
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-330 -Gwhite@70 >> $ps << EOF
+27.7 -17.0 Lake Kariba
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-312 >> $ps << EOF
+24.0 -13.7 Kabompo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-280 >> $ps << EOF
+26.45 -12.8 Lunga
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-350 >> $ps << EOF
+26.4 -15.6 Kafue
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-350 >> $ps << EOF
+26.6 -14.4 Kafue
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-340 >> $ps << EOF
+23.2 -14.8 Luena Flats
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-35 >> $ps << EOF
+22.05 -13.4 Lungwebungu
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-290 >> $ps << EOF
+26.3 -17.5 Kalomo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-20 -Gwhite@70 >> $ps << EOF
+29.4 -9.5 Kalungwishi
 EOF
 
 # insert map
