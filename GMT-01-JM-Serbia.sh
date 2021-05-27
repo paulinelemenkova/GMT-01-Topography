@@ -19,7 +19,7 @@ gmtdefaults -D > .gmtdefaults
 
 #LON LAT
 gmt grdcut GEBCO_2019.nc -R18/24/41/47 -Gserbia_relief.nc
-#gmt grdcut ETOPO1_Ice_g_gmt4.grd -R278/292/-21/3 -Gserbia_relief.nc
+#gmt grdcut ETOPO1_Ice_g_gmt4.grd -R18/24/41/47 -Gserbia_relief.nc
 #263/278
 
 gdalinfo serbia_relief.nc -stats
@@ -182,27 +182,24 @@ gmt pstext -R -J -N -O -K \
 21.1 45.4 R O M A N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-F+jTL+f9p,25,black+jLB -Gwhite@40 >> $ps << EOF
 23.05 42.4 B U L G A R I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
-21.2 41.8 M A C E D O N I A
+-F+jTL+f9p,25,black+jLB -Gwhite@40 >> $ps << EOF
+21.5 41.8 N O R T H
+21.2 41.6 M A C E D O N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@70 >> $ps << EOF
-20.6 42.5 K O S O V O
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@70 >> $ps << EOF
+-F+jTL+f9p,25,black+jLB -Gwhite@40 >> $ps << EOF
 19.6 41.85 A L B A N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-F+jTL+f9p,25,black+jLB -Gwhite@40 >> $ps << EOF
 18.6 42.7 M O N T E N E G R O
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-F+jTL+f9p,25,black+jLB -Gwhite@40 >> $ps << EOF
 18.1 44.5 B O S N I A
 18.1 44.3 A N D
 18.1 44.1 HERZEGOVINA
@@ -221,14 +218,22 @@ gmt pstext -R -J -N -O -K \
 18.1 41.2 Sea
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,20,yellow+jLB+a-40 >> $ps << EOF
-18.8 43.95 D  I  N  A  R  I  C
-19.3 43.25 A L P S
+-F+f15p,20,yellow+jLB+a-40 -Gsaddlebrown@50 >> $ps << EOF
+18.8 43.95 D I N A R I D E S
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,20,yellow+jLB+a-60 >> $ps << EOF
-21.5 44.2 B A L K A N   M T S
+-F+f15p,20,yellow+jLB+a-68 -Gsaddlebrown@50 >> $ps << EOF
+21.8 44.3 Karpatian Mts.
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,20,yellow+jLB+a-30 -Gsaddlebrown@50 >> $ps << EOF
+22.8 43.2 Balkan Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,20,yellow+jLB+a-30 -Gsaddlebrown@50 >> $ps << EOF
+22.8 43.0 (Stara Planina)
+EOF
+
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
