@@ -20,7 +20,7 @@ gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R3/26/54/70 -Gse_relief.nc
-#gmt grdcut GEBCO_2019.nc -R29/35/-1.5/4.3 -Gse_relief.nc
+gmt grdcut GEBCO_2019.nc -R3/26/54/70 -Gse_relief1.nc
 gdalinfo -stats se_relief.nc
 #  Minimum=-3067.000, Maximum=2225.000, Mean=120.486, StdDev=446.592
 
@@ -35,10 +35,10 @@ gmt makecpt -Cgeo -V -T-3067/2225 > pauline.cpt
 
 ps=Topo_SE.ps
 # Make background transparent image
-gmt grdimage se_relief.nc -Cpauline.cpt -R10/54/26/69.5r -JT17/4.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
+gmt grdimage se_relief1.nc -Cpauline.cpt -R10/54/26/69.5r -JT17/4.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
     
 # Add isolines
-gmt grdcontour se_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour se_relief.nc -R -J -C500 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -51,7 +51,7 @@ gmt psclip -R10/54/26/69.5r -JT17/4.5i Sweden.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage se_relief.nc -Cpauline.cpt -R10/54/26/69.5r -JT17/4.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage se_relief1.nc -Cpauline.cpt -R10/54/26/69.5r -JT17/4.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour se_relief.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -63,7 +63,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg10.0/53.2+w11.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg9.5/53.2+w11.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
@@ -90,7 +90,19 @@ gmt psbasemap -R -J \
     -Lx9.5c/-2.5c+c10+w300k+l"Transverse Mercator Prj. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W2.0p,purple -O -K << EOF >> $ps
+#11.5 57.0 315 3 6.0
+11.5 57.5 15 1.5 2.8
+EOF
+
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,26,purple+jLB+a-73 >> $ps << EOF
+10.8 58.1 Study area
+EOF
+
 # countries
 gmt pstext -R -J -N -O -K \
 -F+jTL+f15p,25,black+jLB -Gwhite@60 >> $ps << EOF
@@ -104,9 +116,9 @@ gmt pstext -R -J -N -O -K \
 18.0 55.7 Sea
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f13p,26,blue2+jLB >> $ps << EOF
+-F+jTL+f13p,26,blue2+jLB+a-359 >> $ps << EOF
 18.0 61.8 Bothnian
-18.0 61.3 Bay
+19.0 61.3 Bay
 EOF
 
 # Cities
@@ -125,8 +137,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.21 59.27 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-12.07 57.52 Gothenburg
+-F+f10p,0,black+jLB+a-3 -Gwhite@60 >> $ps << EOF
+12.07 57.50 Gothenburg
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 11.97 57.70 0.20c
@@ -147,7 +159,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,white+jLB >> $ps << EOF
-13.14 55.56 Malmö
+13.10 55.48 Malmö
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 13.04 55.61 0.20c
@@ -160,8 +172,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 16.2 58.6 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-14.28 57.70 Jönköping
+-F+f10p,0,black+jLB+a-2 -Gwhite@60 >> $ps << EOF
+14.30 57.70 Jönköping
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 14.16 57.78 0.20c
@@ -180,6 +192,13 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.63 58.42 0.20c
 EOF
+
+# insert map
+# Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
+gmt psbasemap -R -J -O -K -DjTL+w3.5c+stmp >> $ps
+read x0 y0 w h < tmp
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG16/62/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -ESE+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
 gmt logo -Dx4.5/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
