@@ -93,27 +93,32 @@ gmt psbasemap -R -J \
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f14p,25,black+jLB -Gwhite@60 >> $ps << EOF
-13.0 63.0 S  W  E  D  E  N
+-F+jTL+f15p,25,black+jLB -Gwhite@60 >> $ps << EOF
+12.5 63.0 S  W  E  D  E  N
 EOF
 
 # Sea
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,26,blue2+jLB >> $ps << EOF
+-F+jTL+f14p,26,blue2+jLB >> $ps << EOF
 18.0 56.2 Baltic
 18.0 55.7 Sea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,26,blue2+jLB >> $ps << EOF
+18.0 61.8 Bothnian
+18.0 61.3 Bay
 EOF
 
 # Cities
 gmt pstext -R -J -N -O -K \
--F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
-18.17 59.33 Stockholm
+-F+f13p,0,black+jLB -Gwhite@40 >> $ps << EOF
+18.35 59.20 Stockholm
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 18.07 59.33 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f10p,0,white+jLB >> $ps << EOF
 15.31 59.27 Örebro
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -121,56 +126,56 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-12.07 57.7 Gothenburg
+12.07 57.52 Gothenburg
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-11.97 57.7 0.20c
+11.97 57.70 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-16.65 59.62 Västerås
+-F+f10p,0,white+jLB >> $ps << EOF
+16.68 59.47 Västerås
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 16.55 59.62 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-12.82 56.05 Helsingborg
+-F+f10p,0,white+jLB >> $ps << EOF
+12.82 56.15 Helsingborg
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 12.72 56.05 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-13.14 55.61 Malmö
+-F+f10p,0,white+jLB >> $ps << EOF
+13.14 55.56 Malmö
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 13.04 55.61 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-16.30 58.6 Norrköping
+-F+f10p,0,white+jLB >> $ps << EOF
+15.25 58.70 Norrköping
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 16.2 58.6 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-14.26 57.78 Jönköping
+14.28 57.70 Jönköping
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 14.16 57.78 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-17.74 59.86 Uppsala
+-F+f10p,0,white+jLB >> $ps << EOF
+17.0 59.67 Uppsala
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 17.64 59.86 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
-15.73 58.42 Linköping
+-F+f10p,0,white+jLB >> $ps << EOF
+15.0 58.22 Linköping
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.63 58.42 0.20c
