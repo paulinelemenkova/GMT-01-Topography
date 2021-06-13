@@ -90,18 +90,91 @@ gmt psbasemap -R -J \
     -Lx9.5c/-2.5c+c10+w300k+l"Transverse Mercator Prj. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
-# Step-7. Study area
-gmt psbasemap -R -J \
-    -D144/40.2/162/51r -F+pthin,red \
-    -O -K >> $ps
-# Step-8. Study area label annotation
-gmt psxy -R -J -Wthin -O -K \
-    -Sqn1:+f12p,Times-Roman,red+l"Study Area"+c5p+pthick,red+o << EOF >> $ps
-144.2 41.1
-160.8 41.5
+# Texts
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,25,black+jLB -Gwhite@60 >> $ps << EOF
+13.0 63.0 S  W  E  D  E  N
 EOF
 
-# Texts
+# Sea
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue2+jLB >> $ps << EOF
+18.0 56.2 Baltic
+18.0 55.7 Sea
+EOF
+
+# Cities
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
+18.17 59.33 Stockholm
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+18.07 59.33 0.40c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+15.31 59.27 Örebro
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.21 59.27 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+12.07 57.7 Gothenburg
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+11.97 57.7 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+16.65 59.62 Västerås
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.55 59.62 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+12.82 56.05 Helsingborg
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+12.72 56.05 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+13.14 55.61 Malmö
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+13.04 55.61 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+16.30 58.6 Norrköping
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.2 58.6 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+14.26 57.78 Jönköping
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+14.16 57.78 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+17.74 59.86 Uppsala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+17.64 59.86 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@60 >> $ps << EOF
+15.73 58.42 Linköping
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.63 58.42 0.20c
+EOF
 
 # Add GMT logo
 gmt logo -Dx4.5/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
