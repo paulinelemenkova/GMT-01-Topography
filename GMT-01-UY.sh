@@ -22,7 +22,7 @@ chsh -s /bin/bash
 chsh -s /bin/zsh
 
 gmt grdcut GEBCO_2019.nc -R301.5/307.0/-35/-30 -Guy_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R301.5/307.0/-35/-30 -Gsr_relief1.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R301.5/307.0/-35/-30 -Guy_relief1.nc
 
 gdalinfo uy_relief.nc -stats
 # Minimum=-109.920, Maximum=454.748, Mean=87.005, StdDev=86.025
@@ -42,7 +42,7 @@ ps=Topography_UY.ps
 gmt grdimage uy_relief.nc -Cpauline.cpt -R301.5/307.0/-35/-30 -JM6i -P -I+a15+ne0.75 -t50 -Xc -K > $ps
     
 # Add isolines
-gmt grdcontour sr_relief1.nc -R -J -C250 -W0.1p -O -K >> $ps
+gmt grdcontour uy_relief1.nc -R -J -C250 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -P \
@@ -58,7 +58,7 @@ gmt psclip -R301.5/307.0/-35/-30 -JM6.0i uy.txt -O -K >> $ps
 # Add raster image
 gmt grdimage uy_relief.nc -Cpauline.cpt -R301.5/307.0/-35/-30 -JM6.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour sr_relief1.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour uy_relief1.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
