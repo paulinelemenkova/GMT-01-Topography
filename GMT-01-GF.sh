@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO dataset (here: Suriname)
+# Purpose: shaded relief grid raster map from the GEBCO dataset (here: French Guiana)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 # GMT set up
