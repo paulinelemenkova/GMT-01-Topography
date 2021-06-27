@@ -100,9 +100,12 @@ gmt psbasemap -R -J \
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.5c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG304/3S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EGY+ggold1 -Sslategray2 -O -K -X$x0 -Y$y0 >> $ps
-#gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,white -Rg -JG304/3N/$w -Da -Gkhaki2 -A5000 -Bg -Wfaint -ESA+gpeachpuff -EGY+gindianred4 -Sskyblue2 -O -K -X$x0 -Y$y0 >> $ps
+gmt psbasemap -R -J \
+    -D297/0/307/10r -F+pthin,red \
+    -O -K >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
+
 
 # Add GMT logo
 gmt logo -Dx6.2/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
@@ -114,4 +117,4 @@ gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y10.3c -N -O \
 EOF
 
 # Convert to image file using GhostScript
-gmt psconvert Topography_GY.ps -A1.0c -E720 -Tj -Z
+gmt psconvert Topography_GY.ps -A0.3c -E720 -Tj -Z
