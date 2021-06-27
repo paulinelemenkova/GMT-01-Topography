@@ -21,15 +21,15 @@ chsh -s /bin/bash
 
 chsh -s /bin/zsh
 
-gmt grdcut GEBCO_2019.nc -R273.5/278.0/7.50/11.50 -Gcr_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R273.5/278.0/7.50/11.50 -Gcr_relief1.nc
+gmt grdcut GEBCO_2019.nc -R273.5/278.0/7.0/12.0 -Gcr_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R273.5/278.0/7.0/12.0 -Gcr_relief1.nc
 
 gdalinfo cr_relief.nc -stats
 # Minimum=-4943.975, Maximum=3695.391, Mean=-946.686, StdDev=1367.347
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R273.5/278.0/7.50/11.50 -Dh -M -ECR > cr.txt
+gmt pscoast -R273.5/278.0/7.0/12.0 -Dh -M -ECR > cr.txt
 #####################################################################
 
 # Make color palette
@@ -40,7 +40,7 @@ gmt makecpt -Cgeo.cpt -V -T-4944/3696 > pauline.cpt
 # Generate a file
 ps=Topography_CR.ps
 # Make background transparent image
-gmt grdimage cr_relief.nc -Cpauline.cpt -R273.5/278.0/7.50/11.50 -JM6.0i -P -I+a15+ne0.75 -t30 -Xc -K > $ps
+gmt grdimage cr_relief.nc -Cpauline.cpt -R273.5/278.0/7.0/12.0 -JM6.0i -P -I+a15+ne0.75 -t30 -Xc -K > $ps
     
 # Add isolines
 gmt grdcontour cr_relief1.nc -R -J -C200 -W0.1p -O -K >> $ps
@@ -53,11 +53,11 @@ gmt pscoast -R -J -P \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R273.5/278.0/7.50/11.50 -JM6.0i cr.txt -O -K >> $ps
+gmt psclip -R273.5/278.0/7.0/12.0 -JM6.0i cr.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage cr_relief.nc -Cpauline.cpt -R273.5/278.0/7.50/11.50 -JM6.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage cr_relief.nc -Cpauline.cpt -R273.5/278.0/7.0/12.0 -JM6.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour cr_relief1.nc -R -J -C100 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -69,7 +69,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
 
 # Add color barlegend
-gmt psscale -Dg273.5/7.20+w15.3c/0.4c+h+o0.0/0i+ml -R -J -Cpauline.cpt \
+gmt psscale -Dg273.5/6.7+w15.3c/0.4c+h+o0.0/0i+ml -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
     --FONT_ANNOT_PRIMARY=6p,0,black \
@@ -91,14 +91,14 @@ gmt psbasemap -R -J \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=6p,0,black \
     --MAP_LABEL_OFFSET=0.1c \
-    -Lx13.6c/-2.1c+c50+w100k+l"Mercator projection. Scale: km"+f \
+    -Lx13.5c/-2.0c+c50+w100k+l"Mercator projection. Scale: km"+f \
     -UBL/-5p/-60p -O -K >> $ps
     
 # Texts
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTR+w2.7c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTL+w2.7c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,white -Rg -JG270/16N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -ECR+gyellow -Sskyblue1 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
@@ -108,7 +108,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx6.2/-2.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.9c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y10.35c -N -O \
     -F+f11p,0,black+jLB >> $ps << EOF
 1.7 11.0 SRTM/GEBCO 15 arc sec resolution global terrain model grid
 EOF
