@@ -97,11 +97,14 @@ gmt psbasemap -R -J \
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTR+w3.7c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTR+w3.5c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,white -Rg -JG306/4S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EGF+ggold1 -Scadetblue3 -O -K -X$x0 -Y$y0 >> $ps
-#gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,white -Rg -JG306/4N/$w -Da -Gkhaki2 -A5000 -Bg -Wfaint -ESA+gpeachpuff -EGF+gindianred4 -Sskyblue2 -O -K -X$x0 -Y$y0 >> $ps
+gmt psbasemap -R -J \
+    -D304/0/310/7r -F+pthin,red \
+    -O -K >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
+
 
 # Add GMT logo
 gmt logo -Dx6.2/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
