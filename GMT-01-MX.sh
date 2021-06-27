@@ -59,7 +59,7 @@ gmt psclip -R240/275/14/33 -JM6.0i mx.txt -O -K >> $ps
 # Add raster image
 gmt grdimage mx_relief.nc -Cpauline.cpt -R240/275/14/33 -JM6.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour mx_relief.nc -R -J -C1000 -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour mx_relief.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thickest,gold1 -W0.1p -Df -O -K >> $ps
