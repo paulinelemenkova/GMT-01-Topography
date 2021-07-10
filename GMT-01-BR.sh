@@ -21,8 +21,8 @@ chsh -s /bin/bash
 
 chsh -s /bin/zsh
 
-#gmt grdcut GEBCO_2019.nc -R285/328/-35/6 -Gbr_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R285/328/-35/6 -Gbr_relief.nc
+gmt grdcut GEBCO_2019.nc -R285/328/-35/6 -Gbr_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R285/328/-35/6 -Gbr_relief1.nc
 
 gdalinfo br_relief.nc -stats
 # Minimum=-6519.716, Maximum=3171.734, Mean=-3429.910, StdDev=1855.667
@@ -59,7 +59,7 @@ gmt psclip -R285/328/-35/6 -JM6.0i br.txt -O -K >> $ps
 # Add raster image
 gmt grdimage br_relief.nc -Cpauline.cpt -R285/328/-35/6 -JM6.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour br_relief.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour br_relief1.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thick,deeppink1 -W0.1p -Df -O -K >> $ps
@@ -112,7 +112,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-316.37 -19.91 Belo Horizonte
+316.37 -20.0 Belo Horizonte
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 316.07 -19.91 0.20c
@@ -169,7 +169,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-311.8 -1.45 Belém
+311.8 -1.5 Belém
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 311.5 -1.45 0.20c
@@ -199,11 +199,49 @@ gmt pstext -R -J -N -O -K \
 314 2.0 Ocean
 EOF
 
+# rivers -R285/328/-35/6
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-25 >> $ps << EOF
+293.0 -3.2 Amazonas
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-345 >> $ps << EOF
+305 -2.0 Amazonas
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-45 >> $ps << EOF
+296.5 -1.2 Negro
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-290 >> $ps << EOF
+306 -12.0 Xingu
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-288 >> $ps << EOF
+308.0 -14.0 Araguaia
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-280 >> $ps << EOF
+311.0 -12.0 Tocantins
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-275 >> $ps << EOF
+317.5 -13.0 São
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-331 >> $ps << EOF
+317.5 -11.3 Francisco
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a-300 >> $ps << EOF
+308.5 -22.0 Parana
+EOF
+
 # Texts -R285/328/-35/6
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f13p,25,black+jLB -Gwhite@60 >> $ps << EOF
-300.20 -10.1 B     R     A     Z     I    L
+-F+jTL+f17p,25,white+jLB >> $ps << EOF
+300.20 -7.0 B     R     A     Z     I     L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,25,black+jLB -Gwhite@60 >> $ps << EOF
@@ -227,6 +265,10 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
+289.5 -24.0 CHILE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,25,black+jLB -Gwhite@60 >> $ps << EOF
 285 3.0 C O L O M B I A
 EOF
 gmt pstext -R -J -N -O -K \
@@ -247,11 +289,26 @@ gmt pstext -R -J -N -O -K \
 306 4.0 GUIANA
 EOF
 
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,lightcyan+jLB >> $ps << EOF
+293.0 -5.7 A m a z o n
+294.0 -7.2 B a s i n
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,25,moccasin+jLB+a-310 >> $ps << EOF
+307.0 -19.5 Brazilian Highlands
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,25,moccasin+jLB+a-285 >> $ps << EOF
+316.37 -19.5 Espinhaço Mountains
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.0c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG300/12S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EBR+ggoldenrod1 -Sslategray2 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG300/12S/$w -Da -Gwheat -A5000 -Bg -Wfaint -ESA+gpeachpuff -EBR+gvioletred1 -Sslategray2 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
@@ -259,10 +316,10 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx6.2/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.9c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.0c -N -O \
     -F+f12p,Helvetica,black+jLB >> $ps << EOF
 1.5 13.6 SRTM/GEBCO 15 arc sec resolution global terrain model grid
 EOF
 
 # Convert to image file using GhostScript
-gmt psconvert Topography_BR.ps -A1.0c -E720 -Tj -Z
+gmt psconvert Topography_BR.ps -A0.5c -E720 -Tj -Z
