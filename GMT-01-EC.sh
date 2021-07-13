@@ -21,8 +21,8 @@ chsh -s /bin/bash
 
 chsh -s /bin/zsh
 
-#gmt grdcut GEBCO_2019.nc -R277/285/-5/1.5 -Gec_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R277/285/-5/1.5 -Gec_relief.nc
+gmt grdcut GEBCO_2019.nc -R277/285/-5/1.5 -Gec_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R277/285/-5/1.5 -Gec_relief1.nc
 
 gdalinfo ec_relief.nc -stats
 # Minimum=-5319.000, Maximum=6560.000, Mean=-649.924, StdDev=2059.874
@@ -42,7 +42,7 @@ ps=Topography_EC.ps
 gmt grdimage ec_relief.nc -Cpauline.cpt -R277/285/-5/1.5 -JM6i -P -I+a15+ne0.75 -t50 -Xc -K > $ps
     
 # Add isolines
-gmt grdcontour ec_relief.nc -R -J -C500 -W0.1p -O -K >> $ps
+gmt grdcontour ec_relief1.nc -R -J -C500 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -P \
@@ -72,7 +72,7 @@ gmt psscale -Dg277/-5.5+w15.2c/0.4c+h+o0.0/0i+ml -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
-    -Baf+l"Color scale 'geo': global bathymetry/topography relief [R=-6857/3206, H=0, C=RGB]" \
+    -Ba1000g500f100+l"Color scale 'geo': global bathymetry/topography relief [R=-6857/3206, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -131,7 +131,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,white+jLB+a-0 >> $ps << EOF
-279.65 -1.10 Portoviejo
+279.65 -1.2 Portoviejo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 279.55 -1.06 0.20c
@@ -151,7 +151,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 280.04 -3.27 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB+a-0 -Gwhite@50 >> $ps << EOF
+-F+f10p,0,black+jLB+a-0 -Gwhite@40 >> $ps << EOF
 280.90 -3.98 Loja
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -166,12 +166,12 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,25,black+jLB >> $ps << EOF
-283.5 0.6 C O L O M B I A
+-F+jTL+f11p,25,black+jLB >> $ps << EOF
+283.2 0.6 C O L O M B I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,25,black+jLB >> $ps << EOF
-283.0 -2.9 P  E  R  U
+-F+jTL+f11p,25,black+jLB >> $ps << EOF
+282.5 -3.5 P  E  R  U
 EOF
 
 # water
@@ -190,12 +190,50 @@ gmt pstext -R -J -N -O -K \
 279.4 1.3 Ancón de Sardinas
 280.3 1.1 Bay
 EOF
+#
+# rivers -R285/328/-35/6
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB >> $ps << EOF
+283.2 -0.4 Aguarico
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-333 >> $ps << EOF
+282.5 -0.9 Napo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,white+jLB+a-62 >> $ps << EOF
+282.9 -0.1 Coca
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,23,honeydew+jLB >> $ps << EOF
+281.0 -0.8 A N D E S
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,23,honeydew+jLB >> $ps << EOF
+282.60 -1.2 A M A Z O N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,23,honeydew+jLB >> $ps << EOF
+279.7 -1.5 C O S T A
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,23,honeydew+jLB+a-38 >> $ps << EOF
+279.3 -2.0 Santa Elena
+279.3 -2.2 Peninsula
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,23,midnightblue+jLB -Gwhite@70 >> $ps << EOF
+278.6 -2.1 Point
+278.2 -2.3 Santa Elena
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.0c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG281/2S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EEC+gyellow -Slightskyblue1 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,white -Rg -JG281/2S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EEC+gyellow -Scornflowerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
