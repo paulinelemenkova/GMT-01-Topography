@@ -93,14 +93,151 @@ gmt psbasemap -R -J \
     -Lx13.5c/-2.0c+c50+w100k+l"Mercator projection. Scale: km"+f \
     -UBL/-5p/-60p -O -K >> $ps
     
-# Texts
+# Texts -R276.5/283/6.5/10.5
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
+280.6 9.03 San Miguelito
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.5 9.03 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
+280.57 9.08 Las Cumbres
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.47 9.08 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f8p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
+280.15 8.83 La Chorrera
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.22 8.88 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-315 -Gwhite@60 >> $ps << EOF
+280.62 9.13 Tocumen
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.62 9.08 0.20c
+EOF
+#gmt pstext -R -J -N -O -K \
+#-F+f9p,21,black+jLB+a-315 -Gwhite@60 >> $ps << EOF
+#280.72 9.13 Pacora
+#EOF
+#gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+#280.72 9.08 0.20c
+#EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
+280.35 8.85 Arraiján
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.35 8.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+277.67 8.43 David
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+277.57 8.43 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
+280.23 8.88 Vista Alegre
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+280.30 8.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f8p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+279.08 8.15 Santiago de
+279.08 8.0 Veraguas
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+279.03 8.11 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+280.58 8.93 Panama City
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+280.48 8.98 0.25c
+EOF
+# mountains
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,white+jLB+a-30 >> $ps << EOF
+277.1 9.1 Cordillera de Talamanca
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f8p,21,black+jLB+a-335 -Gwhite@60 >> $ps << EOF
+279.1 7.28 Península de Azuero
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+280.55 8.35 Pearl
+280.5 8.20 Islands
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+277.8 9.35 Bocas del Toro
+277.8 9.20 Archipelago
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+281.2 8.45 Isla
+281.2 8.30 del
+281.2 8.15 Rey
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+278.4 7.33 Isla de
+278.4 7.18 Coiba
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+276.5 7.90 Punta Burica
+EOF
+
+# water
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,blue1+jLB >> $ps << EOF
+280.15 8.0 Gulf of Panama
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,23,white+jLB >> $ps << EOF
+278.0 10.25 C a r i b b e a n   S e a
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+278.5 9.15 Mosquito
+278.7 9.00 Gulf
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+277.50 7.95 Gulf of
+277.50 7.80 Chiriquí
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+279.70 8.10 Parita
+279.75 7.95 Bay
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,23,white+jLB >> $ps << EOF
+279.3 6.7 P  a  c  i  f  i  c     O  c  e  a  n
+EOF
+
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTR+w2.3c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTR+w3.0c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,white -Rg -JG270/16N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EPA+gyellow -Sskyblue1 -O -K -X$x0 -Y$y0 >> $ps
-#gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,white -Rg -JG270/16N/$w -Da -Gkhaki2 -A5000 -Bg -Wfaint -ESA+gpeachpuff -EPA+gindianred4 -Sskyblue2 -O -K -X$x0 -Y$y0 >> $ps
+gmt psbasemap -R -J \
+    -D274/5/285/12r -F+pthin,red \
+    -O -K >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
