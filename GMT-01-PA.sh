@@ -1,6 +1,7 @@
 #!/bin/sh
 # Purpose: shaded relief grid raster map from the GEBCO dataset (here: Panama)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
+# http://soliton.vm.bytemark.co.uk/pub/cpt-city/wkp/country/tn/wiki-celtic-sea.png.index.html
 
 # GMT set up
 gmt set FORMAT_GEO_MAP=dddF \
@@ -34,7 +35,8 @@ gmt pscoast -R276.5/283/6.5/10.5  -Dh -M -EPA > pa.txt
 
 # Make color palette
 # makecpt --help
-gmt makecpt -Cgeo.cpt -V -T-3954/2426 > pauline.cpt
+#gmt makecpt -Cwiki-red-sea.cpt -V -T-3954/2426 > pauline.cpt
+gmt makecpt -Cwiki-celtic-sea.cpt > pauline.cpt
 
 # Generate a file
 ps=Topography_PA.ps
@@ -72,7 +74,7 @@ gmt psscale -Dg276.5/6.05+w15.3c/0.4c+h+o0.0/0i+ml -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
     --FONT_ANNOT_PRIMARY=6p,0,black \
-    -Baf+l"Color scale 'geo': global bathymetry/topography relief [R=-6857/3206, H=0, C=RGB]" \
+    -Bg500a500f50+l"Color scale 'wiki-celtic-sea': global bathymetry/topography relief [R=-3954/2426, discrete, RGB, 25 segments]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -80,7 +82,7 @@ gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
     --MAP_TITLE_OFFSET=0.6c \
-    --FONT_TITLE=13p,0,black \
+    --FONT_TITLE=12p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     -Bpx1f0.5a1 -Bpyg1f0.5a0.5 -Bsxg0.5 -Bsyg0.5 \
     -B+t"Topographic map of Panama" -O -K >> $ps
@@ -95,32 +97,39 @@ gmt psbasemap -R -J \
     
 # Texts -R276.5/283/6.5/10.5
 gmt pstext -R -J -N -O -K \
--F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
-280.6 9.03 San Miguelito
+-F+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+281.12 9.56 El Porvenir
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-280.5 9.03 0.20c
+281.06 9.56 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
-280.57 9.08 Las Cumbres
+-F+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+281.85 8.26 La Palma
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+281.85 8.41 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+280.52 9.10 Las Cumbres
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 280.47 9.08 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f8p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
-280.15 8.83 La Chorrera
+-F+f8p,21,black+jLB -Gwhite@50 >> $ps << EOF
+279.70 8.75 La Chorrera
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 280.22 8.88 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,21,black+jLB+a-315 -Gwhite@60 >> $ps << EOF
-280.62 9.13 Tocumen
+-F+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+279.80 9.36 Colón
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-280.62 9.08 0.20c
+280.11 9.36 0.20c
 EOF
 #gmt pstext -R -J -N -O -K \
 #-F+f9p,21,black+jLB+a-315 -Gwhite@60 >> $ps << EOF
@@ -130,8 +139,8 @@ EOF
 #280.72 9.08 0.20c
 #EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
-280.35 8.85 Arraiján
+-F+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
+279.95 9.00 Arraiján
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 280.35 8.95 0.20c
@@ -144,15 +153,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 277.57 8.43 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,21,black+jLB+a-45 -Gwhite@60 >> $ps << EOF
-280.23 8.88 Vista Alegre
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-280.30 8.93 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
 -F+f8p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-279.08 8.15 Santiago de
+279.08 8.10 Santiago de
 279.08 8.0 Veraguas
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -160,7 +162,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-280.58 8.93 Panama City
+280.58 8.93 Panama
+280.63 8.79 City
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 280.48 8.98 0.25c
@@ -181,8 +184,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
-277.8 9.35 Bocas del Toro
-277.8 9.20 Archipelago
+277.8 9.50 Bocas del Toro
+277.8 9.35 Archipelago
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,21,black+jLB -Gwhite@60 >> $ps << EOF
@@ -202,31 +205,31 @@ EOF
 
 # water
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,26,blue1+jLB >> $ps << EOF
+-F+jTL+f12p,30,dodgerblue4+jLB >> $ps << EOF
 280.15 8.0 Gulf of Panama
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,23,white+jLB >> $ps << EOF
-278.0 10.25 C a r i b b e a n   S e a
+-F+jTL+f13p,23,dodgerblue4+jLB >> $ps << EOF
+277.70 10.25 C a r i b b e a n   S e a
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+-F+jTL+f9p,30,dodgerblue4+jLB >> $ps << EOF
 278.5 9.15 Mosquito
 278.7 9.00 Gulf
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+-F+jTL+f9p,30,dodgerblue4+jLB >> $ps << EOF
 277.50 7.95 Gulf of
 277.50 7.80 Chiriquí
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,blue1+jLB >> $ps << EOF
+-F+jTL+f9p,30,dodgerblue4+jLB >> $ps << EOF
 279.70 8.10 Parita
 279.75 7.95 Bay
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,23,white+jLB >> $ps << EOF
-279.3 6.7 P  a  c  i  f  i  c     O  c  e  a  n
+-F+jTL+f14p,23,dodgerblue4+jLB >> $ps << EOF
+279.1 6.6 P  a  c  i  f  i  c     O  c  e  a  n
 EOF
 
 
@@ -245,7 +248,7 @@ gmt logo -Dx6.2/-2.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y2.7c -N -O \
-    -F+f11p,0,black+jLB >> $ps << EOF
+    -F+f10p,0,black+jLB >> $ps << EOF
 1.7 11.0 SRTM/GEBCO 15 arc sec resolution global terrain model grid
 EOF
 
