@@ -105,64 +105,64 @@ gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-257.3 16.0 Acapulco
+257.3 16.3 Acapulco
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 260.12 16.86 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-253.9 23.73 Chihuahua
+253.7 28.94 Chihuahua
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-253.9 23.43 0.20c
+253.9 28.64 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-259.70 25.37 Monterrey
+260.0 25.37 Monterrey
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 259.70 25.67 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-257.3 23.6 Zacatecas
+256.3 23.6 Zacatecas
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 257.3 23.3 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-254.34 26.63 Hidalgo
-254.34 26.33 del Parral
+254.55 27.43 Hidalgo
+254.55 26.73 del Parral
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 254.34 26.93 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-259.02 22.45 San Luis Potosí
+259.02 21.40 San Luis Potosí
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 259.02 22.15 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-256.55 25.24 Torreón
+256.1 24.74 Torreón
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 256.55 25.54 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-258.32 21.42 León
+256.9 21.42 León
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 258.32 21.12 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,0,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-261.82 18.73 Puebla
+261.82 18.33 Puebla
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 261.82 19.03 0.20c
@@ -170,24 +170,24 @@ EOF
 
 # countries -R240/275/14/33
 gmt pstext -R -J -N -O -K \
--F+jTL+f13p,25,black+jLB >> $ps << EOF
-261.0 31.0 U. S. A.
-EOF
-#gmt pstext -R -J -N -O -K \
-#-F+jTL+f14p,25,black+jLB -Gwhite@50 >> $ps << EOF
-#255.7 21.5 M E X I C O
-#EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f11p,21,black+jLB -Gwhite@60 >> $ps << EOF
-268.2 15.0 Guatemala
+-F+jTL+f11p,25,black+jLB >> $ps << EOF
+257.5 31.0 United States of America
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,21,black+jLB -Gwhite@60 >> $ps << EOF
+-F+jTL+f12p,25,black+jLB -Gwhite@50 >> $ps << EOF
+255.35 22.2 M E X I C O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,22,black+jLB -Gwhite@50 >> $ps << EOF
+268.1 15.0 Guatemala
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,22,black+jLB -Gwhite@50 >> $ps << EOF
 271.0 17.0 Belize
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,21,black+jLB -Gwhite@60 >> $ps << EOF
-271.4 14.5 Honduras
+-F+jTL+f11p,22,black+jLB -Gwhite@50 >> $ps << EOF
+271.4 14.3 Honduras
 EOF
 
 # water
@@ -210,7 +210,7 @@ gmt pstext -R -J -N -O -K \
 241.1 21.0 P A C I F I C   O C E A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,26,blue1+jLB+a-55 >> $ps << EOF
+-F+jTL+f11p,26,blue1+jLB+a-55 >> $ps << EOF
 246.0 30.2 Gulf of California
 EOF
 
@@ -220,16 +220,16 @@ gmt pstext -R -J -N -O -K \
 258.0 18.4 Sierra Madre del Sur
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,23,black+jLB+a-70 -Gwhite@50 >> $ps << EOF
+-F+jTL+f11p,23,black+jLB+a-70 -Gwhite@60 >> $ps << EOF
 257.5 29.0 Sierra Madre Oriental
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,23,black+jLB+a-60 -Gwhite@50 >> $ps << EOF
-251.0 29.5 Sierra Madre Occidental
+-F+jTL+f11p,23,black+jLB+a-62 -Gwhite@60 >> $ps << EOF
+250.2 31.2 Sierra Madre Occidental
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,23,gold1+jLB+a-315 >> $ps << EOF
-270.0 18.3 Yucatán
+270.2 18.7 Yucatán
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,23,black+jLB+a-60 -Gwhite@60 >> $ps << EOF
@@ -237,15 +237,15 @@ gmt pstext -R -J -N -O -K \
 EOF
 # rivers -R285/328/-35/6
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-50 >> $ps << EOF
-258.5 29.5 Rio Grande
+-F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
+258.6 30.0 Rio Grande
 EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w2.7c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG270/15N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EMX+gyellow -Sskyblue1 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG270/15N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EMX+gyellow -Sslategray3 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
