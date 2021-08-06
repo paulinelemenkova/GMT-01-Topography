@@ -21,8 +21,8 @@ chsh -s /bin/bash
 
 chsh -s /bin/zsh
 
-#gmt grdcut GEBCO_2019.nc -R240/275/14/33 -Gmx_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R240/275/14/33 -Gmx_relief.nc
+gmt grdcut GEBCO_2019.nc -R240/275/14/33 -Gmx_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R240/275/14/33 -Gmx_relief1.nc
 # Min=-7321.000 Max=3235.000
 
 gdalinfo mx_relief.nc -stats
@@ -35,7 +35,10 @@ gmt pscoast -R240/275/14/33 -Dh -M -EMX > mx.txt
 
 # Make color palette
 # makecpt --help
-gmt makecpt -Cgeo.cpt -V -T-7321/3235 > pauline.cpt
+# gmt makecpt -Cgeo.cpt -V -T-7321/3235 > pauline.cpt
+# gmt makecpt -Ctopo.cpt -V -T-7321/3235 > pauline.cpt
+# gmt makecpt -Cdelta.cpt -V -T-7321/3235 > pauline.cpt
+gmt makecpt -Crain.cpt -V -T-7321/3235 -Ic > pauline.cpt
 
 # Generate a file
 ps=Topography_MX.ps
@@ -43,7 +46,7 @@ ps=Topography_MX.ps
 gmt grdimage mx_relief.nc -Cpauline.cpt -R240/275/14/33 -JM6i -P -I+a15+ne0.75 -t50 -Xc -K > $ps
     
 # Add isolines
-gmt grdcontour mx_relief.nc -R -J -C1000 -W0.1p -O -K >> $ps
+gmt grdcontour mx_relief1.nc -R -J -C1000 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -P \
@@ -73,7 +76,7 @@ gmt psscale -Dg240/11.7+w15.3c/0.4c+h+o0.0/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,Helvetica,black \
     --MAP_LABEL_OFFSET=0.1c \
     --FONT_ANNOT_PRIMARY=6p,0,black \
-    -Bg500a1000f100+l"Color scale 'geo': global bathymetry/topography relief [R=-6857/3206, H=0, C=RGB]" \
+    -Bg500a1000f100+l"Color palette 'rain' by K.M. Thyng of Texas A&M University, Dept. of Oceanography [RGB, 256 segments, translucency=50%]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -170,7 +173,7 @@ EOF
 
 # countries -R240/275/14/33
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,25,black+jLB >> $ps << EOF
+-F+jTL+f10p,25,black+jLB >> $ps << EOF
 257.5 31.0 United States of America
 EOF
 gmt pstext -R -J -N -O -K \
@@ -245,7 +248,7 @@ EOF
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w2.7c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG270/15N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EMX+gyellow -Sslategray3 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG270/15N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EMX+gyellow -Spaleturquoise3 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
