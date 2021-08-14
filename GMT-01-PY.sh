@@ -21,8 +21,8 @@ chsh -s /bin/bash
 
 chsh -s /bin/zsh
 
-#gmt grdcut GEBCO_2019.nc -R297/306/-28/-19 -GParaguay_relief.nc
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R297/306/-28/-19 -GParaguay_relief.nc
+gmt grdcut GEBCO_2019.nc -R297/306/-28/-19 -GParaguay_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R297/306/-28/-19 -GParaguay_relief1.nc
 
 gdalinfo Paraguay_relief.nc -stats
 # Minimum=51.000, Maximum=882.000, Mean=202.711, StdDev=125.633
@@ -38,16 +38,16 @@ gmt pscoast -R297/306/-28/-19 -Dh -M -EPY > Paraguay.txt
 gmt makecpt -Cgeo.cpt -V -T51/882 > pauline.cpt
 
 # Generate a file
-ps=Topography_Paraguay.ps
+ps=Topography_PY.ps
 # Make background transparent image
 gmt grdimage Paraguay_relief.nc -Cpauline.cpt -R297/306/-28/-19 -JM6i -P -I+a15+ne0.75 -t50 -Xc -K > $ps
     
 # Add isolines
-gmt grdcontour Paraguay_relief.nc -R -J -C50 -W0.1p -O -K >> $ps
+gmt grdcontour Paraguay_relief1.nc -R -J -C50 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -P \
-    -Ia/thinner,blue -Na -N1/thickest,red -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -97,7 +97,7 @@ gmt psbasemap -R -J \
 # Texts
 # countries -R297/306/-28/-19
 gmt pstext -R -J -N -O -K \
--F+jTL+f14p,19,black+jLB -Gwhite@50 >> $ps << EOF
+-F+jTL+f14p,19,black+jLB >> $ps << EOF
 297.3 -19.3 B O L I V I A
 EOF
 gmt pstext -R -J -N -O -K \
@@ -119,7 +119,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,22,khaki1+jLB >> $ps << EOF
-298.1 -21.5 CHACO BOREAL
+297.9 -21.5 C H A C O  B O R E A L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,22,BURLYWOOD4+jLB >> $ps << EOF
@@ -142,8 +142,8 @@ EOF
 # Parks
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,14,darkgreen+jLB >> $ps << EOF
-298.0 -22.2 Teniente Encisco
-298.0 -22.5 National Park
+298.0 -22.1 Teniente Encisco
+298.0 -22.3 National Park
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,14,darkgreen+jLB >> $ps << EOF
@@ -157,9 +157,9 @@ gmt pstext -R -J -N -O -K \
 302.5 -22.7 National Park
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,14,darkgreen+jLB >> $ps << EOF
-300.3 -23.9 Tinfunque
-300.3 -24.1 National Park
+-F+jTL+f11p,13,darkgreen+jLB >> $ps << EOF
+300.3 -24.0 Tinfunque
+300.3 -24.2 National Park
 EOF
 
 # mountains
@@ -180,55 +180,159 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,23,white+jLB+a-70 -GSADDLEBROWN@50 >> $ps << EOF
-304.1 -25.0 Cordillera de
-304.0 -25.2 Caaguazú
+304.20 -25.0 Cordillera de
+304.10 -25.2 Caaguazú
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,white+jLB -GSADDLEBROWN@50 >> $ps << EOF
-298.8 -20.2 Léon Hill
+-F+jTL+f9p,23,white+jLB+a-325 >> $ps << EOF
+299.05 -20.7 Léon Hill
 EOF
 
 # rivers
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Verde
+-F+jTL+f10p,26,blue1+jLB+a-15 >> $ps << EOF
+301.3 -23.2 Verde
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Negro
+-F+jTL+f10p,26,blue1+jLB+a-10 >> $ps << EOF
+300.9 -23.65 Negro
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Paraguay
+-F+jTL+f10p,26,CADETBLUE1+jLB+a-63 >> $ps << EOF
+302.2 -23.1 Paraguay
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Paraná
+-F+jTL+f10p,26,CADETBLUE1+jLB+a-3 >> $ps << EOF
+301.7 -27.2 Paraná
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Aquidaban
+-F+jTL+f10p,26,blue1+jLB+a-0 >> $ps << EOF
+302.3 -23.0 Aquidaban
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Ypané
+-F+jTL+f10p,26,CADETBLUE1+jLB+a-355 -GSADDLEBROWN@50 >> $ps << EOF
+302.7 -23.45 Ypané
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Paraguay
+-F+jTL+f10p,26,DARKSLATEGRAY1+jLB >> $ps << EOF
+298.3 -20.2 Lake
+298.3 -20.4 Trinidad
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,blue1+jLB+a-55 >> $ps << EOF
-258.6 30.0 Lake
-258.6 30.0 Trinidad
+-F+jTL+f10p,26,blue1+jLB+a-310 >> $ps << EOF
+302.25 -20.2 Paraguay
 EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue1+jLB+a-307 >> $ps << EOF
+301.75 -26.2 Paraguay
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue1+jLB+a-38 >> $ps << EOF
+298.2 -23.4 Pilcomayo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue1+jLB+a-30 >> $ps << EOF
+300.45 -24.55 Pilcomayo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue1+jLB+a-5 >> $ps << EOF
+302.4 -22.1 Apa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,CADETBLUE1+jLB+a-355 -GSADDLEBROWN@50 >> $ps << EOF
+303.1 -24.05 Jejuí Guazú
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f8p,23,CADETBLUE1+jLB+a-332 >> $ps << EOF
+301.9 -26.53 Tebicuary
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f8p,23,blue1+jLB+a-35 >> $ps << EOF
+302.85 -26.52 Tebicuary
+EOF
+
+
 # cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,22,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+302.47 -25.3 Asunción
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+302.37 -25.3 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+302.67 -23.6 Concepción
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+302.57 -23.4 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,white+jLB+a-0 >> $ps << EOF
+301.01 -20.9 Fuerte Olimpo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+302.13 -21.0 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,white+jLB+a-0 >> $ps << EOF
+301.24 -23.53 Pozo Colorado
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+301.14 -23.43 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,white+jLB+a-0 >> $ps << EOF
+297.8 -22.60 Doctor Pedro P. Peña
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+297.7 -22.48 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+303.65 -25.75 General
+303.65 -25.90 Eugenio
+303.65 -26.05 A. Garay
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+303.57 -25.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,white+jLB+a-0 >> $ps << EOF
+299.31 -19.75 Mayor Pablo
+299.31 -19.92 Lagerenza
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+299.21 -19.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,white+jLB+a-0 >> $ps << EOF
+301.8 -24.15 San Pedro de
+301.8 -24.30 Ycuamandiyú
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+302.92 -24.1 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+302.85 -25.53 Paraguarí
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+302.85 -25.63 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
+302.8 -26.2 Caazapá
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+303.62 -26.2 0.20c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w3.7c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,white -Rg -JG302/24S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EPY+gyellow -Slightskyblue1 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG302/24S/$w -Da -Gbrown -A5000 -Bg -Wfaint -ESA+gpeachpuff -EPY+gyellow -Sskyblue1 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
@@ -242,4 +346,4 @@ gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.5c -N -O \
 EOF
 
 # Convert to image file using GhostScript
-gmt psconvert Topography_Paraguay.ps -A1.0c -E720 -Tj -Z
+gmt psconvert Topography_PY.ps -A1.0c -E720 -Tj -Z
