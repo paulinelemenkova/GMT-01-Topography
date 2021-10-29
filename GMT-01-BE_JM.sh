@@ -69,14 +69,14 @@ gmt psscale -Dg2.5/49.25+w12.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg100f10a100+l"Colormap: 'geo' scheme for topography. [R=-3067/2225, H, C=RGB]" \
+    -Bg100f10a100+l"Colormap: 'geo' scheme for topography. [R=-164/680, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
-    -Bpxg4f1a1 -Bpyg1f2a1 -Bsxg1 -Bsyg1 \
+    -Bpxg1f1a0.5 -Bpyg0.5f0.5a0.5 -Bsxg1 -Bsyg0.5 \
     --MAP_TITLE_OFFSET=0.8c \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
@@ -94,23 +94,50 @@ gmt psbasemap -R -J \
 
 # Texts
 gmt pstext -R -J -N -O -K \
--F+jTL+f15p,25,white+jLB >> $ps << EOF
-4.2 50.5 B E L G I U M
+-F+jTL+f17p,25,white+jLB >> $ps << EOF
+4.25 50.54 B E L G I U M
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
 4.40 50.84 Brussels
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
-4.35 50.84 0.30c
+4.35 50.84 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,0,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,0,black+jLB -Gwhite@50 >> $ps << EOF
 4.4 50.75 Uccle
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-4.33 50.8 0.20c
+4.33 50.8 0.30c
 EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,BROWN4+jLB >> $ps << EOF
+2.85 50.19 F  R  A  N  C  E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,BROWN4+jLB >> $ps << EOF
+4.45 51.55 N E T H E R L A N D S
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,BROWN4+jLB+a-270 >> $ps << EOF
+6.38 50.6 G E R M A N Y
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f8p,0,BROWN4+jLB -Gwhite@60 >> $ps << EOF
+5.83 49.73 LUXEMBOURG
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,2,navyblue+jLB >> $ps << EOF
+2.6 51.5 NORTH SEA
+EOF
+
+# insert map
+# Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
+gmt psbasemap -R -J -O -K -DjBL+w3.0c+stmp >> $ps
+read x0 y0 w h < tmp
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG16/62/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EBE+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
 gmt logo -Dx5.5/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
@@ -118,7 +145,7 @@ gmt logo -Dx5.5/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y5.7c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-0.0 9.0 Digital elevation data: GEBCO/SRTM, 15 arc sec (ca. 450 m) resolution grid
+0.0 9.0 Digital elevation data: GEBCO/SRTM, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
