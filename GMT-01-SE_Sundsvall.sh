@@ -25,13 +25,6 @@ gdalinfo -stats se_sundsvall_relief.nc
 # Minimum=-269.000, Maximum=565.000
 
 # Make color palette
-#gmt makecpt -Cgeo -V -T-698/1603 > pauline.cpt
-#gmt makecpt -Carctic -V -T-698/1603 > pauline.cpt
-#gmt makecpt -Cibcao -V -T-698/1603 > pauline.cpt
-#gmt makecpt -CETOPO1 -V -T-698/1603 > pauline.cpt
-#gmt makecpt -Cworld -V -T-698/1603 > pauline.cpt
-#gmt makecpt -Cturbo -V -T-698/1603 > pauline.cpt
-#gmt makecpt -Cglobe -V -T-269/565 > pauline.cpt
 gmt makecpt -Cgeo -V -T-269/565 > pauline.cpt
 # elevation etopo1 world dem1 dem2 dem3 globe geo srtm turbo terra earth relief costa-rica
 
@@ -40,14 +33,14 @@ ps=Topo_SEsund.ps
 gmt grdimage se_sundsvall_relief.nc -Cpauline.cpt -R16/20/61.5/63.5 -JM5.0i -I+a15+ne0.75 -t0 -Xc -P -K > $ps
     
 # Add isolines
-gmt grdcontour se_sundsvall_relief.nc -R -J -C100 -A500+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour se_sundsvall_relief.nc -R -J -C50 -A500+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
     
 # Add color legend
-gmt psscale -Dg16.0/61.28+w12.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg16.0/61.29+w12.5c/0.15i+h+o0.0/0.1i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
@@ -63,7 +56,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=14p,25,black \
-    -B+t"Topographic map of the Sundsvall region, Baltic Sea" -O -K >> $ps
+    -B+t"Study area of Sundsvall region on the topographic map" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
@@ -71,19 +64,26 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx10.5c/-1.6c+c10+w200k+l"Mercator Projection. Scale (km)"+f \
-    -UBL/0p/-50p -O -K >> $ps
+    -Lx10.5c/-2.2c+c10+w150k+l"Mercator Projection. Scale (km)"+f \
+    -UBL/0p/-60p -O -K >> $ps
+    
+# Study area
+# Rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W2.0p,yellow -O -K << EOF >> $ps
+#11.5 57.0 315 3 6.0
+17.44 62.50 0 2.7 2.3
+EOF
 
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f16p,25,black+jLB -Gwhite@40 >> $ps << EOF
-16.5 62.8 S  W  E  D  E  N
+-F+jTL+f16p,25,white+jLB -Gdarkbrown@40 >> $ps << EOF
+16.4 62.8 S  W  E  D  E  N
 EOF
 
 # Sea
 gmt pstext -R -J -N -O -K \
--F+jTL+f17p,26,white+jLB >> $ps << EOF
+-F+jTL+f18p,26,white+jLB >> $ps << EOF
 19.2 62.7 Baltic
 19.3 62.6 Sea
 EOF
@@ -95,7 +95,7 @@ EOF
 # Cities
 gmt pstext -R -J -N -O -K \
 -F+f14p,1,black+jLB+a-0 -Gwhite@60 >> $ps << EOF
-17.30 62.38 Sundsvall
+17.05 62.38 Sundsvall
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 17.31 62.35 0.20c
@@ -122,7 +122,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 17.83 62.66 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,0,black+jLB+a-0 -Gwhite@50 >> $ps << EOF
+-F+f15p,2,black+jLB+a-0 -Gwhite@50 >> $ps << EOF
 17.47 62.3 Alnön Island
 EOF
 gmt pstext -R -J -N -O -K \
@@ -141,7 +141,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 
 # Add GMT logo
-gmt logo -Dx4.5/-2.3+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx5.0/-2.6+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.c -Y8.5c -N -O \
