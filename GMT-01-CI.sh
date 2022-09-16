@@ -96,7 +96,7 @@ gmt psbasemap -R -J \
 # Cities -R-9/-2/4/11
 gmt pstext -R -J -N -O -K \
 -F+f12p,22,black+jLB -Gwhite@50 >> $ps << EOF
--5.30 6.90 Yamoussoukro
+-5.20 6.80 Yamoussoukro
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 -5.27 6.80 0.30c
@@ -112,10 +112,10 @@ EOF
 #
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
--5.05 7.78 Bouaké
+-4.85 7.78 Bouaké
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--5.02 7.68 0.20c
+-4.99 7.68 0.20c
 EOF
 #
 gmt pstext -R -J -N -O -K \
@@ -160,7 +160,7 @@ EOF
 #
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@60 >> $ps << EOF
--6.72 8.07 Séguéla
+-7.20 7.80 Séguéla
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -6.66 7.97 0.20c
@@ -168,7 +168,7 @@ EOF
 #
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
--5.10 8.25 Katiola
+-4.90 8.10 Katiola
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.15 8.15 0.20c
@@ -187,15 +187,15 @@ gmt pstext -R -J -N -O -K \
 -8.8 5.5 L I B E R I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-F+jTL+f11p,25,black+jLB -Gwhite@65 >> $ps << EOF
 -8.9 8.5 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB -Gwhite@50 >> $ps << EOF
+-F+jTL+f12p,25,black+jLB -Gwhite@70 >> $ps << EOF
 -7.5 10.7 M A L I
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,25,black+jLB -Gwhite@70 >> $ps << EOF
+-F+jTL+f11p,25,black+jLB -Gwhite@75 >> $ps << EOF
 -4.8 10.5 B U R K I N A
 -4.5 10.3 F A S O
 EOF
@@ -205,8 +205,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 
 gmt pstext -R -J -N -O -K \
--F+jTL+f19p,31,black+jLB -Gwhite@75 >> $ps << EOF
--7.7 7.3 C  Ô  T  E    D\'   I  V  O  I  R  E
+-F+jTL+f22p,29,black+jLB -Gwhite@85 >> $ps << EOF
+-7.6 8.5 C  Ô  T  E    D\'  I  V  O  I  R  E
 EOF
 # water
 gmt pstext -R -J -N -O -K \
@@ -219,7 +219,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,26,blue2+jLB >> $ps << EOF
--5.8 7.1 Lac de Kossou
+-5.8 7.3 Lac de
+-5.8 7.1 Kossou
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,26,blue2+jLB >> $ps << EOF
@@ -229,6 +230,19 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,26,blue2+jLB+a-50 >> $ps << EOF
 -7.0 5.9 Sassandra
+EOF
+
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W2.0p,red -O -K << EOF >> $ps
+-5.5 7.5 0 2.0 2.0
+EOF
+
+# Texts
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,26,yellow+jLB >> $ps << EOF
+-5.8 7.7 Study
+-5.7 7.5 area
 EOF
 
 # insert map
