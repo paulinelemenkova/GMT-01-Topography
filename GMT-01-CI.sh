@@ -29,12 +29,12 @@ gmt makecpt -Cgeo.cpt -V -T-3746/1398 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R-9/-2/4/11 -JM5.0i -Dh -M -ECI > CotdIvoire.txt
+gmt pscoast -R-9/-2/4/11 -JM5.5i -Dh -M -ECI > CotdIvoire.txt
 #####################################################################
 
 ps=Topo_CI.ps
 # Make background transparent image
-gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.0i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
     
 # Add isolines
 gmt grdcontour ci_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -47,11 +47,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R-9/-2/4/11 -JM5.0i CotdIvoire.txt -O -K >> $ps
+gmt psclip -R-9/-2/4/11 -JM5.5i CotdIvoire.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ci_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -65,11 +65,11 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-9/3.3+w12.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-9.2/3.4+w14.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a1000+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-4696/915, H, C=RGB]" \
+    -Bg500f50a1000+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-3746/1398, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -89,26 +89,122 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx11.0c/-2.5c+c10+w250k+l"Mercator projection. Scale (km)"+f \
+    -Lx11.7c/-2.4c+c10+w250k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
+# Cities -R-9/-2/4/11
+gmt pstext -R -J -N -O -K \
+-F+f13p,22,black+jLB -Gwhite@50 >> $ps << EOF
+-5.30 6.90 Yamoussoukro
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+-5.27 6.80 0.30c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-4.09 5.45 Abidjan
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-4.09 5.35 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-5.05 7.78 Bouaké
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.02 7.68 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-5.90 6.53 Daloa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.88 6.45 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-6.70 4.53 San-Pédro
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-6.63 4.75 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-5.40 5.93 Divo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.37 5.83 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@60 >> $ps << EOF
+-5.70 9.52 Korhogo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.62 9.42 0.30c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@40 >> $ps << EOF
+-7.60 7.50 Man
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-7.55 7.40 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-3.52 6.83 Abengourou
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-3.48 6.73 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@40 >> $ps << EOF
+-6.72 8.07 Séguéla
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-6.66 7.97 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-5.10 8.25 Katiola
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.15 8.15 0.20c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-6.00 6.23 Gagnoa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.93 6.13 0.20c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTR+w2.5c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTR+w2.7c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-1.0/8.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -ECI+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx5.3/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx6.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.5c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.8c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-0.5 10.3 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
+01.5 10.3 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
