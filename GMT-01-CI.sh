@@ -18,8 +18,8 @@ gmt set FORMAT_GEO_MAP=dddF \
 gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R-9/-2/4/11 -Gci_relief.nc
-#gmt grdcut GEBCO_2019.nc -R-9/-2/4/11 -Gci_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R-9/-2/4/11 -Gci1_relief.nc
+gmt grdcut GEBCO_2019.nc -R-9/-2/4/11 -Gci_relief.nc
 gdalinfo -stats ci_relief.nc
 # Topography: actual_range={-3746/1398}
 
@@ -37,7 +37,7 @@ ps=Topo_CI.ps
 gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
     
 # Add isolines
-gmt grdcontour ci_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour ci1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -53,7 +53,7 @@ gmt psclip -R-9/-2/4/11 -JM5.5i CotdIvoire.txt -O -K >> $ps
 # Add raster image
 gmt grdimage ci_relief.nc -Cpauline.cpt -R-9/-2/4/11 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour ci_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour ci1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -95,7 +95,7 @@ gmt psbasemap -R -J \
 # Texts
 # Cities -R-9/-2/4/11
 gmt pstext -R -J -N -O -K \
--F+f13p,22,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,22,black+jLB -Gwhite@50 >> $ps << EOF
 -5.30 6.90 Yamoussoukro
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
@@ -128,7 +128,7 @@ EOF
 #
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
--6.70 4.53 San-Pédro
+-6.80 4.85 San-Pédro
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -6.63 4.75 0.20c
@@ -143,31 +143,23 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 #
 gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f13p,21,black+jLB -Gwhite@70 >> $ps << EOF
 -5.70 9.52 Korhogo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--5.62 9.42 0.30c
-EOF
-#
-gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@40 >> $ps << EOF
--7.60 7.50 Man
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--7.55 7.40 0.20c
+-5.62 9.42 0.20c
 EOF
 #
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
--3.52 6.83 Abengourou
+-4.4 6.50 Abengourou
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -3.48 6.73 0.20c
 EOF
 #
 gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@40 >> $ps << EOF
+-F+f13p,21,black+jLB -Gwhite@60 >> $ps << EOF
 -6.72 8.07 Séguéla
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -188,6 +180,55 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.93 6.13 0.20c
+EOF
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-8.8 5.5 L I B E R I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-8.9 8.5 G U I N E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB -Gwhite@50 >> $ps << EOF
+-7.5 10.7 M A L I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@70 >> $ps << EOF
+-4.8 10.5 B U R K I N A
+-4.5 10.3 F A S O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+-3.0 6.4 G H A N A
+EOF
+
+gmt pstext -R -J -N -O -K \
+-F+jTL+f19p,31,black+jLB -Gwhite@75 >> $ps << EOF
+-7.7 7.3 C  Ô  T  E    D\'   I  V  O  I  R  E
+EOF
+# water
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+-4.7 4.4 Gulf of Guinea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB >> $ps << EOF
+-6.2 4.1 A  t  l  a  n  t  i  c     O  c  e  a  n
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB >> $ps << EOF
+-5.8 7.1 Lac de Kossou
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB >> $ps << EOF
+-7.4 6.6 Lac de
+-7.3 6.4 Buyo
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,blue2+jLB+a-50 >> $ps << EOF
+-7.0 5.9 Sassandra
 EOF
 
 # insert map
