@@ -21,8 +21,8 @@ gmt set FORMAT_GEO_MAP=dddF \
 gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R11/32/-14/6 -GCD_relief.nc
-#gmt grdcut GEBCO_2019.nc -R11/32/-14/6 -GCD_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R11/32/-14/6 -GCD_relief1.nc
+gmt grdcut GEBCO_2019.nc -R11/32/-14/6 -GCD_relief.nc
 
 gmt grdgdal -Ainfo CD_relief.nc
 # z#actual_range={-4131,4503}
@@ -42,7 +42,7 @@ ps=Topo_CD.ps
 gmt grdimage CD_relief.nc -Cpauline.cpt -R11/32/-14/6 -JM6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
     
 # Add isolines
-gmt grdcontour CD_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour CD_relief1.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -59,7 +59,7 @@ gmt psclip -R11/32/-14/6 -JM6.5i Congo.txt -O -K >> $ps
 # Add raster image
 gmt grdimage CD_relief.nc -Cpauline.cpt -R11/32/-14/6 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour CD_relief.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour CD_relief1.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -102,14 +102,14 @@ gmt psbasemap -R -J \
 # Cities
 gmt pstext -R -J -N -O -K \
 -F+f14p,22,black+jLB -Gwhite@50 >> $ps << EOF
-15.55 -4.40 Kinshasa
+15.55 -4.50 Kinshasa
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 15.32 -4.32 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-23.6 -6.22 Mbuji-Mayi
+23.9 -6.45 Mbuji-Mayi
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 23.6 -6.15 0.20c
@@ -123,17 +123,21 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-22.45 -5.80 Kananga
+22.50 -5.80 Kananga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 22.45 -5.92 0.20c
 EOF
+#gmt pstext -R -J -N -O -K \
+#-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+#25.2 0.60 Kisangani
+#EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-25.2 0.60 Kisangani
+-F+f14p,21,white+jLB >> $ps << EOF
+22.7 0.10 Kisangani
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-25.2 0.52 0.20c
+25.2 0.52 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
@@ -144,37 +148,37 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-20.8 -6.55 Tshikapa
+20.9 -6.55 Tshikapa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 20.8 -6.42 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-30.25 1.67 Bunia
+29.50 1.70 Bunia
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 30.25 1.57 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-22.47 2.30 Bumba
+-F+f14p,21,white+jLB >> $ps << EOF
+22.47 2.37 Bumba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-22.47 2.18 0.20c
+22.47 2.18 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
-23.6 1.30 Basoko
+-F+f14p,21,white+jLB >> $ps << EOF
+23.6 1.37 Basoko
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-23.6 1.23 0.20c
+23.6 1.23 0.25c
 EOF
 
 # countries -R11/32/-14/6
 gmt pstext -R -J -N -O -K \
 -F+jTL+f23p,29,black+jLB -Gwhite@85 >> $ps << EOF
-17 2 D.  R.  C  O  N  G  O
+17.5 -3.0 D.  R.  C  O  N  G  O
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
@@ -182,13 +186,13 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
-15 0.5 REPUBLIC
-15 -0.5 OF THE
-15 -1.5 CONGO
+14.8 0.5 REPUBLIC
+14.8 -0.5 OF THE
+14.8 -1.5 CONGO
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
-23.8 -13.8 Z A M B I A
+24.2 -13.0 Z A M B I A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
@@ -196,7 +200,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB+a90 -Gwhite@60 >> $ps << EOF
-31 -7.8 TANZANIA
+31.3 -7.0 TANZANIA
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
@@ -204,7 +208,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
-29 -1.8 RWANDA
+29.5 -1.9 RWANDA
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB+a45 -Gwhite@60 >> $ps << EOF
@@ -224,18 +228,25 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
-16.2 -11 A  N  G  O  L  A
+16.2 -11.7 A  N  G  O  L  A
 EOF
 # water
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,26,blue+jLB >> $ps << EOF
-11.6 -8.4 Atlantic
-11.6 -9.0 Ocean
+-F+jTL+f14p,26,blue+jLB >> $ps << EOF
+11.2 -8.4 Atlantic
+11.2 -9.0 Ocean
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,26,white+jLB+a5 >> $ps << EOF
-19.8 1.7 Congo
+-F+jTL+f14p,26,honeydew+jLB+a8 >> $ps << EOF
+19.8 1.25 Congo
 EOF
+#------------ Study area square: start --------------#
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W2.0p,yellow -O -K << EOF >> $ps
+23.6 1.30 0 3.0 3.0
+EOF
+#------------ Study area square: end ----------------#
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
