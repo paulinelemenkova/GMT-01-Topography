@@ -100,7 +100,142 @@ gmt psbasemap -R -J \
 
 # Texts
 # Cities
+gmt pstext -R -J -N -O -K \
+-F+f14p,22,black+jLB -Gwhite@50 >> $ps << EOF
+15.55 -4.40 Kinshasa
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+15.32 -4.32 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+23.6 -6.22 Mbuji-Mayi
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+23.6 -6.15 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+27.48 -11.60 Lubumbashi
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.48 -11.66 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+22.45 -5.80 Kananga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+22.45 -5.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+25.2 0.60 Kisangani
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.2 0.52 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+27.0 -2.4 Bukavu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.87 -2.5 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+20.8 -6.55 Tshikapa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+20.8 -6.42 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+30.25 1.67 Bunia
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.25 1.57 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+22.47 2.30 Bumba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+22.47 2.18 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+23.6 1.30 Basoko
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+23.6 1.23 0.20c
+EOF
 
+# countries -R11/32/-14/6
+gmt pstext -R -J -N -O -K \
+-F+jTL+f23p,29,black+jLB -Gwhite@85 >> $ps << EOF
+17 2 D.  R.  C  O  N  G  O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+11.8 -0.5 GABON
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+15 0.5 REPUBLIC
+15 -0.5 OF THE
+15 -1.5 CONGO
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+23.8 -13.8 Z A M B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+29 -10 Z A M B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB+a90 -Gwhite@60 >> $ps << EOF
+31 -7.8 TANZANIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+29 -3.4 BURUNDI
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+29 -1.8 RWANDA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB+a45 -Gwhite@60 >> $ps << EOF
+30 -1.0 UGANDA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+27.8 5.0 SOUTH SUDAN
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+15.5 5.5 CENTRAL AFRICAN REPUBLIC
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+11.8 3 CAMEROON
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,25,black+jLB -Gwhite@60 >> $ps << EOF
+16.2 -11 A  N  G  O  L  A
+EOF
+# water
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,blue+jLB >> $ps << EOF
+11.6 -8.4 Atlantic
+11.6 -9.0 Ocean
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,26,white+jLB+a5 >> $ps << EOF
+19.8 1.7 Congo
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
