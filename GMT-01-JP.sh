@@ -24,6 +24,9 @@ gmtdefaults -D > .gmtdefaults
 gmt grdcut GEBCO_2019.nc -R128/150/30/46 -Gjp_relief.nc
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R128/150/30/46 -Gjp_relief1.nc
 
+gmt grdgdal -Ainfo jp_relief.nc
+# actual_range={-9759.701171875,3700.7421875}
+
 exec bash
 
 #####################################################################
@@ -32,7 +35,7 @@ gmt pscoast -R128/150/30/46 -JM16c -Dh -M -EJP > Japan.txt
 #####################################################################
 
 # Make color palette
-gmt makecpt -Cgeo.cpt -V -T-11500/3000 > myocean.cpt
+gmt makecpt -Cgeo.cpt -V -T-9759/3700 > myocean.cpt
 
 # Generate a file
 ps=Topo_JP.ps
@@ -52,28 +55,6 @@ gmt grdcontour jp_relief1.nc -R -J -C2000 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
-
-#####################################################################
-# CLIPPING
-# 1. Start: clip the map by mask to only include country
-gmt psclip -R128/150/30/46 -JM16c Japan.txt -O -K >> $ps
-
-# 2. create map within mask
-# Add raster image
-gmt grdimage jp_relief.nc -Cpauline.cpt -R128/150/30/46 -JM16c -I+a15+ne0.75 -Xc -P -O -K >> $ps
-
-# Add isolines
-gmt grdcontour jp_relief1.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
-
-# Add coastlines, borders, rivers
-gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-#gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
-
-# 3: Undo the clipping
-gmt psclip -C -O -K >> $ps
-#####################################################################
 
 # Add grid
 gmt psbasemap -R -J \
@@ -112,11 +93,10 @@ gmt pstext -R -J -N -O -K \
 138 35.8 H O N S H U
 EOF
 
-# insert map
-# Countries codes: ISO 3166-1 alpha-2
+# insert global map (Countries codes: ISO 3166-1 alpha-2)
 gmt psbasemap -R -J -O -K -DjBL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG28.0/-2.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EJP+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG140/37N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EJP+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
