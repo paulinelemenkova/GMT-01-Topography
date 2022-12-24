@@ -54,13 +54,14 @@ gmt psscale -Dg125.0/30+w15.0c/0.4c+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
 gmt grdcontour jp_relief1.nc -R -J -C2000 -W0.1p -O -K >> $ps
 
 # Add coastlines, borders, rivers
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thin,red -W0.1p -Df -O -K >> $ps
 
 # Add grid
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=wESN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
     --FONT_TITLE=14p,0,black \
+    --MAP_TITLE_OFFSET=0.8c \
     -Bpxg8f2a4 -Bpyg6f3a3 -Bsxg4 -Bsyg3 \
     -B+t"Topographic map of Japan" -O -K >> $ps
     
@@ -80,26 +81,99 @@ gmt psbasemap -R -J \
     
 # Texts
 gmt pstext -R -J -N -O -K \
--F+f11p,Times-Roman,white+jLB >> $ps << EOF
+-F+f12p,0,white+jLB >> $ps << EOF
 133 41 SEA OF JAPAN
-145.5 35.5 PACIFIC OCEAN
+144.05 37.5 P A C I F I C  O C E A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+f8p,Palatino-Roman,black+jLB -Gwhite@30 >> $ps << EOF
-142 43.5 HOKKAIDO
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+142 43.4 HOKKAIDO
 130 32.5 KYUSHU
 EOF
 gmt pstext -R -J -N -O -K \
--F+f8p,Palatino-Roman,black+jLB+a-320 -Gwhite@40 >> $ps << EOF
+-F+f12p,0,black+jLB+a-320 -Gwhite@50 >> $ps << EOF
 138 35.8 H O N S H U
+EOF
+
+# -R128/150/30/46
+gmt pstext -R -J -N -O -K \
+-F+f14p,22,black+jLB -Gwhite@50 >> $ps << EOF
+139.69 35.79 Tokyo
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+139.69 35.69 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+139.63 35.30 Yokohama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+139.63 35.44 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+135.60 34.59 Osaka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+135.50 34.69 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+137.0 35.08 Nagoya
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+136.9 35.18 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+141.35 43.16 Sapporo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+141.35 43.06 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+130.4 33.72 Fukuoka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+130.4 33.58 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+134.69 34.79 Kobe
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+135.19 34.69 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+139.7 35.62 Kawasaki
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+139.7 35.52 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+135.77 35.16 Kyoto
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+135.77 35.01 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,black+jLB -Gwhite@50 >> $ps << EOF
+139.64 36.01 Saitama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+139.64 35.86 0.20c
 EOF
 
 # insert global map (Countries codes: ISO 3166-1 alpha-2)
 gmt psbasemap -R -J -O -K -DjBR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG140/37N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EJP+gred -Slightskyblue1 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,lightgray -Rg -JG140/37N/$w -Da -Gwheat3 -A2000 -Bga -Wfaint -EJP+gyellow -Sslategray3 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
+# lightskyblue1
 
 # Add GMT logo
 gmt logo -Dx6.7/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
