@@ -35,7 +35,8 @@ gmt pscoast -R128/150/30/46 -JM16c -Dh -M -EJP > Japan.txt
 #####################################################################
 
 # Make color palette
-gmt makecpt -Cgeo.cpt -V -T-9759/3700 > myocean.cpt
+#gmt makecpt -Cgeo.cpt -V -T-9759/3700 > myocean.cpt
+gmt makecpt -Cglobe.cpt -V -T-9759/3700 > myocean.cpt
 
 # Generate a file
 ps=Topo_JP.ps
@@ -47,7 +48,7 @@ gmt grdimage jp_relief.nc -Cmyocean.cpt -R128/150/30/46 -JM16c -P -I+a15+ne0.75 
 gmt psscale -Dg125.0/30+w15.0c/0.4c+v+o0.3/0i+ml -R -J -Cmyocean.cpt \
 	--FONT_LABEL=10p,0,black \
 	--FONT_ANNOT_PRIMARY=8p,0,black \
-	-Bg2000f100a1000+l"Topographic color scale" \
+	-Bg2000f100a1000+l"Topographic color scale 'globe'" \
 	-I0.2 -By+lm -O -K >> $ps
 	
 # Add isolines
@@ -76,7 +77,7 @@ gmt psbasemap -R -J \
 gmt psbasemap -R -J \
     --FONT=9p,Palatino-Roman,white \
     --MAP_TITLE_OFFSET=0.3c \
-    -Tdx14.5c/9.5c+w0.3i+f2+l+o0.15i \
+    -Tdx14.6c/9.3c+w0.3i+f2+l+o0.15i \
     -O -K >> $ps
     
 # Texts
@@ -86,97 +87,97 @@ gmt pstext -R -J -N -O -K \
 144.05 37.5 P A C I F I C  O C E A N
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
 142 43.4 HOKKAIDO
 130 32.5 KYUSHU
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB+a-320 -Gwhite@50 >> $ps << EOF
-138 35.8 H O N S H U
+-F+f13p,0,black+jLB+a-320 -Gwhite@70 >> $ps << EOF
+137.9 35.7 H O N S H U
 EOF
 
 # -R128/150/30/46
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
 139.53 35.0 Yokohama
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 139.63 35.44 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 135.50 34.25 Osaka
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 135.50 34.69 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 137.0 34.93 Nagoya
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 136.9 35.18 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 141.50 42.86 Sapporo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 141.35 43.06 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 130.4 33.72 Fukuoka
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 130.4 33.58 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 134.10 34.82 Kobe
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 135.19 34.69 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
 139.9 35.32 Kawasaki
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 139.7 35.52 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@50 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 135.50 35.16 Kyoto
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 135.77 35.01 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@50 >> $ps << EOF
-139.64 36.01 Saitama
+-F+f11p,21,black+jLB >> $ps << EOF
+139.64 36.11 Saitama
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 139.64 35.86 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,0,black+jLB -Gwhite@50 >> $ps << EOF
-139.79 35.65 Tokyo
+-F+f15p,0,black+jLB -Gwhite@70 >> $ps << EOF
+139.79 35.66 Tokyo
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 139.69 35.69 0.30c
 EOF
 
-# insert global map (Countries codes: ISO 3166-1 alpha-2) w3.2c+o-0.2c/-0.2c
+# insert global map (Countries codes: ISO 3166-1 alpha-2) steelblue4
 gmt psbasemap -R -J -O -K -DjBR+w3.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,lightgray --MAP_FRAME_PEN=white -Rg -JG140/37N/$w -Da -Gpapayawhip -A2000 -Bga -Wfaint -EJP+gyellow -Ssteelblue4 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,lightgray --MAP_FRAME_PEN=thin,white -Rg -JG140/37N/$w -Da -Gseashell3 -A2000 -Bga -Wfaint -EJP+gyellow -Sroyalblue3 -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
 gmt logo -Dx6.7/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.4c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.2c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 3.0 11.0 GEBCO DEM Global Relief Model 15 arc sec resolution grid
 EOF
