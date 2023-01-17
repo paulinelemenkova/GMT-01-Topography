@@ -99,91 +99,91 @@ gmt psbasemap -R -J \
 # Texts
 # Cities -R-6/3/9/15.5
 gmt pstext -R -J -N -O -K \
--F+f13p,2,yellow+jLB >> $ps << EOF
+-F+f12p,30,lemonchiffon+jLB >> $ps << EOF
 -1.45 12.40 Ouagadougou
 EOF
-gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 -1.53 12.36 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--1.10 4.30 Bobo-Dioulasso
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-4.28 11.23 Bobo-Dioulasso
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--1.18 4.28 0.20c
+-4.28 11.18 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -3.35 12.30 Koudougou
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -2.37 12.25 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--4.70 10.6 Banfora
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-4.70 10.59 Banfora
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -4.75 10.63 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--0.30 12.15 Pouytenga
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-0.33 12.15 Pouytenga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -0.43 12.25 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--2.30 13.63 Ouahigouya
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-2.32 13.63 Ouahigouya
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -2.42 13.58 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -1.00 13.10 Kaya
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -1.08 13.08 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--0.8 11.60 Tenkodogo
+-F+f10p,21,lemonchiffon+jLB >> $ps << EOF
+-0.6 11.85 Tenkodogo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -0.36 11.78 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
--3.40 11.55 Houndé
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-3.42 11.55 Houndé
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -3.51 11.5 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -1.0 14.2 Gorom-Gorom
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -0.23 14.45 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -1.35 11.25 Pô
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -1.15 11.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -2.35 11.20 Léo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -2.1 11.10 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -0.10 12.98 Bogandé
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -191,9 +191,22 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 # geography
 gmt pstext -R -J -N -O -K \
--F+f12p,6,gold+jLB >> $ps << EOF
--2.70 12.01 Mossi Plateau
+-F+f12p,6,darkred+jLB >> $ps << EOF
+-2.70 12.03 Mossi Plateau
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,oldlace+jLB >> $ps << EOF
+-5.35 10.88 Ténakourou Mt
+-5.35 10.70 (749 m)
+EOF
+gmt psxy -R -J -Sh -W0.5p -Gmagenta -O -K << EOF >> $ps
+-5.42 10.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,6,yellow+jLB >> $ps << EOF
+-2.70 12.03 Mossi Plateau
+EOF
+
 # countries
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,25,black+jLB >> $ps << EOF
@@ -217,7 +230,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,25,black+jLB -Gwhite@75 >> $ps << EOF
--5.5 9.2 C Ô T E  D\'I V O I R E
+-5.5 9.2 C Ô T E  D\' I V O I R E
 EOF
 #
 gmt pstext -R -J -N -O -K \
@@ -226,32 +239,32 @@ gmt pstext -R -J -N -O -K \
 EOF
 # water
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,lightcyan1+jLB+a50 >> $ps << EOF
--4.25 11.7 Black Volta
+-F+jTL+f10p,30,lightcyan1+jLB+a57 >> $ps << EOF
+-4.20 11.7 Black Volta
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,lightcyan1+jLB+a320 >> $ps << EOF
--1.5 11.8 Red Volta
+-F+jTL+f10p,30,lightcyan1+jLB+a321 >> $ps << EOF
+-1.51 11.8 Red Volta
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,lightcyan1+jLB+a320 >> $ps << EOF
--1.9 11.35 Sisili
+-F+jTL+f10p,30,lightcyan1+jLB+a332 >> $ps << EOF
+-1.9 11.33 Sisili
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,lightcyan1+jLB+a317 >> $ps << EOF
+-F+jTL+f10p,30,lightcyan1+jLB+a308 >> $ps << EOF
 0.2 11.80 Koulpéléogo
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,lightcyan1+jLB+a10 >> $ps << EOF
-1.7 11.40 Pendjari
+-F+jTL+f9p,30,lightcyan1+jLB+a43 >> $ps << EOF
+1.93 11.47 Pendjari
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,blue1+jLB+a320 >> $ps << EOF
-1.2 14.40 Niger
+1.12 14.52 Niger
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,blue1+jLB+a20 >> $ps << EOF
-5.5 13.70 Niger
+-5.5 13.70 Niger
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,30,lightcyan1+jLB+a350 >> $ps << EOF
@@ -259,10 +272,18 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,lightcyan1+jLB+a300 >> $ps << EOF
--0.8 11.8 White Volta (Nakambé)
+-0.78 11.93 White Volta
 EOF
-
-
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,30,yellow+jLB+a0 >> $ps << EOF
+-3.92 11.88 Mare aux
+-3.92 11.70 Hippopotames
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,30,yellow+jLB+a0 >> $ps << EOF
+1.35 12.05 W National
+1.5 11.85 Park
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
