@@ -36,14 +36,14 @@ gmt pscoast -R-13/5/9.5/25.5 -JM6.5i -Dh -M -EML > Mali.txt
 
 ps=Topo_ML.ps
 # Make background transparent image
-gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
     
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thick,dimgray -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -53,12 +53,12 @@ gmt psclip -R-13/5/9.5/25.5 -JM6.5i Mali.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 #gmt pscoast -R -J \
     -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
 
@@ -67,7 +67,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-13.3/9.0+w15.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-13.3/8.2+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
@@ -82,7 +82,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=13p,0,black \
-        -Bpxg2f1a1 -Bpyg2f1a1 -Bsxg2 -Bsyg1 \
+        -Bpxg2f1a1 -Bpyg2f2a2 -Bsxg2 -Bsyg1 \
     -B+t"Topographic map of Mali" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -91,13 +91,142 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx11.7c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
+    -Lx13.5c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
 # Cities -R-13/5/9.5/25.5
+gmt pstext -R -J -N -O -K \
+-F+f12p,30,lemonchiffon+jLB >> $ps << EOF
+-7.90 12.70 Bamako
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+-8.00 12.63 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-5.60 11.37 Sikasso
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.66 11.32 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-5.40 12.42 Koutiala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.47 12.38 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-6.20 13.50 Ségou
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-6.26 13.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-11.38 14.50 Kayes
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.43 14.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-4.12 14.44 Mopti
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-4.19 14.49 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-7.93 12.53 Kalabancoro
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.03 12.57 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+0.05 16.33 Gao
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-0.05 16.27 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-8.30 12.80 Kati
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.07 12.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-4.7 13.35 San
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-4.9 13.3 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-3.94 22.72 Taoudenni
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-3.98 22.67 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+1.46 18.50 Kidal
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+1.41 18.44 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-2.95 16.82 Timbuktu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-3.01 16.78 0.20c
+EOF
 #
 # countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+-11.0 19.1 M A U R I T A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+-11.5 11.1 G U I N E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+-11.5 11.1 G U I N E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+-2.5 13.1 B U R K I N A
+-2.0 12.5 F A S O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+-0.5 23.5 A L G E R I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+2.2 14.2 N I G E R
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,25,black+jLB >> $ps << EOF
+1.5 10.7 B E N I N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,25,black+jLB >> $ps << EOF
+-7.9 9.7 CÔTE D'IVOIRE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,salmon4+jLB >> $ps << EOF
+-8.5 -21.3 S A H A R A   D E S E R T
+EOF
+
 # water
 
 # insert map
@@ -109,12 +238,12 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-1.0/8.0N/$w -Da -Glightgold
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx6.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.0c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y9.2c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-01.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
+2.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
