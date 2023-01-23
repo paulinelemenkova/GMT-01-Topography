@@ -67,11 +67,11 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-13.3/8.2+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-13.3/8.2+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg50f5a100+l"Colormap: 'earth' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
+    -Bg50f10a100+l"Colormap: 'earth' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -91,7 +91,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx13.5c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
+    -Lx14.0c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -105,7 +105,7 @@ gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--5.60 11.37 Sikasso
+-5.76 11.40 Sikasso
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.66 11.32 0.20c
@@ -133,7 +133,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--4.12 14.44 Mopti
+-4.12 14.42 Mopti
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -4.19 14.49 0.20c
@@ -190,44 +190,65 @@ EOF
 #
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 -11.0 19.1 M A U R I T A N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 -11.5 11.1 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
--11.5 11.1 G U I N E A
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
+-11.5 11.05 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 -2.5 13.1 B U R K I N A
 -2.0 12.5 F A S O
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 -0.5 23.5 A L G E R I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 2.2 14.2 N I G E R
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,25,black+jLB >> $ps << EOF
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
 1.5 10.7 B E N I N
 EOF
 gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,20,black+jLB >> $ps << EOF
+-2.2 10.2 G H A N A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,20,black+jLB+a300 >> $ps << EOF
+-12.7 14.2 SENEGAL
+EOF
+gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,25,black+jLB >> $ps << EOF
--7.9 9.7 CÔTE D'IVOIRE
+-7.9 9.6 CÔTE D\'IVOIRE
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f17p,20,salmon4+jLB >> $ps << EOF
 -8.5 -21.3 S A H A R A   D E S E R T
 EOF
-
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,20,black+jLB+a90 >> $ps << EOF
+4.5 10.1 N I G E R I A
+EOF
 # water
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,30,blue1+jLB >> $ps << EOF
+-5.2 17.12 Lake
+-5.2 16.82 Faguibine
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,30,blue1+jLB >> $ps << EOF
+-3.2 15.70 Lake
+-3.2 15.30 Niangay
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
