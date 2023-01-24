@@ -40,7 +40,7 @@ ps=Topo_ML.ps
 # Make background transparent image
 # gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
-gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 .5i
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -57,7 +57,7 @@ gmt psclip -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i Mali.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -123,7 +123,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--11.38 14.50 Kayes
+-11.63 14.65 Kayes
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -11.43 14.45 0.20c
@@ -180,7 +180,7 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -2.95 16.35 Timbuktu
--2.95 15.95 (Tombouctou)
+-2.95 16.00 (Tombouctou)
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -3.01 16.75 0.20c
@@ -215,19 +215,39 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--7.42 11.20 Bougouni
+-7.42 11.10 Bougouni
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -7.48 11.42 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB -Gsaddlebrown@70 >> $ps << EOF
--10.47 15.10 Yélimané
+-10.47 14.70 Yélimané
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -10.57 15.12 0.20c
 EOF
-20.20
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB -Gsaddlebrown@70 >> $ps << EOF
+-9.40 15.14 Nioro du Sahel
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.55 15.18 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB -Gsaddlebrown@80 >> $ps << EOF
+-5.33 15.33 Nampala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.43 15.28 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB -Gsaddlebrown@80 >> $ps << EOF
+0.60 15.70 Ansongo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+0.50 15.66 0.20c
+EOF
 gmt pstext -R -J -N -O -K \
 -F+f15p,30,yellow+jLB >> $ps << EOF
 -7.90 12.70 Bamako
@@ -313,7 +333,7 @@ gmt pstext -R -J -N -O -K \
 -9.75 12.72 Dam
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
+-F+jTL+f10p,30,blue1+jLB -Ggoldenrod@75 >> $ps << EOF
 -11.00 14.2 Félou
 -11.00 13.9 Falls
 EOF
@@ -358,13 +378,18 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,21,darkgreen+jLB -Glightbrown@60 >> $ps << EOF
-1.55 15.9 Ansongo Giraffe
-1.9 15.5 Reserve
+1.75 15.9 Ansongo Giraffe
+2.1 15.5 Reserve
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,20,cornsilk1+jLB >> $ps << EOF
 -2.05 22.45 Tanezrouft
 -2.05 22.10 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,20,salmon4+jLB >> $ps << EOF
+-9.8 17.3 Aoukar
+-9.8 16.8 Depression
 EOF
 
 # insert map
