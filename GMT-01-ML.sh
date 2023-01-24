@@ -257,14 +257,19 @@ gmt pstext -R -J -N -O -K \
 -2.8 16.89 Niger
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,paleturquoise+jLB >> $ps << EOF
+-F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
 -8.2 11.82 Selingue
 -8.2 11.42 Dam
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,30,paleturquoise+jLB >> $ps << EOF
+-F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
 -9.75 13.02 Sotuba
 -9.75 12.72 Dam
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
+-11.00 14.2 Félou
+-11.00 13.9 Falls
 EOF
 # land features
 gmt pstext -R -J -N -O -K \
@@ -280,7 +285,7 @@ gmt pstext -R -J -N -O -K \
 -11.8 14.4 Mandingue Plateau
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,4,darkgreen+jLB -Glightbrown@60 >> $ps << EOF
+-F+f11p,21,darkgreen+jLB -Glightbrown@60 >> $ps << EOF
 -9.0 14.0 Boucle du Baoulé
 -8.8 13.50 National Park
 EOF
@@ -293,8 +298,28 @@ gmt pstext -R -J -N -O -K \
 0.86 19.50 Adrar des
 1.00 19.10 Ifoghas
 EOF
-
-
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,cornsilk1+jLB >> $ps << EOF
+-1.56 15.30 Hombori Tondo Mt.
+EOF
+gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
+-1.66 15.26 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,4,cornsilk1+jLB+a30 >> $ps << EOF
+-2.65 14.6 Dogon
+-2.35 14.3 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,darkgreen+jLB -Glightbrown@65 >> $ps << EOF
+1.7 16.0 Ansongo Giraffe
+1.9 15.5 Reserve
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,20,cornsilk1+jLB >> $ps << EOF
+-2.05 22.45 Tanezrouft
+-2.05 22.10 Desert
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
