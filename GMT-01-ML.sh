@@ -27,6 +27,8 @@ gdalinfo -stats ml1_relief.nc
 
 # Make color palette
 gmt makecpt -Cgeo -V -T27/1590 > pauline.cpt
+# gmt makecpt -Cdem1 -V -T27/1590 > pauline.cpt
+gmt makecpt -Csrtm -V -T27/1590 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
 #####################################################################
@@ -82,7 +84,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=13p,0,black \
-        -Bpxg2f1a1 -Bpyg2f2a2 -Bsxg2 -Bsyg1 \
+        -Bpxg4f1a2 -Bpyg4f2a2 -Bsxg2 -Bsyg2 \
     -B+t"Topographic map of Mali" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -97,22 +99,15 @@ gmt psbasemap -R -J \
 # Texts
 # Cities -R-13/5/9.5/25.5
 gmt pstext -R -J -N -O -K \
--F+f12p,30,lemonchiffon+jLB >> $ps << EOF
--7.90 12.70 Bamako
-EOF
-gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
--8.00 12.63 0.30c
-EOF
-gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--5.76 11.40 Sikasso
+-6.76 11.45 Sikasso
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.66 11.32 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--5.40 12.42 Koutiala
+-5.67 12.50 Koutiala
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.47 12.38 0.20c
@@ -133,14 +128,14 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--4.12 14.42 Mopti
+-4.09 14.38 Mopti
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -4.19 14.49 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--7.93 12.53 Kalabancoro
+-7.83 12.30 Kalabancoro
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.03 12.57 0.20c
@@ -154,7 +149,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--8.30 12.80 Kati
+-8.70 12.85 Kati
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.07 12.75 0.20c
@@ -167,7 +162,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -4.9 13.3 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB -Ggoldenrod@50 >> $ps << EOF
 -3.94 22.72 Taoudenni
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -182,62 +177,66 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
--2.95 16.82 Timbuktu
+-2.95 16.35 Timbuktu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--3.01 16.78 0.20c
+-3.01 16.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,30,yellow+jLB >> $ps << EOF
+-7.90 12.70 Bamako
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+-8.00 12.63 0.35c
 EOF
 #
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
+-F+f12p,19,gray25+jLB >> $ps << EOF
 -11.0 19.1 M A U R I T A N I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
--11.5 11.1 G U I N E A
+-F+f12p,19,gray25+jLB >> $ps << EOF
+-11.5 10.50 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
--11.5 11.05 G U I N E A
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
+-F+f12p,19,gray25+jLB >> $ps << EOF
 -2.5 13.1 B U R K I N A
 -2.0 12.5 F A S O
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
--0.5 23.5 A L G E R I A
+-F+f12p,19,gray25+jLB >> $ps << EOF
+-0.45 23.5 A L G E R I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
+-F+f12p,19,gray25+jLB >> $ps << EOF
 2.2 14.2 N I G E R
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
+-F+f12p,19,gray25+jLB >> $ps << EOF
 1.5 10.7 B E N I N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB >> $ps << EOF
+-F+f12p,19,gray25+jLB >> $ps << EOF
 -2.2 10.2 G H A N A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB+a300 >> $ps << EOF
--12.7 14.2 SENEGAL
+-F+f12p,19,gray25+jLB+a300 >> $ps << EOF
+-12.95 14.4 SENEGAL
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,25,black+jLB >> $ps << EOF
--7.9 9.6 CÔTE D\'IVOIRE
+-F+jTL+f10p,25,darkbrown+jLB >> $ps << EOF
+-7.95 9.6 CÔTE D\'IVOIRE
 EOF
 gmt pstext -R -J -N -O -K \
--F+f17p,20,salmon4+jLB >> $ps << EOF
--8.5 -21.3 S A H A R A   D E S E R T
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f12p,20,black+jLB+a90 >> $ps << EOF
+-F+f12p,19,gray25+jLB+a90 >> $ps << EOF
 4.5 10.1 N I G E R I A
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,19,gray25+jLB+a90 >> $ps << EOF
+0.75 9.7 TOGO
+EOF
+#
 # water
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,blue1+jLB >> $ps << EOF
@@ -249,6 +248,53 @@ gmt pstext -R -J -N -O -K \
 -3.2 15.70 Lake
 -3.2 15.30 Niangay
 EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f22p,29,cornsilk+jLB >> $ps << EOF
+-3.8 17.7 M  A  L  I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,32,blue1+jLB+a12 >> $ps << EOF
+-2.8 16.89 Niger
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,30,paleturquoise+jLB >> $ps << EOF
+-8.2 11.82 Selingue
+-8.2 11.42 Dam
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,30,paleturquoise+jLB >> $ps << EOF
+-9.75 13.02 Sotuba
+-9.75 12.72 Dam
+EOF
+# land features
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,salmon4+jLB >> $ps << EOF
+-9.8 20.3 S A H A R A   D E S E R T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,20,cornsilk1+jLB >> $ps << EOF
+-8.5 14.4 S A H E L
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,4,gray25+jLB+a300 -Ggoldenrod@75 >> $ps << EOF
+-11.8 14.4 Mandingue Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,4,darkgreen+jLB -Glightbrown@60 >> $ps << EOF
+-9.0 14.0 Boucle du Baoulé
+-8.8 13.50 National Park
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,20,cornsilk1+jLB >> $ps << EOF
+-3.8 19.1 Azawad
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,20,lightyellow+jLB >> $ps << EOF
+0.86 19.50 Adrar des
+1.00 19.10 Ifoghas
+EOF
+
+
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
