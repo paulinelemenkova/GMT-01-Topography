@@ -33,13 +33,15 @@ gmt makecpt -Csrtm -V -T27/1590 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R-13/5/9.5/25.5 -JM6.5i -Dh -M -EML > Mali.txt
+gmt pscoast -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -Dh -M -EML > Mali.txt
 #####################################################################
 
 ps=Topo_ML.ps
 # Make background transparent image
-gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
-    
+# gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+
+gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+.5i
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
@@ -51,11 +53,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R-13/5/9.5/25.5 -JM6.5i Mali.txt -O -K >> $ps
+gmt psclip -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i Mali.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ml1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -69,7 +71,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-13.3/8.2+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-13.3/8.1+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
@@ -89,11 +91,11 @@ gmt psbasemap -R -J \
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
-    --FONT_LABEL=8p,0,black \
-    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_LABEL=9p,0,black \
+    --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.0c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
+    -Lx14.0c/-2.4c+c10+w500k+l"Equidistant conic projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -162,7 +164,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -4.9 13.3 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB -Ggoldenrod@50 >> $ps << EOF
+-F+f11p,21,lemonchiffon+jLB -Gdarkgoldenrod@50 >> $ps << EOF
 -3.94 22.72 Taoudenni
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -178,10 +180,54 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -2.95 16.35 Timbuktu
+-2.95 15.95 (Tombouctou)
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -3.01 16.75 0.20c
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-0.25 17.01 Bourem
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-0.35 16.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-3.43 18.96 Araouane
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-3.53 18.90 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+0.11 20.36 Tessalit
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+1.01 20.20 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-4.45 13.91 Djenné
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-4.55 13.97 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-7.42 11.20 Bougouni
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-7.48 11.42 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB -Gsaddlebrown@70 >> $ps << EOF
+-10.47 15.10 Yélimané
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.57 15.12 0.20c
+EOF
+20.20
 gmt pstext -R -J -N -O -K \
 -F+f15p,30,yellow+jLB >> $ps << EOF
 -7.90 12.70 Bamako
@@ -258,8 +304,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
--8.2 11.82 Selingue
--8.2 11.42 Dam
+-8.2 11.85 Selingue
+-8.2 11.47 Dam
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,30,cadetblue1+jLB >> $ps << EOF
@@ -277,8 +323,8 @@ gmt pstext -R -J -N -O -K \
 -9.8 20.3 S A H A R A   D E S E R T
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,20,cornsilk1+jLB >> $ps << EOF
--8.5 14.4 S A H E L
+-F+f15p,20,wheat+jLB >> $ps << EOF
+-8.5 14.5 S   A   H   E   L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,4,gray25+jLB+a300 -Ggoldenrod@75 >> $ps << EOF
@@ -291,7 +337,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,20,cornsilk1+jLB >> $ps << EOF
--3.8 19.1 Azawad
+-3.8 19.5 A z a w a d
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,20,lightyellow+jLB >> $ps << EOF
@@ -306,13 +352,13 @@ gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
 -1.66 15.26 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,4,cornsilk1+jLB+a30 >> $ps << EOF
--2.65 14.6 Dogon
--2.35 14.3 Plateau
+-F+f10p,23,cornsilk1+jLB+a30 >> $ps << EOF
+-2.85 14.5 Dogon
+-2.55 14.3 Plateau
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,21,darkgreen+jLB -Glightbrown@65 >> $ps << EOF
-1.7 16.0 Ansongo Giraffe
+-F+f9p,21,darkgreen+jLB -Glightbrown@60 >> $ps << EOF
+1.55 15.9 Ansongo Giraffe
 1.9 15.5 Reserve
 EOF
 gmt pstext -R -J -N -O -K \
@@ -333,7 +379,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y9.2c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.7c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 2.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
