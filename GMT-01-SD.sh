@@ -31,14 +31,13 @@ gmt makecpt -Cgeo -V -T-2756/4326 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R20/40/8/23 -JD-4/18/9.5/25.5/6.5i -Dh -M -ESD > Sudan.txt
+gmt pscoast -R20/40/8/23 -JM6.5i -Dh -M -ESD > Sudan.txt
 #####################################################################
 
 ps=Topo_SD.ps
 # Make background transparent image
-# gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
-gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/23 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 .5i
 # Add isolines
 gmt grdcontour sd1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -51,11 +50,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R20/40/8/23 -JD-4/18/9.5/25.5/6.5i Sudan.txt -O -K >> $ps
+gmt psclip -R20/40/8/23 -JM6.5i Sudan.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/23 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour sd1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -69,11 +68,11 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-13.3/8.1+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg19.5/6.5+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg50f10a100+l"Colormap: 'earth' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
+    -Bg500f100a500+l"Colormap: 'earth' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -93,7 +92,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.0c/-2.4c+c10+w500k+l"Equidistant conic projection. Scale (km)"+f \
+    -Lx14.0c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -102,7 +101,7 @@ gmt psbasemap -R -J \
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-1.0/8.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EML+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG28.0/8.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -ESD+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
@@ -110,7 +109,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.7c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.5c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 2.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
