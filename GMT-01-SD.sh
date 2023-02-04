@@ -31,14 +31,14 @@ gmt makecpt -Cgeo -V -T-2756/4326 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R20/40/8/23 -JM6.5i -Dh -M -ESD > Sudan.txt
+gmt pscoast -R20/40/8/23 -JT30/6.5i -Dh -M -ESD > Sudan.txt
 #####################################################################
 
 ps=Topo_SD.ps
 # Make background transparent image
 
-gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
-.5i
+gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JT30/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+
 # Add isolines
 gmt grdcontour sd1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
@@ -50,11 +50,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R20/40/8/23 -JM6.5i Sudan.txt -O -K >> $ps
+gmt psclip -R20/40/8/23 -JT30/6.5i Sudan.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/23 -JT30/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour sd1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -92,7 +92,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.0c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
+    -Lx14.0c/-2.4c+c10+w500k+l"Transverse Mercator prj; central meridian=30\232E. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -109,9 +109,9 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.5c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.3c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-2.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
+3.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
