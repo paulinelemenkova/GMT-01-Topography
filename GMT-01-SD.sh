@@ -26,7 +26,7 @@ gdalinfo -stats sd1_relief.nc
 # actual_range={-2756,4326}
 
 # Make color palette
-gmt makecpt -Cgeo -V -T-2756/4326 > pauline.cpt
+gmt makecpt -Cturbo -V -T-2756/3042 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
 #####################################################################
@@ -95,11 +95,159 @@ gmt psbasemap -R -J \
     -Lx14.0c/-2.4c+c10+w500k+l"Transverse Mercator prj; central meridian=30\232E. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
-# Texts
+# Cities -R20/40/8/23
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+32.38 15.70 Omdurman
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+32.48 15.65 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+24.98 12.05 Nyala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+24.88 12.05 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+37.32 19.70 Port
+37.32 19.62 Sudan
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.22 19.62 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+30.22 13.10 El-Obeid
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.22 13.18 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+36.4 15.50 Kassala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.4 15.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+33.52 14.45 Wad Madani
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+33.52 14.4 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+35.38 13.90 El-Gadarif
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.38 14.03 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+25.35 13.60 Al-Fashir
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.35 13.62 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+34.00 17.68 Atbara
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+33.97 17.68 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,30,yellow+jLB >> $ps << EOF
+32.55 15.45 Khartoum
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+32.55 15.5 0.35c
+EOF
+#------
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f18p,19,black+jLB -Gwhite@80 >> $ps << EOF
+27.0 16.5 S  U  D  A  N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+26.5 22.2 E G Y P T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+21.0 21.0 L I B Y A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+20.5 16.3 C H A D
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+22.5 9.5 CENTRAL
+22.5 9.0 AFRICAN
+22.5 8.5 REPUBLIC
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+26.5 9.0 S O U T H   S U D A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB -Gwhite@50 >> $ps << EOF
+37.0 13.5 ETHIOPIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB -Gwhite@50 >> $ps << EOF
+37.0 15.5 ERITREA
+# water
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
+31.0 19.5 Nile
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-340 -Gwhite@60 >> $ps << EOF
+33.5 15.3 Blue Nile
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-340 -Gwhite@60 >> $ps << EOF
+32.3 14.2 White Nile
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
+37.8 21.5 Red
+37.8 21.0 Sea
+EOF
+# GEOGRAPHY
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,salmon4+jLB >> $ps << EOF
+25.0 19.2 L I B Y A N
+25.0 18.2 D E S E R T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,salmon4+jLB >> $ps << EOF
+31.8 21.2 N U B I A N
+31.8 20.7 D E S E R T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,white+jLB+a-15 >> $ps << EOF
+23.7 12.5 Marra Mountains
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,white+jLB >> $ps << EOF
+29.6 11.7 Nuba
+30.6 11.0 Mountains
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,white+jLB+a-315 >> $ps << EOF
+36.2 21.5 Red Sea Hills
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjBR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG28.0/8.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -ESD+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
