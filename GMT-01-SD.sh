@@ -56,7 +56,7 @@ gmt psclip -R20/40/8/24.5 -JT30/6.5i Sudan.txt -O -K >> $ps
 # Add raster image
 gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour sd1_relief.nc -R -J -C100 -A250+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour sd1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
