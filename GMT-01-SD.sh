@@ -112,8 +112,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,blue1+jLB >> $ps << EOF
-37.35 19.70 Port
-37.35 19.60 Sudan
+37.35 19.65 Port
+37.35 19.25 Sudan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 37.22 19.62 0.20c
@@ -134,14 +134,14 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,ivory1+jLB >> $ps << EOF
-33.57 14.45 Wad Madani
+28.96 21.45 Wadi Halfa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-33.52 14.4 0.20c
+31.37 21.78 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,ivory1+jLB >> $ps << EOF
-34.08 13.90 El-Gadarif
+34.25 13.50 El-Gadarif
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.38 14.03 0.20c
@@ -161,7 +161,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.97 17.68 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,1,yellow+jLB >> $ps << EOF
+-F+f14p,22,yellow+jLB >> $ps << EOF
 32.75 15.45 Khartoum
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
@@ -174,7 +174,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-27.5 22.2 E  G  Y  P  T
+27.5 22.2 E   G   Y   P   T
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
@@ -208,38 +208,72 @@ gmt pstext -R -J -N -O -K \
 30.5 19.0 Nile
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,blue2+jLB+a-65 >> $ps << EOF
-33.5 15.3 Blue Nile
+-F+f12p,23,blue2+jLB+a-60 >> $ps << EOF
+35.2 17.4 Atbara
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue1+jLB+a20 >> $ps << EOF
+32.8 17.0 Nile
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB+a-65 >> $ps << EOF
-32.3 14.6 White Nile
+33.3 15.3 Blue Nile
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-65 >> $ps << EOF
+32.2 14.6 White Nile
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
 37.2 21.5 Red Sea
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a60 >> $ps << EOF
+28.1 14.0 Wadi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a80 >> $ps << EOF
+28.5 14.8 Al-Malik
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB >> $ps << EOF
+26.7 9.9 Bahr
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB+a-25 >> $ps << EOF
+27.8 9.9 al-Arab
+EOF
 # GEOGRAPHY
 gmt pstext -R -J -N -O -K \
--F+f13p,20,lightgoldenrod2+jLB >> $ps << EOF
+-F+f12p,20,lightgoldenrod2+jLB >> $ps << EOF
 24.5 19.2 LIBYAN
 24.5 18.5 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,20,lightgoldenrod1+jLB >> $ps << EOF
-31.8 21.2 N U B I A N
-31.8 20.6 D E S E R T
+-F+f12p,20,darkred+jLB >> $ps << EOF
+32.5 21.2 NUBIAN
+32.5 20.6 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,floralwhite+jLB+a45 >> $ps << EOF
-23.7 12.5 Marra Mts.
+-F+f14p,20,darkred+jLB >> $ps << EOF
+26.2 20.3 S    A    H    A    R    A
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,floralwhite+jLB >> $ps << EOF
+-F+f11p,21,darkred+jLB >> $ps << EOF
+27.8 19.7 Jebel
+27.8 19.2 Abyad
+27.8 18.7 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,floralwhite+jLB+a45 >> $ps << EOF
+23.7 12.5 Marrah Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,floralwhite+jLB >> $ps << EOF
 29.5 11.5 Nuba Mts.
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,22,white+jLB+a-75 >> $ps << EOF
+-F+f12p,21,white+jLB+a-80 >> $ps << EOF
 36.2 21.5 Red Sea Hills
 EOF
 
