@@ -40,7 +40,7 @@ ps=Topo_SD.ps
 gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour sd1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour sd1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -220,7 +220,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-21.0 22.1 L I B Y A
+21.5 21.6 L I B Y A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
