@@ -220,11 +220,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-21.5 21.6 L I B Y A
+21.5 21.4 L I B Y A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-20.5 16.3 C H A D
+20.3 16.3 C H A D
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,19,gray25+jLB >> $ps << EOF
