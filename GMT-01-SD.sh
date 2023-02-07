@@ -26,7 +26,7 @@ gdalinfo -stats sd1_relief.nc
 # actual_range={-2756,4326}
 
 # Make color palette
-gmt makecpt -Cturbo -V -T-2756/3042 > pauline.cpt
+gmt makecpt -Cgeo -V -T-2756/3042 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
 #####################################################################
@@ -72,7 +72,7 @@ gmt psscale -Dg19.5/6.5+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f100a500+l"Colormap: 'earth' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
+    -Bg500f100a500+l"Colormap: 'earth' Colors for global topography relief [R=-2756/3042, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -97,151 +97,149 @@ gmt psbasemap -R -J \
 
 # Cities -R20/40/8/23
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-32.38 15.70 Omdurman
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+30.40 15.70 Omdurman
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.48 15.65 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-24.98 12.05 Nyala
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+25.03 12.05 Nyala
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 24.88 12.05 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-37.32 19.70 Port
-37.32 19.62 Sudan
+-F+f11p,21,blue1+jLB >> $ps << EOF
+37.35 19.70 Port
+37.35 19.60 Sudan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 37.22 19.62 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-30.22 13.10 El-Obeid
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+30.37 13.10 El-Obeid
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 30.22 13.18 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-36.4 15.50 Kassala
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+35.5 15.55 Kassala
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 36.4 15.45 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-33.52 14.45 Wad Madani
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+33.57 14.45 Wad Madani
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.52 14.4 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-35.38 13.90 El-Gadarif
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+34.08 13.90 El-Gadarif
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.38 14.03 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-25.35 13.60 Al-Fashir
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+25.50 13.45 Al-Fashir
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 25.35 13.62 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lemonchiffon+jLB >> $ps << EOF
-34.00 17.68 Atbara
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+34.10 17.68 Atbara
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.97 17.68 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,30,yellow+jLB >> $ps << EOF
-32.55 15.45 Khartoum
+-F+f15p,1,yellow+jLB >> $ps << EOF
+32.75 15.45 Khartoum
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 32.55 15.5 0.35c
 EOF
-#------
-# countries
+#------ countries
 gmt pstext -R -J -N -O -K \
 -F+jTL+f18p,19,black+jLB -Gwhite@80 >> $ps << EOF
 27.0 16.5 S  U  D  A  N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-26.5 22.2 E G Y P T
+27.5 22.2 E  G  Y  P  T
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-21.0 21.0 L I B Y A
+21.0 22.1 L I B Y A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
 20.5 16.3 C H A D
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,19,gray25+jLB >> $ps << EOF
-22.5 9.5 CENTRAL
-22.5 9.0 AFRICAN
-22.5 8.5 REPUBLIC
+-F+f11p,19,gray25+jLB >> $ps << EOF
+21.1 9.2 CENTRAL
+21.1 8.7 AFRICAN
+21.1 8.2 REPUBLIC
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB >> $ps << EOF
-26.5 9.0 S O U T H   S U D A N
+26.5 8.5 S O U T H   S U D A N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB -Gwhite@50 >> $ps << EOF
-37.0 13.5 ETHIOPIA
+37.0 12.5 ETHIOPIA
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,19,gray25+jLB -Gwhite@50 >> $ps << EOF
 37.0 15.5 ERITREA
+EOF
 # water
 gmt pstext -R -J -N -O -K \
--F+f12p,23,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
-31.0 19.5 Nile
+-F+f12p,23,blue1+jLB+a-65 >> $ps << EOF
+30.5 19.0 Nile
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,blue2+jLB+a-340 -Gwhite@60 >> $ps << EOF
+-F+f12p,23,blue2+jLB+a-65 >> $ps << EOF
 33.5 15.3 Blue Nile
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,blue2+jLB+a-340 -Gwhite@60 >> $ps << EOF
-32.3 14.2 White Nile
+-F+f12p,23,blue2+jLB+a-65 >> $ps << EOF
+32.3 14.6 White Nile
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,blue2+jLB+a-320 -Gwhite@60 >> $ps << EOF
-37.8 21.5 Red
-37.8 21.0 Sea
+-F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
+37.2 21.5 Red Sea
 EOF
 # GEOGRAPHY
 gmt pstext -R -J -N -O -K \
--F+f17p,20,salmon4+jLB >> $ps << EOF
-25.0 19.2 L I B Y A N
-25.0 18.2 D E S E R T
+-F+f13p,20,lightgoldenrod2+jLB >> $ps << EOF
+24.5 19.2 LIBYAN
+24.5 18.5 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
--F+f17p,20,salmon4+jLB >> $ps << EOF
+-F+f13p,20,lightgoldenrod1+jLB >> $ps << EOF
 31.8 21.2 N U B I A N
-31.8 20.7 D E S E R T
+31.8 20.6 D E S E R T
 EOF
 gmt pstext -R -J -N -O -K \
--F+f17p,20,white+jLB+a-15 >> $ps << EOF
-23.7 12.5 Marra Mountains
+-F+f12p,0,floralwhite+jLB+a45 >> $ps << EOF
+23.7 12.5 Marra Mts.
 EOF
 gmt pstext -R -J -N -O -K \
--F+f17p,20,white+jLB >> $ps << EOF
-29.6 11.7 Nuba
-30.6 11.0 Mountains
+-F+f12p,0,floralwhite+jLB >> $ps << EOF
+29.5 11.5 Nuba Mts.
 EOF
 gmt pstext -R -J -N -O -K \
--F+f17p,20,white+jLB+a-315 >> $ps << EOF
+-F+f12p,22,white+jLB+a-75 >> $ps << EOF
 36.2 21.5 Red Sea Hills
 EOF
 
@@ -257,7 +255,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.3c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.6c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 3.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
