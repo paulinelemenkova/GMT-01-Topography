@@ -37,10 +37,10 @@ gmt pscoast -R20/40/8/24.5 -JT30/6.5i -Dh -M -ESD > Sudan.txt
 ps=Topo_SD.ps
 # Make background transparent image
 
-gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour sd1_relief.nc -R -J -C400 -A800+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour sd1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -54,9 +54,9 @@ gmt psclip -R20/40/8/24.5 -JT30/6.5i Sudan.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage sd1_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage sd_relief.nc -Cpauline.cpt -R20/40/8/24.5 -JT30/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour sd1_relief.nc -R -J -C200 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour sd1_relief.nc -R -J -C100 -A250+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -92,7 +92,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.0c/-2.4c+c10+w500k+l"Transverse Mercator prj; central meridian=30\232E. Scale (km)"+f \
+    -Lx13.0c/-2.4c+c10+w500k+l"Transverse Mercator prj; central meridian=30\232E. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Cities -R20/40/8/24.5
@@ -311,8 +311,17 @@ gmt pstext -R -J -N -O -K \
 23.7 12.5 Marrah Mts.
 EOF
 gmt pstext -R -J -N -O -K \
+-F+f10p,0,floralwhite+jLB >> $ps << EOF
+25.0 15.6 Teiga
+25.0 15.1 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f11p,0,floralwhite+jLB >> $ps << EOF
 29.5 11.5 Nuba Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,floralwhite+jLB >> $ps << EOF
+30.2 11.0 Moro Hills
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,white+jLB+a-80 >> $ps << EOF
@@ -389,7 +398,7 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG28.0/8.0N/$w -Da -Glightgold
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx6.5/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.6c -N -O \
