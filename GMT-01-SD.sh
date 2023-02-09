@@ -327,6 +327,10 @@ gmt pstext -R -J -N -O -K \
 -F+f12p,21,white+jLB+a-80 >> $ps << EOF
 36.2 21.5 Red Sea Hills
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,20,white+jLB >> $ps << EOF
+23.5 10.8 S   A   H   E   L
+EOF
 #
 # Nile cataractes
 gmt pstext -R -J -N -O -K \
