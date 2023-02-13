@@ -127,7 +127,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
-17.35 6.58 Bossangoa
+17.15 6.15 Bossangoa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 17.45 6.48 0.20c
@@ -148,7 +148,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
-19.0 7.12 Kaga-Bandoro
+18.3 6.73 Kaga-Bandoro
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 19.18 7.00 0.20c
@@ -162,15 +162,15 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,22,black+jLB -Gwhite@50 >> $ps << EOF
-17.70 4.58 Bangui
+17.65 4.58 Bangui
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 18.56 4.37 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,0,floralwhite+jLB >> $ps << EOF
-15.2 6.70 Karre
-15.3 6.40 Mts.
+15.1 6.60 Karre
+15.2 6.30 Mts.
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,21,floralwhite+jLB+a15 -Glightbrown@70 >> $ps << EOF
@@ -187,7 +187,23 @@ gmt pstext -R -J -N -O -K \
 24.7 6.75 Faunal
 24.7 6.50 Reserve
 EOF
-
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,darkgreen+jLB -Gwhite@70 >> $ps << EOF
+21.7 9.75 Ouandjia-Vakaga
+21.7 9.50 Faunal Reserve
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-41 -Gwhite@60 >> $ps << EOF
+20.0 8.6 Bangoran
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-43 -Gwhite@60 >> $ps << EOF
+19.58 7.8 Bamingui
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue2+jLB+a50 -Gwhite@80 >> $ps << EOF
+17.60 6.6 Ouham
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
