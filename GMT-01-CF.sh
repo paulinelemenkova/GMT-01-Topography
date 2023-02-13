@@ -37,7 +37,7 @@ gmt pscoast -R14/28/2/11.5 -JM6.5i -Dh -M -ECF > CAR.txt
 ps=Topo_CF.ps
 # Make background transparent image
 
-gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage cf1_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour cf1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -54,7 +54,7 @@ gmt psclip -R14/28/2/11.5 -JM6.5i CAR.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage cf1_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour cf1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -98,74 +98,94 @@ gmt psbasemap -R -J \
 # Texts
 # Cities -R14/28/2/11.5
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
 15.90 4.36 Berbérati
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.79 4.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
 15.96 5.03 Carnot
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.86 4.93 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
 20.77 5.87 Bambari
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 20.67 5.77 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
 15.7 6.05 Bouar
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.6 5.95 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
-17.55 6.58 Bossangoa
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
+17.35 6.58 Bossangoa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 17.45 6.48 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
 22.09 6.64 Bria
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 21.99 6.54 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
-22.92 4.84 Bangassou
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
+22.62 4.90 Bangassou
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 22.82 4.74 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
-19.28 7.10 Kaga-Bandoro
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
+19.0 7.12 Kaga-Bandoro
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 19.18 7.00 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
-18.10 3.98 Mbaïki
+-F+f10p,21,black+jLB -Gwhite@50 >> $ps << EOF
+17.50 3.98 Mbaïki
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 18 3.88 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f14p,22,yellow+jLB >> $ps << EOF
-18.66 4.47 Bangui
+-F+f14p,22,black+jLB -Gwhite@50 >> $ps << EOF
+17.70 4.58 Bangui
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 18.56 4.37 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,floralwhite+jLB >> $ps << EOF
+15.2 6.70 Karre
+15.3 6.40 Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,floralwhite+jLB+a15 -Glightbrown@70 >> $ps << EOF
+21.8 8.05 Bongos Massif
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,floralwhite+jLB >> $ps << EOF
+23.7 8.05 Tondou
+23.75 7.8 Massif
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,21,khaki+jLB >> $ps << EOF
+24.7 7.00 Zemongo
+24.7 6.75 Faunal
+24.7 6.50 Reserve
 EOF
 
 # insert map
@@ -180,7 +200,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y4.5c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y5.0c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 3.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
