@@ -188,7 +188,7 @@ gmt pstext -R -J -N -O -K \
 24.7 6.50 Reserve
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,21,darkgreen+jLB -Gwhite@70 >> $ps << EOF
+-F+f10p,21,darkgreen+jLB -Gwhite@60 >> $ps << EOF
 21.7 9.75 Ouandjia-Vakaga
 21.7 9.50 Faunal Reserve
 EOF
