@@ -20,8 +20,8 @@ gmt set FORMAT_GEO_MAP=dddF \
 gmtdefaults -D > .gmtdefaults
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R14/28/2.5/11.5 -Gcf1_relief.nc
-gmt grdcut GEBCO_2019.nc -R14/28/2.5/11.5 -Gcf_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R14/28/2/11.5 -Gcf1_relief.nc
+gmt grdcut GEBCO_2019.nc -R14/28/2/11.5 -Gcf_relief.nc
 gdalinfo -stats cf_relief.nc
 # actual_range={212.1953125,1819.83984375}
 
@@ -31,13 +31,13 @@ gmt makecpt -Cearth -V -T212/1820 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R14/28/2.5/11.5 -JM6.5i -Dh -M -ECF > CAR.txt
+gmt pscoast -R14/28/2/11.5 -JM6.5i -Dh -M -ECF > CAR.txt
 #####################################################################
 
 ps=Topo_CF.ps
 # Make background transparent image
 
-gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2.5/11.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour cf1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -50,11 +50,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R14/28/2.5/11.5 -JM6.5i CAR.txt -O -K >> $ps
+gmt psclip -R14/28/2/11.5 -JM6.5i CAR.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2.5/11.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage cf_relief.nc -Cpauline.cpt -R14/28/2/11.5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour cf1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -68,7 +68,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg14/1.5+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg14/1+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
@@ -95,7 +95,78 @@ gmt psbasemap -R -J \
     -Lx14.5c/-2.4c+c10+w300k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
-# Cities -R14/28/2.5/11.5
+# Texts
+# Cities -R14/28/2/11.5
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+15.90 4.36 Berbérati
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.79 4.26 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+15.96 5.03 Carnot
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.86 4.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+20.77 5.87 Bambari
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+20.67 5.77 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+15.7 6.05 Bouar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.6 5.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+17.55 6.58 Bossangoa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+17.45 6.48 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+22.09 6.64 Bria
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+21.99 6.54 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+22.92 4.84 Bangassou
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+22.82 4.74 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+19.28 7.10 Kaga-Bandoro
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+19.18 7.00 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,ivory1+jLB >> $ps << EOF
+18.10 3.98 Mbaïki
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+18 3.88 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,22,yellow+jLB >> $ps << EOF
+18.66 4.47 Bangui
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+18.56 4.37 0.35c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
