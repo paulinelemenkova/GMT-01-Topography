@@ -50,7 +50,7 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R2/15/3/14 -JM6.5i CAR.txt -O -K >> $ps
+gmt psclip -R2/15/3/14 -JM6.5i NG.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
@@ -60,8 +60,6 @@ gmt grdcontour ng1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkb
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-#gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -96,6 +94,43 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+8.2 13.6 N I G E R
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB -Gwhite@70 >> $ps << EOF
+10.1 5.8 C A M E R O O N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+13.9 13.5 CHAD
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,19,black+jLB -Gwhite@80 >> $ps << EOF
+2.1 10.6 B E N I N
+EOF
+# water
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,26,white+jLB >> $ps << EOF
+2.3 3.3 A t l a n t i c  O c e a n
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+3.5 3.7 G u l f  o f  G u i n e a
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+2.5 5.2 Bight of
+2.5 4.9 Benin
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,blue1+jLB -Gwhite@70 >> $ps << EOF
+6.8 3.6 Bight of
+6.8 3.3 Biafra
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
