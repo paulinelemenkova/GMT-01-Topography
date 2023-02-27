@@ -1,0 +1,201 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[information,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+
+%=================================================================
+
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2023}
+\copyrightyear{2023}
+%\externaleditor{Academic Editor: Firstname Lastname}
+\datereceived{XX January 2023} 
+%\daterevised{} % Only for the journal Acoustics
+\dateaccepted{} 
+\datepublished{} 
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+\graphicspath{{figures/}} % path to folder with figures
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{gensymb} % for \textdegree
+\usepackage{tabularx}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+%\Title{Land Features Recognition in Qena Bend of the Nile River, Egypt Using Unsupervised Classification of the Landsat Images by R}
+\Title{Recognizing the Wadi Fluvial Structure and Stream Network in Qena Bend of the Nile River, Egypt on Landsat 8-9 OLI Images}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Recognizing the Wadi Fluvial Structure and Stream Network in Qena Bend of the Nile River, Egypt on Landsat 8-9 OLI Images}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0002-6461-1551} % Olivier Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Polina Lemenkova $^{1}$*\orcidA{} and Olivier Debeir $^{1}$\orcidB{}}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Polina Lemenkova and Olivier Debeir}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Lemenkova, P.; Debeir, O.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechnique de Bruxelles (Brussels Faculty of Engineering), Université Libre de Bruxelles (ULB). Building L, Campus du Solbosch, ULB -- LISA CP165/57, Avenue Franklin D. Roosevelt 50, Brussels 1050, Belgium.
+}
+
+% Contact information of the corresponding author
+\corres{Correspondence: polina.lemenkova@ulb.be; Tel.: +32 471 86 04 59 (P.L.)}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{A single paragraph of about 200 words maximum. }
+
+% Keywords
+\keyword{Africa; k-means clustering; image processing; remote sensing; unsupervised classification; programming; visualization; modelling; computer vision; cartography} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section{Introduction}
+
+Satellite image classification methods are frequently used to produce maps of land cover types and recognise land features. Example  of such applications include maps of mineral resources \cite{ABDELKAREEM2018682,1294518,rs11121450}, environmental assessment \cite{615837,Lemenkova202227}, land cover/land use classification \cite{516791,Lemenkova202229}, geologic analysis \cite{6723607,KAMEL2022104420} and urban mapping \cite{MOHAMED2019103507}. The success of the remote sensing in cartographic data processing and mapping is based on the effectiveness of the satellite imagery as a source of geoinformation. Thus, using high-resolution space-borne data improves the quality of spatial visualization \cite{ABDALLA20128,Lemenkova202230}, provides precious source of information in remotely located places and inaccessible areas such as deserts \cite{KAMEL2022104420,6350376}. Moreover, comparison of several images on target region collected in different time spans enables time series analysis aimed at detecting environmental changes \cite{9171725,SINGH2020423}. 
+
+Applications of the remote sensing data in Earth sciences include monitoring the desertification and land degradation \cite{Badreldin,Kawy}, analysis of deforestation \cite{516791}, evaluation of salinization \cite{8949893} and soil erosion \cite{Gad2020}, hydrological modelling and quantification of the flooded areas \cite{TAHA2017157,ELSADEK2019377} and many more. Spectral patterns of the multispectral Landsat images are especially widely used in geosciences as a source of spatial information for land cover mapping and recognition of land features \cite{8486245}. Natural resource monitoring 
+
+\section{Related Studies}
+
+\begin{figure}[H]
+\centering
+	\includegraphics[width=14.0 cm]{Fig_01.jpg}
+	\caption{Topographic map of Egypt. Software: Generic Mapping Tools (GMT) version 6.1.1, \cite{Wessel}. Data source: GEBCO/SRTM \cite{GEBCO,SRTM}. Cartography source: authors.
+	\label{fig01}}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Materials and Methods}
+
+\begin{figure}[H]
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_03a.jpg}
+		\caption{2013}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_03b.jpg}
+		\caption{2015}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_03c.jpg}
+		\caption{2018}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_03d.jpg}
+		\caption{2020}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_03e.jpg}
+		\caption{2021}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_03f.jpg}
+		\caption{2022}
+	\end{subfigure}%
+}\caption{Qena Bend of the Nile River, Egypt visible on Landsat 8-9 OLI/TIRS images in natural RGB colour for six years: (\textbf{a}) 2013/12/20, (\textbf{b}) 2015/12/26, (\textbf{c}) 2018/02/21, (\textbf{d}) 2020/01/22, (\textbf{e}) 2021/12/18, (\textbf{f}) 2022/12/29.}\label{fig:03}
+\end{figure}
+
+%----------- subsection ----------->
+\subsection{Subsection}
+
+%----------- subsection ----------->
+\subsection{Subsection}
+
+%----------- subsection ----------->
+\subsection{Subsection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, O.D.; writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L. All authors have read and agreed to the published version of the manuscript.}
+
+\funding{The publication was funded by the Editorial Office of XXXX, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript. This project was supported by the Federal Public Planning Service Science Policy or Belgian Science Policy Office, Federal Science Policy - BELSPO (B2/202/P2/SEISMOSTORM).}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{Not applicable} 
+
+\acknowledgments{The authors thank the reviewers for reading and review of this manuscript.}
+
+\conflictsofinterest{The authors declare no conflict of interest.} 
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+MDPI & Multidisciplinary Digital Publishing Institute\\
+DOAJ & Directory of open access journals\\
+LD & Linear dichroism
+\end{tabular}
+}
+
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\bibliography{Qena.bib}
+\reftitle{References}
+\nocite{*}
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{adjustwidth}
+\end{document}
