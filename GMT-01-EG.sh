@@ -43,7 +43,7 @@ gmt makecpt -Cetopo1 -V -T-3197/2373 > pauline1.cpt
 ps=Topo_EG.ps
 # Make background transparent image
 
-gmt grdimage eg1_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage eg_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 # Add isolines
 gmt grdcontour eg1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -58,7 +58,7 @@ gmt psclip -R24/38/21/32 -JM6.5i Egypt.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage eg1_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -t10 -Xc -P -O -K >> $ps
+gmt grdimage eg_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -t10 -Xc -P -O -K >> $ps
 #gmt grdimage lakes.grd -Cpauline1.cpt -R24/38/21/32 -JM6.5i -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour eg1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -119,6 +119,20 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 29.97 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+30.20 30.81 Tanta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+31.00 30.78 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+29.40 31.45 Rosetta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.42 31.40 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
@@ -193,7 +207,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.90 24.09 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
 32.10 25.77 Luxor
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -348,7 +362,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blueviolet+jLB -Glightgoldenrod@70 >> $ps << EOF
-33.05 23.70 1st
+33.05 23.70 First
 33.05 23.40 Cataract
 EOF
 gmt psxy -R -J -S- -W0.8p,deeppink -O -K << EOF >> $ps
@@ -399,6 +413,10 @@ gmt pstext -R -J -N -O -K \
 -F+f12p,23,white+jLB >> $ps << EOF
 25.6 23.40 Gilf al-Kebir
 25.6 23.15 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkread+jLB >> $ps << EOF
+24.30 30.50 LIBYAN PLATEAU
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue1+jLB+a70 >> $ps << EOF
