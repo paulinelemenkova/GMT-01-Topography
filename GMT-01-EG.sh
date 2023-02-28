@@ -292,27 +292,27 @@ gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 31.23 30.04 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
+-F+f12p,23,turquoise4+jLB >> $ps << EOF
 25.30 28.90 Siwa
 25.30 28.65 Oasis
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sc -W0.5p -Gaquamarine1 -O -K << EOF >> $ps
 25.52 29.21 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
-30.16 25.15 Kharga
-30.16 24.90 Oasis
+-F+f12p,23,deepskyblue4+jLB >> $ps << EOF
+30.05 25.15 Kharga
+30.05 24.90 Oasis
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sc -W0.5p -Gaquamarine1 -O -K << EOF >> $ps
 30.56 25.44 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
+-F+f12p,23,turquoise4+jLB >> $ps << EOF
 28.70 25.20 Dakhla
 28.70 24.95 Oasis
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sc -W0.5p -Gaquamarine1 -O -K << EOF >> $ps
 28.98 25.50 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
@@ -321,11 +321,11 @@ gmt pstext -R -J -N -O -K \
 27.90 26.65 Depression
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
-28.06 28.60 Bahariya
+-F+f12p,23,turquoise4+jLB >> $ps << EOF
+28.06 28.65 Bahariya
 28.06 28.40 Oasis
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sc -W0.5p -Gaquamarine1 -O -K << EOF >> $ps
 28.86 28.35 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
