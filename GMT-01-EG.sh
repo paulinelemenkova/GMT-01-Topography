@@ -24,6 +24,7 @@ gmt grdcut ETOPO1_Ice_g_gmt4.grd -R24/38/21/32 -Geg1_relief.nc
 gmt grdcut GEBCO_2019.nc -R24/38/21/32 -Geg_relief.nc
 gdalinfo -stats eg1_relief.nc
 #  actual_range={-3197,2373}
+# Minimum=-3197.000, Maximum=2373.000, Mean=249.820, StdDev=489.362
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
@@ -31,9 +32,9 @@ gmt pscoast -R24/38/21/32 -JM6.5i -Dh -M -EEG > Egypt.txt
 #####################################################################
 
 # Make color palette
-gmt makecpt -Celevation -V -T-3197/2373 > pauline.cpt
-# elevation geo earth world terra turbo srtm
-# etopo1  dem1 dem2 dem3 globe
+gmt makecpt -Cwiki-red-sea.cpt -V -T-3197/2373 > pauline.cpt
+# elevation geo earth world terra turbo srtm elevation etopo1 globe afrikakarte nordisk-familjebok
+# dem1 dem2 dem3 wiki-2.0 GMT_topo.cpt GMT_relief.cpt
 
 ps=Topo_EG.ps
 # Make background transparent image
@@ -55,7 +56,7 @@ gmt psclip -R24/38/21/32 -JM6.5i Egypt.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage eg1_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage eg1_relief.nc -Cpauline.cpt -R24/38/21/32 -JM6.5i -I+a15+ne0.75 -t0 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour eg1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -73,7 +74,7 @@ gmt psscale -Dg24/20.0+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f100a500+l"Colormap: 'earth' Colors for global topography relief [R=-2756/3042, H, C=RGB]" \
+    -Bg500f100a500+l"Colormap: 'wiki-red-sea.cpt' discrete, 20 segments [R=-3197/2373, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -98,71 +99,71 @@ gmt psbasemap -R -J \
 
 # Cities -R24/38/21/32
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 29.00 30.90 Alexandria
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 29.89 31.20 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.41 31.29 Port Said
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.31 31.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.65 30.00 Suez
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 29.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 30.48 31.15 Mansoura
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.38 31.05 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 31.26 30.75 El Mahalla
-31.26 30.50 El Kubra
+31.26 30.53 El Kubra
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.16 30.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 30.94 29.34 El Faiyum
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 30.84 29.31 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 30.50 30.01 Giza
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.21 29.99 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 31.27 27.21 Asyut
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.17 27.18 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.55 27.40 Hurghada
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.81 27.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 34.43 27.70 Sharm
 34.43 27.45 El Sheikh
 EOF
@@ -170,84 +171,84 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.33 27.91 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 33.00 24.12 Aswan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.90 24.09 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB >> $ps << EOF
+-F+f12p,21,black+jLB >> $ps << EOF
 32.75 25.71 Luxor
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.65 25.68 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.82 26.20 Qena
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.72 26.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 34.10 29.41 Taba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.89 29.49 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 33.00 26.85 Safaga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.93 26.73 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.65 25.33 Esna
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 25.30 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 32.97 25.00 Edfu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.87 24.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 31.80 26.58 Sohag
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.70 26.55 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-35.57 23.93 Berenice
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+34.30 23.65 Berenice
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.47 23.90 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 26.13 31.05 Mersa Matruh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 27.23 31.35 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
 31.18 29.10 Beni Suef
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.08 29.07 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f14p,22,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f14p,22,black+jLB -Gwhite@65 >> $ps << EOF
 31.33 30.07 CAIRO
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
@@ -261,7 +262,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
-35.45 25.0 Red Sea
+35.40 25.0 Red Sea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
+26.10 31.70 Mediterranean Sea
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
