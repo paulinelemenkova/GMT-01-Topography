@@ -99,79 +99,79 @@ gmt psbasemap -R -J \
 
 # Cities -R24/38/21/32
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 29.00 30.90 Alexandria
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 29.89 31.20 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 32.41 31.29 Port Said
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.31 31.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 32.65 30.00 Suez
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 29.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 30.48 31.15 Mansoura
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.38 31.05 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 31.26 30.75 El Mahalla
-31.26 30.53 El Kubra
+31.26 30.52 El Kubra
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.16 30.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
-30.94 29.34 El Faiyum
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
+29.90 29.40 El Faiyum
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 30.84 29.31 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 30.50 30.01 Giza
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.21 29.99 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 31.27 27.21 Asyut
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.17 27.18 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 32.55 27.40 Hurghada
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.81 27.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 34.43 27.70 Sharm
-34.43 27.45 El Sheikh
+34.43 27.43 El Sheikh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.33 27.91 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 33.00 24.12 Aswan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -185,74 +185,82 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.65 25.68 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
-32.82 26.20 Qena
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
+32.50 26.30 Qena
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.72 26.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 34.10 29.41 Taba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.89 29.49 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 33.00 26.85 Safaga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.93 26.73 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 32.65 25.33 Esna
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 25.30 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 32.97 25.00 Edfu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.87 24.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 31.80 26.58 Sohag
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.70 26.55 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
 34.30 23.65 Berenice
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 35.47 23.90 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
-26.13 31.05 Mersa Matruh
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
+26.17 31.05 Mersa Matruh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 27.23 31.35 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@65 >> $ps << EOF
-31.18 29.10 Beni Suef
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
+31.20 29.10 Beni Suef
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.08 29.07 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f14p,22,black+jLB -Gwhite@65 >> $ps << EOF
+-F+f14p,22,black+jLB -Gwhite@60 >> $ps << EOF
 31.33 30.07 CAIRO
 EOF
+
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 31.23 30.04 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@60 >> $ps << EOF
+25.30 28.90 Siwa Oasis
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.52 29.21 0.20c
 EOF
 # GEOGRAPHY
 gmt pstext -R -J -N -O -K \
@@ -261,16 +269,77 @@ gmt pstext -R -J -N -O -K \
 26.1 27.6 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkbrown+jLB+a-55 -Gwhite@50 >> $ps << EOF
+31.9 28.1 Eastern Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,20,darkbrown+jLB+a-45 >> $ps << EOF
+24.5 25.8 LIBYAN DESERT
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,6,darkbrown+jLB -Gwhite@50 >> $ps << EOF
+33.4 30.02 Sinai
+33.1 29.70 Peninsula
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkbrown+jLB+a30 >> $ps << EOF
+27.00 29.70 Qattara
+26.80 29.30 Depression
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blueviolet+jLB -Glightgoldenrod@50 >> $ps << EOF
+32.48 23.70 1st Cataract
+EOF
+gmt psxy -R -J -S- -W0.8p,deeppink -O -K << EOF >> $ps
+32.88 24.08 0.45c
+EOF
+gmt psxy -R -J -Sx -W0.8p,deeppink -O -K << EOF >> $ps
+32.88 24.08 0.45c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+27.7 21.5 S   U   D   A   N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+35.70 30.4 J O R D A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB+a-90 >> $ps << EOF
+24.5 28.2 L  I  B  Y  A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,gray25+jLB >> $ps << EOF
+36.0 28.9 S A U D I
+36.0 28.3 A R A B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,19,gray25+jLB+a-70 -Gwhite@60 >> $ps << EOF
+34.5 31.2 ISRAEL
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
 35.40 25.0 Red Sea
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
-26.10 31.70 Mediterranean Sea
+26.10 31.70 M e d i t e r r a n e a n   S e a
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue2+jLB+a-60 -Gwhite@60 >> $ps << EOF
+32.50 29.5 G u l f  o f  S u e z
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkbrown+jLB+a-60 >> $ps << EOF
+29.0 28.5 Ghurd Abu Muharrik Dunes
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkbrown+jLB >> $ps << EOF
+25.6 23.4 Gilf al-Kebir Plateau
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjTR+w3.5c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjBR+w3.0c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG28.0/25.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EEG+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
