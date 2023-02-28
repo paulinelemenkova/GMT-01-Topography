@@ -25,14 +25,15 @@ gmt grdcut GEBCO_2019.nc -R24/38/21/32 -Geg_relief.nc
 gdalinfo -stats eg1_relief.nc
 #  actual_range={-3197,2373}
 
-# Make color palette
-gmt makecpt -Cworld -V -T-3197/2373 > pauline.cpt
-# elevation geo earth etopo1 world elevation dem1 dem2 dem3 globe srtm turbo terra
-
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
 gmt pscoast -R24/38/21/32 -JM6.5i -Dh -M -EEG > Egypt.txt
 #####################################################################
+
+# Make color palette
+gmt makecpt -Celevation -V -T-3197/2373 > pauline.cpt
+# elevation geo earth world terra turbo srtm
+# etopo1  dem1 dem2 dem3 globe
 
 ps=Topo_EG.ps
 # Make background transparent image
@@ -98,17 +99,10 @@ gmt psbasemap -R -J \
 # Cities -R24/38/21/32
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-29.00 31.10 Alexandria
+29.00 30.90 Alexandria
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 29.89 31.20 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-31.34 30.16 Shubra El Kheima
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-31.24 30.13 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
@@ -126,15 +120,15 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-31.48 31.08 Mansoura
+30.48 31.15 Mansoura
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.38 31.05 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-31.26 31.10 El Mahalla
-31.26 31.07 El Kubra
+31.26 30.75 El Mahalla
+31.26 30.50 El Kubra
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.16 30.97 0.20c
@@ -148,7 +142,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-30.40 30.03 Giza
+30.50 30.01 Giza
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.21 29.99 0.20c
@@ -162,15 +156,15 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-33.00 27.40 Hurghada
+32.55 27.40 Hurghada
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.81 27.26 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-34.43 27.94 Sharm
-34.43 27.80 El Sheikh
+34.43 27.70 Sharm
+34.43 27.45 El Sheikh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.33 27.91 0.20c
@@ -205,7 +199,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-33.10 26.80 Safaga
+33.00 26.85 Safaga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.93 26.73 0.20c
@@ -240,7 +234,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,black+jLB -Gwhite@70 >> $ps << EOF
-26.13 31.25 Mersa Matruh
+26.13 31.05 Mersa Matruh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 27.23 31.35 0.20c
@@ -267,7 +261,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue2+jLB -Gwhite@60 >> $ps << EOF
-34.9 25.0 Red Sea
+35.45 25.0 Red Sea
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
