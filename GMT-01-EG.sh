@@ -72,7 +72,8 @@ gmt psclip -C -O -K >> $ps
     
 # Add color legend
 gmt psscale -Dg24/20+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
-    --FONT_LABEL=8p,0,black --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_LABEL=8p,0,black \
+    --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
     -Bg500f100a500+l"Colormap: 'Turbo' Google's Improved Rainbow Colormap for Visualization [R=-3197/2373, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
@@ -135,7 +136,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.16 30.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f12p,21,black+jLB >> $ps << EOF
 29.65 29.05 El Faiyum
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -170,8 +171,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 30.74 28.12 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
-32.55 27.40 Hurghada
+-F+f11p,21,white+jLB+a-60 >> $ps << EOF
+33.81 27.60 Hurghada
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.81 27.26 0.20c
@@ -193,10 +194,10 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB >> $ps << EOF
-32.75 25.71 Luxor
+32.10 25.77 Luxor
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-32.65 25.68 0.20c
+32.65 25.70 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
@@ -213,29 +214,29 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 34.89 29.49 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
-33.00 26.85 Safaga
+-F+f11p,21,white+jLB+a-60 >> $ps << EOF
+34.00 26.85 Safaga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 33.93 26.73 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
-32.65 25.33 Esna
+32.65 25.25 Esna
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.55 25.30 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
-32.97 25.00 Edfu
+32.97 24.90 Edfu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 32.87 24.97 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
-30.80 26.58 Sohag
+-F+f12p,21,black+jLB >> $ps << EOF
+30.70 26.58 Sohag
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 31.70 26.55 0.20c
@@ -327,8 +328,9 @@ gmt pstext -R -J -N -O -K \
 26.1 27.6 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,white+jLB+a-65 >> $ps << EOF
-31.9 28.2 Eastern Desert
+-F+f12p,20,white+jLB+a-60 -Gsandybrown@70 >> $ps << EOF
+32.45 28.2 EASTERN
+31.90 28.2 DESERT
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,20,darkred+jLB+a-45 >> $ps << EOF
@@ -346,8 +348,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blueviolet+jLB -Glightgoldenrod@70 >> $ps << EOF
-32.48 23.70 1st
-32.48 23.50 Cataract
+33.05 23.70 1st
+33.05 23.40 Cataract
 EOF
 gmt psxy -R -J -S- -W0.8p,deeppink -O -K << EOF >> $ps
 32.88 24.08 0.45c
@@ -378,7 +380,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,20,white+jLB >> $ps << EOF
-34.90 25.50 R E D  S E A
+34.45 25.75 R E D  S E A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,white+jLB >> $ps << EOF
