@@ -130,7 +130,110 @@ gmt pstext -R -J -N -O -K \
 6.8 3.6 Bight of
 6.8 3.3 Biafra
 EOF
-
+#
+# Texts
+# Cities for area -R2/15/3/14
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+4.70 8.50 Ilorin
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+4.55 8.50 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+5.32 7.45 Ado Ekiti
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.22 7.62 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,21,lemonchiffon+jLB >> $ps << EOF
+3.15 6.65 Lagos
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+3.38 6.45 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwhite@70 >> $ps << EOF
+4.70 7.90 Osogbo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+4.57 7.76 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB >> $ps << EOF
+12.10 11.50 Maiduguri
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+13.15 11.83 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB >> $ps << EOF
+8.62 12.10 Kano
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+8.52 12.00 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+7.05 10.67 Kaduna
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.43 10.52 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+8.08 5.03 Uyo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.92 5.03 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+5.72 6.50 Benin City
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.62 6.33 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,lemonchiffon+jLB >> $ps << EOF
+5.80 4.45 Port Harcourt
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.03 4.82 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+7.63 6.45 Enugu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.51 6.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lemonchiffon+jLB >> $ps << EOF
+2.90 7.30 Abeokuta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+3.35 7.16 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,22,black+jLB -Gwhite@70 >> $ps << EOF
+6.90 9.20 ABUJA
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+7.48 9.06 0.35c
+EOF
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W1.5p,red -O -K << EOF >> $ps
+5.80 5.80 -15 1.5 1.5
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lightgreen+jLB >> $ps << EOF
+5.50 5.90 Study
+5.50 5.60 Area
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
