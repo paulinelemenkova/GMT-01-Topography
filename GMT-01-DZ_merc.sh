@@ -128,7 +128,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f17p,19,black+jLB -Gwhite@90 >> $ps << EOF
--5.0 27.0 A      L      G      E      R      I      A
+-5.5 27.0 A      L      G      E      R      I      A
 EOF
 # GEOGRAPHY
 gmt pstext -R -J -N -O -K \
@@ -190,12 +190,21 @@ gmt pstext -R -J -N -O -K \
 -5.00 26.20 Massif
 EOF
 gmt pstext -R -J -N -O -K \
+-F+f11p,23,khaki1+jLB+a-60 >> $ps << EOF
+-0.70 27.90 Touat Oases
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f11p,23,darkbrown+jLB >> $ps << EOF
 -5.50 24.50 Erg Chech
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,23,darkbrown+jLB >> $ps << EOF
 -5.50 27.60 Erg Iguidi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,aquamarine1+jLB >> $ps << EOF
+1.00 26.20 Sebkha
+1.00 25.80 Azzel Matti
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,lightyellow+jLB+a-33 >> $ps << EOF
