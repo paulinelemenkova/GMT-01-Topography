@@ -53,7 +53,7 @@ gmt psclip -R-10/13/18/38 -JM6.5i DZ.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage dz_relief1.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage dz1_relief1.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour dz1_relief.nc -R -J -C200 -A400+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
@@ -93,6 +93,40 @@ gmt psbasemap -R -J \
 
 # Texts
 # countries -R-10/13/18/38
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-7.8 32.2 M O R O C C O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB+a90 -Gwhite@80 >> $ps << EOF
+-8.1 19.0 M A U R I T A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-4.5 21.0 M A L I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+5.0 19.0 N I G E R
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+10.1 25.8 L Y B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+8.2 33.0 TUNISIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-9.8 27.0 WESTERN
+-9.8 26.5 SAHARA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-6.2 37.0 S P A I N
+EOF
 
 # insert map
 gmt psbasemap -R -J -O -K -DjBR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
