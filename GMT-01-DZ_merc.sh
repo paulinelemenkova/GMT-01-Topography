@@ -128,38 +128,37 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f17p,19,black+jLB -Gwhite@90 >> $ps << EOF
--5.0 28.2 A      L      G      E      R      I      A
+-5.0 27.0 A      L      G      E      R      I      A
 EOF
 # GEOGRAPHY
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gwhite@70 >> $ps << EOF
--6.3 32.00 A T L A S  M O U N T A I N S
+-F+f11p,23,darkred+jLB+a30 -Gwhite@70 >> $ps << EOF
+-6.3 31.60 A T L A S  M O U N T A I N S
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
--1.80 33.50 High Plateau
+-F+f12p,23,lightyellow+jLB+a30 >> $ps << EOF
+-1.30 33.40 High Plateau
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
--1.80 34.50 Trara Mts
+-F+f12p,23,ivory1+jLB+a30 >> $ps << EOF
+-1.60 34.50 Trara Mts
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
--1.80 33.8 Tlemcen Mts
+-F+f12p,23,ivory1+jLB+a30 >> $ps << EOF
+-1.30 34.1 Tlemcen
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
-0.20 35.9 Dahra
-0.20 35.6 Range
+-F+f12p,23,ivory1+jLB+a30 >> $ps << EOF
+0.20 35.8 Dahra
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,gold+jLB+a20 >> $ps << EOF
+-F+f12p,23,darkred+jLB+a20 -Gwhite@60 >> $ps << EOF
 1.50 35.6 T e l l  A t l a s
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkred+jLB >> $ps << EOF
-6.10 32.2 Grand Erg
-6.10 31.6 Oriental
+6.10 31.5 Grand Erg
+6.10 31.1 Oriental
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkred+jLB >> $ps << EOF
@@ -172,13 +171,35 @@ gmt pstext -R -J -N -O -K \
 5.00 29.2 Issaouane
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,23,white+jLB >> $ps << EOF
+-F+f11p,23,lightyellow+jLB >> $ps << EOF
 5.30 23.20 Hoggar
 5.30 22.70 Mountains
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,23,gold+jLB+a-20 -Gpalegoldenrod@70 >> $ps << EOF
-7.00 25.50 Tassili n'Ajjer Plateau
+-F+f11p,23,darkbrown+jLB >> $ps << EOF
+0.50 20.50 Adrar des Ifoghas
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,darkred+jLB -Gnavajowhite3@70 >> $ps << EOF
+2.10 28.60 Tademaït
+2.10 28.20 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,darkred+jLB >> $ps << EOF
+-5.00 26.60 El Eglab
+-5.00 26.20 Massif
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,darkbrown+jLB >> $ps << EOF
+-5.50 24.50 Erg Chech
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,darkbrown+jLB >> $ps << EOF
+-5.50 27.60 Erg Iguidi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,23,lightyellow+jLB+a-33 >> $ps << EOF
+7.00 26.10 Tassili n'Ajjer Plateau
 EOF
 # chotts
 gmt pstext -R -J -N -O -K \
