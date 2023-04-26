@@ -53,9 +53,9 @@ gmt psclip -R-10/13/18/38 -JM6.5i DZ.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage dz1_relief1.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage dz1_relief.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour dz1_relief.nc -R -J -C200 -A400+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour dz1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
 gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 
@@ -93,39 +93,103 @@ gmt psbasemap -R -J \
 
 # Texts
 # countries -R-10/13/18/38
-# countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
--7.8 32.2 M O R O C C O
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+-8.5 31.0 M O R O C C O
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB+a90 -Gwhite@80 >> $ps << EOF
--8.1 19.0 M A U R I T A N I A
+-F+jTL+f12p,19,black+jLB+a90 >> $ps << EOF
+-8.2 19.0 M A U R I T A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,19,black+jLB >> $ps << EOF
+-4.6 21.0 M  A  L  I
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
--4.5 21.0 M A L I
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
-5.0 19.0 N I G E R
+5.0 18.7 N I G E R
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
 10.1 25.8 L Y B I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
-8.2 33.0 TUNISIA
+-F+jTL+f12p,19,black+jLB -Gwhite@90 >> $ps << EOF
+8.3 33.0 TUNISIA
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
+-F+jTL+f11p,19,black+jLB -Gwhite@80 >> $ps << EOF
 -9.8 27.0 WESTERN
 -9.8 26.5 SAHARA
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,19,black+jLB -Gwhite@80 >> $ps << EOF
--6.2 37.0 S P A I N
+-F+jTL+f12p,19,black+jLB -Gwhite@60 >> $ps << EOF
+-6.2 37.3 S P A I N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f17p,19,black+jLB -Gwhite@90 >> $ps << EOF
+-5.0 28.2 A      L      G      E      R      I      A
+EOF
+# GEOGRAPHY
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gwhite@70 >> $ps << EOF
+-6.3 32.00 A T L A S  M O U N T A I N S
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
+-1.80 33.50 High Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
+-1.80 34.50 Trara Mts
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@60 >> $ps << EOF
+-1.80 33.8 Tlemcen Mts
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+0.20 35.9 Dahra
+0.20 35.6 Range
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a20 -Gpalegoldenrod@70 >> $ps << EOF
+1.50 35.6 T e l l  A t l a s
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+6.30 32.3 Grand Erg
+6.30 31.7 Oriental
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+0.20 31.7 Grand Erg
+0.20 31.3 Occidental
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+5.80 29.7 Erg
+5.00 29.3 Issaouane
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+5.30 23.20 Hoggar
+5.30 22.80 Mountains
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a-45 -Gpalegoldenrod@70 >> $ps << EOF
+7.00 25.50 Tassili n'Ajjer
+EOF
+# chotts
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue1+jLB -Gwhite@80 >> $ps << EOF
+6.20 34.30 Chott
+6.20 33.90 Melrhir
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,blue1+jLB -Gwhite@80 >> $ps << EOF
+4.10 35.60 Chott
+4.10 35.20 el Hodna
 EOF
 
 # insert map
