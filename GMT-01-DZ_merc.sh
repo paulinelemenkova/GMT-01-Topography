@@ -153,32 +153,32 @@ gmt pstext -R -J -N -O -K \
 0.20 35.6 Range
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a20 -Gpalegoldenrod@70 >> $ps << EOF
+-F+f12p,23,gold+jLB+a20 >> $ps << EOF
 1.50 35.6 T e l l  A t l a s
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
-6.30 32.3 Grand Erg
-6.30 31.7 Oriental
+-F+f12p,23,darkred+jLB >> $ps << EOF
+6.10 32.2 Grand Erg
+6.10 31.6 Oriental
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
-0.20 31.7 Grand Erg
-0.20 31.3 Occidental
+-F+f12p,23,darkred+jLB >> $ps << EOF
+0.20 31.5 Grand Erg
+0.20 31.1 Occidental
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
-5.80 29.7 Erg
-5.00 29.3 Issaouane
+-F+f12p,23,darkred+jLB >> $ps << EOF
+5.80 29.6 Erg
+5.00 29.2 Issaouane
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a30 -Gpalegoldenrod@70 >> $ps << EOF
+-F+f11p,23,white+jLB >> $ps << EOF
 5.30 23.20 Hoggar
-5.30 22.80 Mountains
+5.30 22.70 Mountains
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,darkred+jLB+a-45 -Gpalegoldenrod@70 >> $ps << EOF
-7.00 25.50 Tassili n'Ajjer
+-F+f13p,23,gold+jLB+a-20 -Gpalegoldenrod@70 >> $ps << EOF
+7.00 25.50 Tassili n'Ajjer Plateau
 EOF
 # chotts
 gmt pstext -R -J -N -O -K \
