@@ -41,7 +41,7 @@ ps=Topo_DZ.ps
 gmt grdimage dz1_relief.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour dz1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour dz1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers, lakes
 gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -56,7 +56,7 @@ gmt psclip -R-10/13/18/38 -JM6.5i DZ.txt -O -K >> $ps
 # Add raster image
 gmt grdimage dz1_relief.nc -Cpauline.cpt -R-10/13/18/38 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour dz1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour dz1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
 gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 
@@ -69,7 +69,7 @@ gmt psscale -Dg-10/16.5+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg500f50a500+l"Colormap: 'geo' Colors for global topography relief [R=-4373/3703, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'turbo' Google's Improved Rainbow Colormap for Visualization [R=-4373/3703, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -95,11 +95,60 @@ gmt psbasemap -R -J \
 # Texts
 # cities
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
--0.63 35.80 City
+-F+f12p,21,black+jLB -Glightcyan2@60 >> $ps << EOF
+-1.00 35.83 Oran
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -0.63 35.69 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gwheat2@60 >> $ps << EOF
+5.60 36.50 Constantine
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+6.60 36.35 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glemonchiffon2@60 >> $ps << EOF
+1.70 36.47 Blida
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+2.83 36.47 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Ggoldenrod1@60 >> $ps << EOF
+5.51 35.80 Sétif
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.41 36.19 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkgoldenrod2@70 >> $ps << EOF
+2.20 34.82 Djelfa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+3.25 34.67 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gnavajowhite3@70 >> $ps << EOF
+5.90 34.85 Biskra
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.73 34.85 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
+7.77 37.00 Annaba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.77 36.90 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,22,black+jLB -Gpalegoldenrod@60 >> $ps << EOF
+3.06 36.95 ALGIERS
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+3.06 36.75 0.35c
 EOF
 # countries -R-10/13/18/38
 gmt pstext -R -J -N -O -K \
@@ -189,9 +238,9 @@ gmt pstext -R -J -N -O -K \
 1.8 33.9 Amour
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,ivory1+jLB+a30 -Ggoldenrod1@60 >> $ps << EOF
-3.24 34.4 Ouled
-3.8 34.2 Naïl
+-F+f12p,23,ivory1+jLB -Ggoldenrod1@60 >> $ps << EOF
+3.5 34.80 Ouled
+3.6 34.30 Naïl
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkred+jLB >> $ps << EOF
@@ -200,13 +249,13 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,lightyellow+jLB >> $ps << EOF
-5.30 23.20 Hoggar
-5.30 22.65 Mountains
+5.80 23.25 Hoggar
+5.80 22.70 Mountains
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkbrown+jLB >> $ps << EOF
 2.50 20.90 Adrar
-2.10 20.50 des Ifoghas
+2.10 20.45 des Ifoghas
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkred+jLB -Gnavajowhite3@70 >> $ps << EOF
@@ -224,7 +273,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkbrown+jLB+a30 >> $ps << EOF
--3.00 24.50 Erg Chech
+-3.00 24.55 Erg Chech
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkbrown+jLB+a30 >> $ps << EOF
@@ -244,11 +293,12 @@ gmt pstext -R -J -N -O -K \
 -3.0 24.1 S    A    H    A    R    A
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,21,black+jLB >> $ps << EOF
-5.63 23.39 Tahat Mt.
+-F+f12p,23,oldlace+jLB >> $ps << EOF
+4.30 23.50 Tahat
+4.50 23.10 Mt.
 EOF
-gmt psxy -R -J -St -W0.5p -Gred -O -K << EOF >> $ps
-5.53 23.29 0.20c
+gmt psxy -R -J -St -W0.5p,white -Gred -O -K << EOF >> $ps
+5.53 23.29 0.30c
 EOF
 # water
 gmt pstext -R -J -N -O -K \
@@ -279,7 +329,7 @@ gmt pstext -R -J -N -O -K \
 3.80 32.30 M'ZAB
 EOF
 # insert map
-gmt psbasemap -R -J -O -K -DjBR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjBR+w3.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG0/8N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EDZ+gred -Sroyalblue2 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
