@@ -144,6 +144,55 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 7.77 36.90 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
+7.18 33.25  El Oued
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.18 33.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
+1.31 35.36  Tiaret
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+1.31 35.36 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
+-2.22 31.01  Béchar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-2.22 31.01 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
+5.06 36.90  Béjaïa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.06 36.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB >> $ps << EOF
+5.42 32.15 Ouargla
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.32 31.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB >> $ps << EOF
+0.08 36.03 Mostaganem
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+0.08 35.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB >> $ps << EOF
+8.12 35.30 Tébessa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+8.12 35.40 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f13p,22,black+jLB -Gpalegoldenrod@60 >> $ps << EOF
 3.06 36.95 ALGIERS
 EOF
