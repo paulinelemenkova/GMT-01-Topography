@@ -18,28 +18,31 @@ gmt set FORMAT_GEO_MAP=dddF \
 # Overwrite defaults of GMT
 gmtdefaults -D > .gmtdefaults
 
+exec bash
+
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R33/42/-5/5 -Gke_relief.nc
-#gmt grdcut GEBCO_2019.nc -R33/42/-5/5 -Gke_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R31.5/42.5/-5/5 -Gke_relief.nc
+#gmt grdcut GEBCO_2019.nc -R31.5/42.5/-5/5 -Gke_relief.nc
 gdalinfo -stats ke_relief.nc
 # Minimum=-2217.000, Maximum=5677.000, Mean=849.149, StdDev=702.927
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R33/42/-5/5 -JU37/6.5i -Dh -M -EKE > Kenya.txt
+gmt pscoast -R31.5/42.5/-5/5 -JU37/6.5i -Dh -M -EKE > Kenya.txt
 #####################################################################
 
 # Make color palette
 #gmt makecpt -Cafrikakarte-topo -V -T443/5110 > pauline.cpt
 #gmt makecpt -Ceurope_3 -V -T-2217/5677 > pauline.cpt
-gmt makecpt -Cwiki-schwarzwald-d010 -V -T-2217/5677 > pauline.cpt
+#gmt makecpt -Cwiki-schwarzwald-d010 -V -T-2217/5677 > pauline.cpt
+gmt makecpt -Cgeo -V -T-2217/5677 > pauline.cpt
 #gmt makecpt -Cwiki-1.02 -V -T443/5110 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth relief costa-rica
 
 ps=Topo_KE.ps
 # Make background transparent image
-#gmt grdimage ke_relief.nc -Cpauline.cpt -R33/42/-5/5 -JU37/6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
-gmt grdimage ke_relief.nc -Cpauline.cpt -R33/42/-5/5 -JU37/6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
+#gmt grdimage ke_relief.nc -Cpauline.cpt -R31.5/42.5/-5/5 -JU37/6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
+gmt grdimage ke_relief.nc -Cpauline.cpt -R31.5/42.5/-5/5 -JU37/6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour ke_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -47,33 +50,33 @@ gmt grdcontour ke_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkb
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,red -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
-gmt psclip -R33/42/-5/5 -JU37/6.5i Kenya.txt -O -K >> $ps
+gmt psclip -R31.5/42.5/-5/5 -JU37/6.5i Kenya.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ke_relief.nc -Cpauline.cpt -R33/42/-5/5 -JU37/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ke_relief.nc -Cpauline.cpt -R31.5/42.5/-5/5 -JU37/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ke_relief.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-#gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg33.0/-5.6+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg31.0/-5.7+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=7p,0,black \
     --FONT_TITLE=6p,0,black \
-    -Bg500f50a500+l"Colormap: 'wiki-schwarzwald-d010' hypsometry Wikipedia scheme for elevations [R=-2217/5677, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'geo' [R=-2217/5677, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -84,7 +87,7 @@ gmt psbasemap -R -J \
     --MAP_TITLE_OFFSET=0.8c \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
-    --FONT_TITLE=16p,25,black \
+    --FONT_TITLE=14p,25,black \
     -B+t"Topographic map of Kenya" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -93,24 +96,24 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.5c/-2.5c+c10+w200k+l"UTM projection, Zone 37. Scale (km)"+f \
+    -Lx14.5c/-2.5c+c10+w300k+l"UTM projection, Zone 37. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjBL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjBR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey -Rg -JG28.0/-2.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EUG+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,grey --MAP_FRAME_PEN=thin,white -Rg -JG28.0/-2.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EUG+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx7.0/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx7.0/-2.9+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.2c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y10.0c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 2.0 9.0 Digital elevation data: GEBCO/SRTM, 15 arc sec (ca. 450 m) resolution grid
 EOF
