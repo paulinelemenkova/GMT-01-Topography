@@ -119,7 +119,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,black+jLB >> $ps << EOF
-32.4 2.5 U G A N D A
+32.4 2.2 U G A N D A
 EOF
 #
 gmt pstext -R -J -N -O -K \
@@ -250,6 +250,23 @@ gmt pstext -R -J -N -O -K \
 -F+f12p,23,lightcyan+jLB >> $ps << EOF
 36.15 0.80 Lake
 36.15 0.55 Baringo
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lemonchiffon1+jLB >> $ps << EOF
+37.35 0.15 Mount
+37.35 -0.05 Kenya
+EOF
+gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
+37.31 -0.15 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lemonchiffon1+jLB >> $ps << EOF
+37.35 -2.70 Mount
+37.35 -2.90 Kilimanjaro
+EOF
+gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
+37.35 -3.07 0.30c
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
