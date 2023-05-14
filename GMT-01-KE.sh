@@ -22,7 +22,7 @@ exec bash
 
 # Extract a subset of ETOPO1m for the study area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R31.5/42.5/-5/5 -Gke_relief.nc
-#gmt grdcut GEBCO_2019.nc -R31.5/42.5/-5/5 -Gke_relief.nc
+gmt grdcut GEBCO_2019.nc -R31.5/42.5/-5/5 -Gke_relief1.nc
 gdalinfo -stats ke_relief.nc
 # Minimum=-2217.000, Maximum=5677.000, Mean=849.149, StdDev=702.927
 
@@ -45,7 +45,7 @@ ps=Topo_KE.ps
 gmt grdimage ke_relief.nc -Cpauline.cpt -R31.5/42.5/-5/5 -JU37/6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour ke_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour ke_relief1.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -61,7 +61,7 @@ gmt psclip -R31.5/42.5/-5/5 -JU37/6.5i Kenya.txt -O -K >> $ps
 # Add raster image
 gmt grdimage ke_relief.nc -Cpauline.cpt -R31.5/42.5/-5/5 -JU37/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour ke_relief.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour ke_relief1.nc -R -J -C250 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
@@ -142,6 +142,48 @@ gmt pstext -R -J -N -O -K \
 EOF
 #
 # Cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+37.98 2.47 Marsabit
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.98 2.33 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+39.06 3.23 Moyale
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.06 3.53 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+40.10 1.85 Wajir
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+40.05 1.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+40.20 2.95 El Wak
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+40.93 2.80 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+40.60 -2.10 Lamu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+40.90 -2.27 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+40.13 -3.10 Malindi
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+40.13 -3.22 0.20c
+EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,white+jLB >> $ps << EOF
 39.36 -3.95 Mombasa
@@ -226,12 +268,12 @@ gmt pstext -R -J -N -O -K \
 40.50 0.29 Dera
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,lightcyan+jLB+a-15 >> $ps << EOF
-39.10 -0.05 Tana
+-F+f12p,23,lightcyan+jLB+a-75 >> $ps << EOF
+40.15 -1.50 Tana
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,lightcyan+jLB+a-5 >> $ps << EOF
-39.20 -2.98 Galana
+-F+f12p,23,lightcyan+jLB+a-7 >> $ps << EOF
+39.25 -2.98 Galana
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,blue1+jLB+a-60 >> $ps << EOF
@@ -261,12 +303,50 @@ gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
 37.31 -0.15 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,lemonchiffon1+jLB >> $ps << EOF
-37.35 -2.70 Mount
-37.35 -2.90 Kilimanjaro
+-F+f12p,23,lemonchiffon1+jLB -Gsaddlebrown@70 >> $ps << EOF
+37.30 -2.65 Mount
+37.30 -2.90 Kilimanjaro
 EOF
 gmt psxy -R -J -St -W0.5p -Gmagenta -O -K << EOF >> $ps
 37.35 -3.07 0.30c
+EOF
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W1.5p,red -O -K << EOF >> $ps
+39.23 1.44 -15 2.0 2.0
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,lightyellow1+jLB >> $ps << EOF
+39.03 1.44 Study
+39.03 1.20 Area
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,23,cornsilk1+jLB+a0 >> $ps << EOF
+38.74 -0.30 Kora
+38.74 -0.55 National
+38.74 -0.80 Park
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,23,cornsilk1+jLB+a0 >> $ps << EOF
+38.70 -3.00 Tsavo
+38.70 -3.20 National
+38.70 -3.40 Park
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,23,cornsilk1+jLB+a0 >> $ps << EOF
+35.23 -1.30 Masai Mara
+35.23 -1.50 National
+35.23 -1.70 Reserve
+EOF
+
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,23,cornsilk1+jLB -Gsaddlebrown@70 >> $ps << EOF
+38.00 -3.30 Taita
+38.00 -3.50 Hills
+EOF
+gmt psxy -R -J -Ss -W0.5p -Ggold -O -K << EOF >> $ps
+35.14 -1.49 0.30c
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
