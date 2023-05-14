@@ -100,7 +100,157 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
-
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB -Gwhite@70 >> $ps << EOF
+32.2 4.7 S O U T H
+32.2 4.3 S U D A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB -Gwhite@80 >> $ps << EOF
+38.1 4.2 E T H I O P I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB+a90 >> $ps << EOF
+41.8 -0.5 S O M A L I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB >> $ps << EOF
+32.5 -3.5 T A N Z A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,black+jLB >> $ps << EOF
+32.4 2.5 U G A N D A
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+32.5 -0.9 Lake
+32.5 -1.3 Victoria
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB+a-90 >> $ps << EOF
+36.0 4.2 Lake
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB+a-55 >> $ps << EOF
+35.98 3.5 Turkana
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+41.2 -2.4 INDIAN
+41.2 -2.7 OCEAN
+EOF
+#
+# Cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+39.36 -3.95 Mombasa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.66 -4.05 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+36.00 -0.20 Nakuru
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.06 -0.30 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+35.18 0.65 Eldoret
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.28 0.52 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+34.76 0.05 Kisumu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+34.76 -0.08 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+36.00 -1.15 Kikuyu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.64 -1.25 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+37.08 -1.00 Thika
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.08 -1.05 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+35.43 -0.61 Naivasha
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.43 -0.71 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+36.96 -1.80 Ruiru
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.96 -1.48 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,white+jLB >> $ps << EOF
+36.55 -0.63 Karuri
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.05 -0.73 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,22,white+jLB >> $ps << EOF
+37.00 -1.40 NAIROBI
+EOF
+gmt psxy -R -J -Sa -W0.5p,white -Gred -O -K << EOF >> $ps
+36.83 -1.28 0.40c
+EOF
+# rivers & lakes
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue1+jLB+a95 >> $ps << EOF
+35.40 2.15 Turkwel
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB+a-10 >> $ps << EOF
+40.30 1.50 Bor
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB+a29 >> $ps << EOF
+40.50 0.29 Dera
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB+a-15 >> $ps << EOF
+39.10 -0.05 Tana
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB+a-5 >> $ps << EOF
+39.20 -2.98 Galana
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,blue1+jLB+a-60 >> $ps << EOF
+38.40 -2.50 Athi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB+a40 >> $ps << EOF
+35.05 -1.10 Mara
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB >> $ps << EOF
+36.40 -2.00 Lake
+36.40 -2.25 Magali
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,lightcyan+jLB >> $ps << EOF
+36.15 0.80 Lake
+36.15 0.55 Baringo
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
