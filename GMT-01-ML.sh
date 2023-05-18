@@ -4,21 +4,6 @@
 
 exec bash
 
-# GMT set up
-gmt set FORMAT_GEO_MAP=dddF \
-    MAP_FRAME_PEN=dimgray \
-    MAP_FRAME_WIDTH=0.1c \
-    MAP_TITLE_OFFSET=1c \
-    MAP_ANNOT_OFFSET=0.1c \
-    MAP_TICK_PEN_PRIMARY=thinner,dimgray \
-    MAP_GRID_PEN_PRIMARY=thin,white \
-    MAP_GRID_PEN_SECONDARY=thinnest,white \
-    FONT_TITLE=12p,Palatino-Roman,black \
-    FONT_ANNOT_PRIMARY=7p,0,dimgray \
-    FONT_LABEL=7p,0,dimgray \
-# Overwrite defaults of GMT
-gmtdefaults -D > .gmtdefaults
-
 # Extract a subset of ETOPO1m for the study area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R-13/5/9.5/25.5 -Gml1_relief.nc
 gmt grdcut GEBCO_2019.nc -R-13/5/9.5/25.5 -Gml_relief.nc
@@ -38,37 +23,32 @@ gmt pscoast -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -Dh -M -EML > Mali.txt
 
 ps=Topo_ML.ps
 # Make background transparent image
-# gmt grdimage ml1_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
-
 gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 .5i
 # Add isolines
-gmt grdcontour ml1_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
+gmt grdcontour ml1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
     
-#####################################################################
+#------------------------->
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
-
 gmt psclip -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i Mali.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
 gmt grdimage ml_relief.nc -Cpauline.cpt -R-13/5/9.5/25.5 -JD-4/18/9.5/25.5/6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour ml1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour ml1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-#gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
-#####################################################################
+#-------------------------<
     
 # Add color legend
 gmt psscale -Dg-13.3/8.1+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
@@ -82,6 +62,8 @@ gmt psscale -Dg-13.3/8.1+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
+    --MAP_FRAME_PEN=dimgray \
+    --MAP_FRAME_WIDTH=0.1c \
     --MAP_TITLE_OFFSET=0.7c \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
@@ -98,8 +80,14 @@ gmt psbasemap -R -J \
     -Lx14.0c/-2.4c+c10+w500k+l"Equidistant conic projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W1.7p,chartreuse -O -K << EOF >> $ps
+-4.5 14.5 -13 1.5 1.5
+EOF
+
 # Texts
-# Cities -R-13/5/9.5/25.5
+# Cities for area -R-13/5/9.5/25.5
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lemonchiffon+jLB >> $ps << EOF
 -6.76 11.45 Sikasso
