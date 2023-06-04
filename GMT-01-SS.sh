@@ -34,13 +34,13 @@ gmt makecpt -Cwiki-schwarzwald-cont.cpt -V -T380/1500 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R23.5/36.0/3/13 -JM6.5i -Dh -M -ESS > SSudan.txt
+gmt pscoast -R23.5/36.0/3/13 -JM7.0i -Dh -M -ESS > SSudan.txt
 #####################################################################
 
 ps=Topo_SS.ps
 # Make background transparent image
 
-gmt grdimage ss_relief.nc -Cpauline.cpt -R23.5/36.0/3/13 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ss_relief.nc -Cpauline.cpt -R23.5/36.0/3/13 -JM7.0i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour ss1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -53,11 +53,11 @@ gmt pscoast -R -J \
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
 
-gmt psclip -R23.5/36.0/3/13 -JM6.5i SSudan.txt -O -K >> $ps
+gmt psclip -R23.5/36.0/3/13 -JM7.0i SSudan.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ss_relief.nc -Cpauline.cpt -R23.5/36.0/3/13 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ss_relief.nc -Cpauline.cpt -R23.5/36.0/3/13 -JM7.0i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ss1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -95,7 +95,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx13.6c/-2.5c+c10+w400k+l"Mercator projection. Scale (km)"+f \
+    -Lx14.0c/-2.5c+c10+w400k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -120,33 +120,104 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,19,black+jLB -Gwhite@70 >> $ps << EOF
-34.2 3.9 KENYA
+34.2 3.9 K E N Y A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,19,black+jLB -Gwhite@70 >> $ps << EOF
 33.5 7.9 ETHIOPIA
 EOF
+#
 # Cities -R23.5/36.0/3/13
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+31.70 4.95 JUBA
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+31.60 4.85 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+28.10 7.7 Wau
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.00 7.7 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+31.45 9.65 Malakal
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+31.65 9.55 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+28.47 4.66 Yambio
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.37 4.56 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+27.50 8.88 Aweil
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.40 8.78 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+31.66 6.31 Bor
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+31.56 6.21 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+29.9 9.16 Bentiu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.8 9.26 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+28.78 7.33 Tonj
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.68 7.28 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+29.77 6.71 Rumbek
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.67 6.81 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,black+jLB -Glightcyan2@50 >> $ps << EOF
+28.09 8.31 Kuajok
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.99 8.31 0.20c
+EOF
 # Geography
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,blue+jLB >> $ps << EOF
-32.50 9.7 Machar
-32.50 9.3 Marshes
+32.55 9.6 Machar
+32.55 9.3 Marshes
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,23,blue+jLB >> $ps << EOF
-34.50 5.0 Lotagipi
-34.50 4.6 Swamp
+-F+f13p,23,blue+jLB -Gwhite@60 >> $ps << EOF
+34.30 5.0 Lotagipi
+34.30 4.7 Swamp
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkgreen+jLB >> $ps << EOF
 33.00 7.4 Boma
-32.70 7.0 National
-33.00 6.6 Park
+32.70 7.1 National
+33.10 6.8 Park
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkgreen+jLB -Gwhite@70 >> $ps << EOF
-28.10 6.5 Southern
+28.10 6.4 Southern
 28.10 6.1 National
 28.10 5.8 Park
 EOF
@@ -155,27 +226,35 @@ gmt pstext -R -J -N -O -K \
 25.80 7.6 IRONSTONE PLATEAU
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,23,darkgreen+jLB+a-40 -Gwhite@70 >> $ps << EOF
-31.80 4.4 Imatong
+-F+f13p,23,darkred+jLB+a-40 -Gwhite@70 >> $ps << EOF
+31.90 4.4 Imatong
 32.00 4.0 Mts
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,23,blue1+jLB+a80 >> $ps << EOF
+-F+f11p,23,blue1+jLB+a75 -Gwhite@70 >> $ps << EOF
 31.40 4.4 Al-Jabal
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,23,blue1+jLB+a80 >> $ps << EOF
-30.60 8.2 Al-Zaraf
+-F+f11p,23,blue1+jLB+a77 >> $ps << EOF
+30.85 8.05 Al-Zaraf
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,23,blue1+jLB+a25 >> $ps << EOF
-29.40 9.15 Al-Ghazal
+-F+f11p,23,blue1+jLB+a28 >> $ps << EOF
+29.45 9.15 Al-Ghazal
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,23,blue1+jLB+a-25 >> $ps << EOF
-28.20 9.6 Bahr al-Arab
+28.05 9.8 Bahr al-Arab
 EOF
-
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue1+jLB+a-45 >> $ps << EOF
+30.40 7.6 Bahr al Jabal
+30.10 7.4 (Mountain Nile)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f18p,19,black+jLB -Gwhite@90 >> $ps << EOF
+26.5 6.8 S  O  U  T  H    S  U  D  A  N
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTL+w3.0c+stmp >> $ps
@@ -188,7 +267,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.0+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.6c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.1c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 3.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
