@@ -76,6 +76,8 @@ gmt psscale -Dg-10/16.5+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
+    --MAP_TICK_PEN_PRIMARY=thinner,dimgray \
+    --MAP_FRAME_WIDTH=0.1c \
     --MAP_TITLE_OFFSET=0.7c \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
@@ -117,7 +119,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Glightbrown@70 >> $ps << EOF
-5.51 35.80 Sétif
+5.51 35.80 Setif
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 5.41 36.19 0.20c
@@ -152,14 +154,14 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Glightbrown@70 >> $ps << EOF
--2.42 31.15  Béchar
+-2.42 31.15  Bechar
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -2.22 31.01 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB -Gdarkolivegreen1@70 >> $ps << EOF
-5.06 36.90  Béjaïa
+5.06 36.90  Bejaia
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 5.06 36.75 0.20c
@@ -180,7 +182,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,21,black+jLB >> $ps << EOF
-6.6 35.60 Tébessa
+6.6 35.60 Tebessa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 8.12 35.40 0.20c
@@ -261,11 +263,12 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkred+jLB+a30 >> $ps << EOF
-4.50 30.3 Grand Erg Oriental
+#4.50 30.3 Great Eastern Sand Sea
+3.70 29.8 Great Eastern Sand Sea
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkred+jLB+a30 >> $ps << EOF
--1.70 30.3 Grand Erg Occidental
+-1.70 30.3 Great Western Sand Sea
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,ivory1+jLB+a30 -Ggoldenrod1@60 >> $ps << EOF
@@ -273,7 +276,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,ivory1+jLB+a30 -Ggoldenrod1@60 >> $ps << EOF
-0.29 32.52 Kçour
+0.29 32.52 Ksour
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,ivory1+jLB+a30 -Ggoldenrod1@60 >> $ps << EOF
@@ -282,7 +285,7 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,ivory1+jLB -Ggoldenrod1@60 >> $ps << EOF
 3.5 34.80 Ouled
-3.6 34.30 Naïl
+3.6 34.30 Nail
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,darkred+jLB >> $ps << EOF
@@ -301,7 +304,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,darkred+jLB -Gnavajowhite3@70 >> $ps << EOF
-2.10 28.70 Tademaït
+2.10 28.70 Tademait
 2.10 28.20 Plateau
 EOF
 gmt pstext -R -J -N -O -K \
@@ -369,7 +372,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,23,navajowhite4+jLB -Ggreenyellow@80 >> $ps << EOF
-3.80 32.30 M'ZAB
+3.80 32.30 MZAB
 EOF
 # Study area
 # Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
