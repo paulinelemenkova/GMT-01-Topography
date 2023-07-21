@@ -37,7 +37,7 @@ gmt pscoast -R7/12/30/37.5 -JM5.5i -Dh -M -ETN > TN.txt
 ps=Topo_TN.ps
 # Make background transparent image
 
-#gmt grdimage tn_relief.nc -Cpauline.cpt -R7/12/30/37.5 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage tn_relief.nc -Cpauline.cpt -R7/12/30/37.5 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 gmt grdimage tn1_relief.nc -Cpauline.cpt -R7/12/30/37.5 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
@@ -54,11 +54,11 @@ gmt psclip -R7/12/30/37.5 -JM5.5i TN.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage tn1_relief.nc -Cpauline.cpt -R7/12/30/37.5 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage tn_relief.nc -Cpauline.cpt -R7/12/30/37.5 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour tn1_relief.nc -R -J -C200 -A400+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.2p -Df -O -K >> $ps
 gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
@@ -78,23 +78,36 @@ gmt psbasemap -R -J \
     --MAP_FRAME_AXES=WEsN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
     --MAP_TITLE_OFFSET=0.7c \
-    --FONT_ANNOT_PRIMARY=10p,0,black \
+    --FONT_ANNOT_PRIMARY=12p,0,black \
     --FONT_LABEL=12p,25,black \
-    --FONT_TITLE=15p,0,black \
-        -Bpxg4f1a1 -Bpyg4f1a1 -Bsxg1 -Bsyg1 \
+    --FONT_TITLE=15p,0,black -Bpxg4f1a1 -Bpyg4f1a1 -Bsxg1 -Bsyg1 \
     -B+t"Topographic map of Tunisia" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
-    --FONT_LABEL=11p,0,black \
-    --FONT_ANNOT_PRIMARY=11p,0,black \
+    --FONT_LABEL=12p,0,black \
+    --FONT_ANNOT_PRIMARY=12p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx12.5c/-2.6c+c10+w125k+l"Mercator projection. Scale (km)"+f \
-    -UBL/0p/-70p -O -K >> $ps
+    -Lx12.5c/-2.7c+c10+w125k+l"Mercator projection. Scale (km)"+f \
+    -UBL/0p/-75p -O -K >> $ps
 
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W4.0p,purple1 -O -K << EOF >> $ps
+10.32396 36.04314 -15 6.0 6.0
+EOF
+# Study area
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj1c -W4.0p,deeppink1 -O -K << EOF >> $ps
+9.91357 34.61092 -15 6.0 6.0
+EOF
 # Texts
 # countries -R7/12/30/37.5 -Gwhite@80
+gmt pstext -R -J -N -O -K \
+-F+jTL+f20p,19,darkseagreen1+jLB >> $ps << EOF
+8.3 33.52 T U N I S I A
+EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f16p,19,black+jLB >> $ps << EOF
 7.2 32.2 A L G E R I A
@@ -110,12 +123,12 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f19p,23,blue2+jLB+a0 >> $ps << EOF
-10.30 34.2 Gulf of
-10.30 34.0 Gabès
+10.20 34.1 Gulf of
+10.20 33.9 Gabès
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f19p,23,blue2+jLB+a0 >> $ps << EOF
-7.20 37.35 Mediterranean Sea
+-F+jTL+f19p,23,blue1+jLB+a0 -Gwhite@50 >> $ps << EOF
+7.20 37.30 Mediterranean Sea
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,23,darkred+jLB >> $ps << EOF
@@ -128,121 +141,126 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,23,darkred+jLB >> $ps << EOF
-9.30 32.1 Grand Erg
-9.30 31.9 Oriental
+11.10 36.90 Cape Bon
+11.10 36.70 Peninsula
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f20p,23,darkbrown+jLB -Gdarkkhaki@80 >> $ps << EOF
+9.30 32.05 Grand Erg
+9.30 31.85 Oriental
 EOF
 # Cities
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB >> $ps << EOF
+-F+f17p,0,black+jLB >> $ps << EOF
 10.20 36.90 TUNIS
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 10.18 36.80 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 10.45 34.84 Sfax
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.76 34.74 0.25c
+10.76 34.74 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 9.86 35.88 Sousse
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.63 35.83 0.25c
+10.63 35.83 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 10.00 35.50 Kairouan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.10 35.67 0.25c
+10.10 35.67 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 9.45 33.93 Gabès
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.12 33.88 0.25c
+10.12 33.88 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 9.90 37.35 Bizerte
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-9.86 37.27 0.25c
+9.86 37.27 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 9.76 33.40 Matmata
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-9.96 33.54 0.25c
+9.96 33.54 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 11.06 35.58 Mahdia
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-11.06 35.5 0.25c
+11.06 35.5 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 10.81 35.82 Monastir
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.81 35.77 0.25c
+10.81 35.77 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 10.45 32.98 Tataouine
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.45 32.93 0.25c
+10.45 32.93 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 10.38 32.35 Remada
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-10.38 32.30 0.25c
+10.38 32.30 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 8.82 33.30 Douz
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-9.02 33.45 0.25c
+9.02 33.45 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 9.12 36.52 Dougga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-9.22 36.42 0.25c
+9.22 36.42 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
-8.71 36.08 Le Kef
+-F+f17p,0,black+jLB -Gwhite@50 >> $ps << EOF
+8.60 36.08 Le Kef
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-8.71 36.00 0.25c
+8.71 36.00 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-F+f17p,0,black+jLB -Gwhite@70 >> $ps << EOF
 8.78 34.52 Gafsa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-8.78 34.42 0.25c
+8.78 34.42 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,0,white+jLB >> $ps << EOF
+-F+f17p,0,white+jLB >> $ps << EOF
 7.95 33.75 Tozeur
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-8.13 33.92 0.25c
+8.13 33.92 0.30c
 EOF
 
 # insert map
@@ -253,13 +271,12 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG10/35N/$w -Da -Glightgoldenr
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx7.0/-3.3+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx5.0/-3.3+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y19.1c -N -O \
     -F+f14p,0,black+jLB >> $ps << EOF
 0.0 10.5 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
-
 # Convert to image file using GhostScript
 gmt psconvert Topo_TN.ps -A0.7c -E720 -Tj -Z
