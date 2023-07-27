@@ -112,8 +112,80 @@ gmt pstext -R -J -N -O -K \
 -11.75 14.8 M A L I
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f19p,29,cornsilk+jLB >> $ps << EOF
+-F+jTL+f18p,29,cornsilk+jLB >> $ps << EOF
 -15.8 14.2 S   E   N   E   G   A   L
+EOF
+
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.85 14.78 Thiès
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.92 14.78 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,22,black+jLB -Gazure@50 >> $ps << EOF
+-17.54 14.45 Dakar
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+-17.44 14.70 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.89 14.32 Mbour
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.96 14.42 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.17 14.65 Diourbel
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.23 14.65 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.17 14.02 Kaolack
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.25 14.02 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.45 16.03 Saint-Louis
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.5 16.03 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-15.80 14.86 Touba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.88 14.86 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.36 12.66 Ziguinchor
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.26 12.55 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-13.60 13.77 Tambacounda
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-13.67 13.77 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lemonchiffon+jLB >> $ps << EOF
+-16.45 15.45 Louga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-16.22 15.62 0.20c
 EOF
 
 # insert map
