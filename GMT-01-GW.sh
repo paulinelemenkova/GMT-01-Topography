@@ -82,7 +82,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=12p,0,black \
-        -Bpxg2f1a1 -Bpyg1f2a1 -Bsxg2 -Bsyg1 \
+        -Bpxg1f0.5a1 -Bpyg1f0.5a1 -Bsxg2 -Bsyg1 \
     -B+t"Topographic map of Guinea-Bissau" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -103,57 +103,115 @@ gmt psbasemap -R -J \
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
--F+f11p,0,gray25+jLB >> $ps << EOF
+-F+f16p,29,gray25+jLB -Gwhite@60 >> $ps << EOF
 -14.5 11.2 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f18p,29,darkred+jLB >> $ps << EOF
--15.5 12.7 S   E   N   E   G   A   L
+-F+jTL+f16p,29,darkred+jLB -Gwhite@70 >> $ps << EOF
+-15.5 12.8 S   E   N   E   G   A   L
 EOF
 
 # cities
 gmt pstext -R -J -N -O -K \
--F+f11p,21,black+jLB >> $ps << EOF
--15.66 11.75 Bissau
+-F+f14p,1,white+jLB >> $ps << EOF
+-15.86 11.90 Bissau
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gyellow -O -K << EOF >> $ps
--15.56 11.85 0.35c
+-15.56 11.86 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
 -14.75 12.07 Bafatá
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -14.65 12.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
 -16.27 12.17 Cacheu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -16.17 12.27 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
 -14.18 12.22 Gabu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -14.22 12.28 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
 -14.93 11.55 Buba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -14.99 11.59 0.20c
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-15.78 11.32 Bubaque
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.83 11.28 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-15.20 11.23 Catió
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.25 11.28 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-15.25 12.05 Mansôa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.31 12.06 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-15.44 11.62 Bolama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.48 11.58 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-15.70 12.10 Bissorã
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.43 12.04 0.20c
+EOF
 #
 # Geography
 gmt pstext -R -J -N -O -K \
--F+f14p,23,ivory1+jLB >> $ps << EOF
--16.5 10.80 ATLANTIC
--16.5 10.70 OCEAN
+-F+f14p,23,navyblue+jLB >> $ps << EOF
+-16.6 10.80 A T L A N T I C
+-16.6 10.65 O C E A N
 EOF
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,azure+jLB+a-28 >> $ps << EOF
+-16.05 12.40 Rio Cacheu
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a49 -Gwhite@70 >> $ps << EOF
+-14.74 12.25 Rio Geba
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a0 -Gwhite@70 >> $ps << EOF
+-14.70 11.65 Rio Corubal
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a36 >> $ps << EOF
+-15.85 11.55 Canal do Geba
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@70 >> $ps << EOF
+-16.60 11.15 Bissagos
+-16.60 11.05 Islands
+EOF
+
 #
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
