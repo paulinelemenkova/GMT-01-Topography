@@ -14,7 +14,7 @@ gdalinfo -stats gw_relief.nc
 # Minimum=-216.000, Maximum=679.000, Mean=37.729, StdDev=73.103
 
 # Make color palette
- gmt makecpt -Cgeo -V -T-216/679 > pauline.cpt
+gmt makecpt -Cgeo -V -T-216/679 > pauline.cpt
 # gmt makecpt -Cturbo -V -T-3395/1434 > pauline.cpt
 # gmt makecpt -Cterra -V -T-3395/1434 > pauline.cpt
 # gmt makecpt -Cearth -V -T-3395/1434 > pauline.cpt
@@ -82,7 +82,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=12p,0,black \
-        -Bpxg4f1a2 -Bpyg4f1a1 -Bsxg2 -Bsyg1 \
+        -Bpxg2f1a1 -Bpyg1f2a1 -Bsxg2 -Bsyg1 \
     -B+t"Topographic map of Guinea-Bissau" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -96,186 +96,65 @@ gmt psbasemap -R -J \
 
 # Study area
 # Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
-gmt psxy -R -J -Sj1c -W1.7p,red3 -O -K << EOF >> $ps
--16.68 14.46 -13 4.0 4.0
-EOF
+#gmt psxy -R -J -Sj1c -W1.7p,red3 -O -K << EOF >> $ps
+#-16.68 14.46 -13 4.0 4.0
+#EOF
 
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
 -F+f11p,0,gray25+jLB >> $ps << EOF
--13.95 16.5 M A U R I T A N I A
-EOF
-gmt pstext -R -J -N -O -K \
--F+f10p,0,gray25+jLB -Glemonchiffon2@60 >> $ps << EOF
--15.95 13.42 GAMBIA
-EOF
-gmt pstext -R -J -N -O -K \
--F+f10p,0,gray25+jLB >> $ps << EOF
--15.95 12.1 G U I N E A - B I S S A U
-EOF
-gmt pstext -R -J -N -O -K \
--F+f10p,0,gray25+jLB >> $ps << EOF
--13.7 12.1 G U I N E A
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,0,gray25+jLB >> $ps << EOF
--11.75 14.8 M A L I
+-14.5 11.2 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f18p,29,darkred+jLB >> $ps << EOF
--15.8 14.05 S   E   N   E   G   A   L
+-15.5 12.7 S   E   N   E   G   A   L
 EOF
 
 # cities
 gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
--16.85 14.78 Thiès
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.92 14.78 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,azure2+jLB >> $ps << EOF
--17.50 14.50 Dakar
+-F+f11p,21,black+jLB >> $ps << EOF
+-15.66 11.75 Bissau
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gyellow -O -K << EOF >> $ps
--17.44 14.70 0.35c
+-15.56 11.85 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,darkred+jLB >> $ps << EOF
--16.89 14.32 Mbour
+-14.75 12.07 Bafatá
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.96 14.42 0.20c
+-14.65 12.17 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,darkred+jLB >> $ps << EOF
--16.45 14.48 Diourbel
+-16.27 12.17 Cacheu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.23 14.65 0.20c
+-16.17 12.27 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,darkred+jLB >> $ps << EOF
--16.45 13.85 Kaolack
+-14.18 12.22 Gabu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.25 14.02 0.20c
+-14.22 12.28 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,darkred+jLB >> $ps << EOF
--16.40 15.85 Saint-
--16.40 15.75 Louis
+-14.93 11.55 Buba
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.5 15.90 0.20c
+-14.99 11.59 0.20c
 EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
--16.20 14.86 Touba
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--15.88 14.86 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
--16.36 12.66 Ziguinchor
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.26 12.55 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
--13.60 13.60 Tambacounda
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--13.67 13.77 0.20c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,darkred+jLB >> $ps << EOF
--16.45 15.45 Louga
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--16.22 15.62 0.20c
-EOF
+#
 # Geography
 gmt pstext -R -J -N -O -K \
--F+f15p,20,khaki4+jLB >> $ps << EOF
--15.6 14.7 S       A       H          E         L
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,4,gray25+jLB >> $ps << EOF
--15.2 16.30 Ferlo
--15.2 16.15 Desert
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-10 -Glemonchiffon2@50 >> $ps << EOF
--13.1 12.85 Gambia
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-35 >> $ps << EOF
--14.45 16.35 Guinea-Bissau
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-55 >> $ps << EOF
--13.26 15.95 Guinea-Bissau
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-75 >> $ps << EOF
--12.45 14.45 Falémé
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB >> $ps << EOF
--15.75 16.30 Lac de
--15.75 16.15 Guiers
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-30 >> $ps << EOF
--15.85 15.95 Vallée du Ferlo
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-13 >> $ps << EOF
--14.60 15.8 Tiangol Louguéré
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a-33 >> $ps << EOF
--13.85 15.35 Vallée du Ferlo
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f9p,23,blue1+jLB+a-30 >> $ps << EOF
--14.64 15.07 Vallée de Mboun
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB >> $ps << EOF
--14.90 14.45 Vallée du Saloum
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a28 >> $ps << EOF
--14.35 13.65 Sandougou
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f9p,23,blue1+jLB+a-70 >> $ps << EOF
--13.60 13.22 Koulountou
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a34 >> $ps << EOF
--13.25 13.75 Nieri-Ko
-EOF
-gmt pstext -R -J -N -O -K \
--F+jTL+f10p,23,blue1+jLB+a28 >> $ps << EOF
--16.60 14.00 Saloum
-EOF
-gmt pstext -R -J -N -O -K \
--F+f11p,21,ivory1+jLB >> $ps << EOF
--17.95 14.95 Cape Verde
--17.95 14.80 Peninsula
-EOF
-gmt pstext -R -J -N -O -K \
 -F+f14p,23,ivory1+jLB >> $ps << EOF
--17.85 13.05 ATLANTIC
--17.85 12.80 OCEAN
+-16.5 10.80 ATLANTIC
+-16.5 10.70 OCEAN
 EOF
+#
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
@@ -289,7 +168,7 @@ gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y5.5c -N -O \
-    -F+f10p,0,black+jLB >> $ps << EOF
+    -F+f11p,0,black+jLB >> $ps << EOF
 2.5 11.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
