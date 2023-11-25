@@ -6,8 +6,8 @@
 exec bash
 
 # Extract a subset of ETOPO1m for the study area
-gmt grdcut ETOPO1_Ice_g_gmt4.grd -R10/25/-19/-5 -Gao1_relief.nc
-gmt grdcut GEBCO_2023.nc -R10/25/-19/-5 -Gao_relief.nc
+gmt grdcut ETOPO1_Ice_g_gmt4.grd -R10/25/-19/-4 -Gao1_relief.nc
+gmt grdcut GEBCO_2023.nc -R10/25/-19/-4 -Gao_relief.nc
 gdalinfo -stats ao_relief.nc
 # Minimum=-4430.000, Maximum=2533.000, Mean=458.513, StdDev=1364.345
 
@@ -26,12 +26,12 @@ gmt makecpt -Cearth -V -T-4430/2533 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R10/25/-19/-5 -JM6.5i -Dh -M -EAO > Angola.txt
+gmt pscoast -R10/25/-19/-4 -JM6.5i -Dh -M -EAO > Angola.txt
 #####################################################################
 
 ps=Topo_AO.ps
 # Make background transparent image
-gmt grdimage ao_relief.nc -Cpauline.cpt -R10/25/-19/-5 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ao_relief.nc -Cpauline.cpt -R10/25/-19/-4 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour ao1_relief.nc -R -J -C500 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -45,11 +45,11 @@ gmt pscoast -R -J \
 #------------------------->
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
-gmt psclip -R10/25/-19/-5 -JM6.5i Angola.txt -O -K >> $ps
+gmt psclip -R10/25/-19/-4 -JM6.5i Angola.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ao_relief.nc -Cpauline.cpt -R10/25/-19/-5 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ao_relief.nc -Cpauline.cpt -R10/25/-19/-4 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ao1_relief.nc -R -J -C500 -A1000+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -63,7 +63,7 @@ gmt psclip -C -O -K >> $ps
 #-------------------------<
     
 # Add color legend
-gmt psscale -Dg8/-19+w15.5c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg8/-19+w16.5c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=9p,0,black \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_TITLE=8p,0,black \
@@ -108,11 +108,11 @@ gmt pstext -R -J -N -O -K \
 22.5 -15.5 Z A M B I A
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,29,gray25+jLB -Gwhite@70 >> $ps << EOF
+-F+f13p,29,gray25+jLB >> $ps << EOF
 22.0 -18.6 BOTSWANA
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,29,gray25+jLB -Gwhite@70 >> $ps << EOF
+-F+f13p,29,gray25+jLB >> $ps << EOF
 15.6 -18.5 N A M I B I A
 EOF
 # rivers
@@ -121,7 +121,78 @@ gmt pstext -R -J -N -O -K \
 10.5 -11.5 A T L A N T I C
 10.5 -12.0 O C E A N
 EOF
-#
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f16p,0,black+jLB >> $ps << EOF
+13.38 -8.83 Luanda
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+13.23 -8.83 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+13.5 -14.82 Lubango
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+13.5 -14.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,ivory+jLB >> $ps << EOF
+15.73 -12.97 Huambo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.73 -12.77 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+13.41 -12.45 Benguela
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+13.41 -12.55 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+16.35 -9.43 Malanje
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.35 -9.53 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+20.4 -9.75 Saurimo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+20.4 -9.65 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,ivory+jLB -Gwhite@70 >> $ps << EOF
+16.93 -12.28 Cuíto
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.93 -12.38 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+15.05 -7.52 Uíge
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.05 -7.62 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,ivory+jLB >> $ps << EOF
+17.68 -14.55 Menongue
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+17.68 -14.65 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+20.00 -11.79 Luena
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+19.91 -11.79 0.20c
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
@@ -134,7 +205,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y9.2c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y9.7c -N -O \
     -F+f11p,0,black+jLB >> $ps << EOF
 2.5 11.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
