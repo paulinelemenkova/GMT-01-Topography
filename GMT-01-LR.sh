@@ -64,7 +64,7 @@ gmt psclip -C -O -K >> $ps
 #-------------------------<
     
 # Add color legend
-gmt psscale -Dg-12.8/4+w14.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-12.8/4+w13.8c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=9p,0,black \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_TITLE=8p,0,black \
@@ -91,7 +91,7 @@ gmt psbasemap -R -J \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
     -Lx14.0c/-1.3c+c10+w200k+l"Mercator projection. Scale (km)"+f \
-    -UBL/0p/-40p -O -K >> $ps
+    -UBL/0p/-30p -O -K >> $ps
 
 # Study area
 # Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
@@ -100,10 +100,54 @@ gmt psbasemap -R -J \
 #EOF
 
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,29,black+jLB >> $ps << EOF
+-7.2 5.8 C Ô T E
+-7.2 5.5 D\' I V O I R E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB -Gwhite@70 >> $ps << EOF
+-11.8 7.8 SIERRA
+-11.8 7.5 LEONE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB -Gwhite@70 >> $ps << EOF
+-9.3 8.7 G U I N E A
+EOF
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a22 >> $ps << EOF
+-10.50 6.90 St. Paul
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a22 >> $ps << EOF
+-9.60 6.50 St. John
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a35 >> $ps << EOF
+-9.50 5.55 Cestos
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a0 >> $ps << EOF
+-7.85 5.70 Dube
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a24 >> $ps << EOF
+-10.80 7.20 Loffa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a44 -Gwhite@60 >> $ps << EOF
+-10.45 7.65 Gbeya
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+-11.7 4.7 A T L A N T I C
+-11.7 4.4 O C E A N
+EOF
 #
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
-gmt psbasemap -R -J -O -K -DjBL+w3.2c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thinnest,lightgray --MAP_FRAME_PEN=thick,white -Rg -JG-1.0/8.0N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -ELR+gred -Sroyalblue1 -O -K -X$x0 -Y$y0 >> $ps
 #gmt pscoast -Rg -JG12/5N/$w -Da -Gbrown -A5000 -Bg -Wfaint -ECM+gbisque -O -K -X$x0 -Y$y0 >> $ps
@@ -113,7 +157,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.4c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.3c -N -O \
     -F+f11p,0,black+jLB >> $ps << EOF
 2.5 11.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
