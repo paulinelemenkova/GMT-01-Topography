@@ -93,10 +93,15 @@ gmt psbasemap -R -J \
     -UBL/0p/-30p -O -K >> $ps
 
 # Study area
-# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
-#gmt psxy -R -J -Sj1c -W1.7p,red3 -O -K << EOF >> $ps
-#-16.68 14.46 -13 4.0 4.0
-#EOF
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/1.5/1.5 -W1.7p,yellow -O -K << EOF >> $ps
+19.00 -12.90
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,yellow1+jLB >> $ps << EOF
+18.6 -12.80 Study
+18.6 -13.20 Area
+EOF
 
 # Texts
 gmt pstext -R -J -N -O -K \
@@ -113,13 +118,13 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,29,gray25+jLB >> $ps << EOF
-15.6 -18.5 N A M I B I A
+16.5 -18.5 N A M I B I A
 EOF
 # rivers
 gmt pstext -R -J -N -O -K \
 -F+f14p,23,white+jLB >> $ps << EOF
-10.5 -11.5 A T L A N T I C
-10.5 -12.0 O C E A N
+10.3 -11.8 A T L A N T I C
+10.3 -12.3 O C E A N
 EOF
 # cities
 gmt pstext -R -J -N -O -K \
@@ -192,7 +197,31 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 19.91 -11.79 0.20c
 EOF
-
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a-56 >> $ps << EOF
+18.05 -16.70 Okavango
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a-40 >> $ps << EOF
+19.80 -17.30 Cuito
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a38 >> $ps << EOF
+22.70 -11.80 Zambezi
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a-59 >> $ps << EOF
+17.85 -8.35 Cuango
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB >> $ps << EOF
+15.00 -9.70 Cuanza
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a44 >> $ps << EOF
+14.40 -17.10 Cunene
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
