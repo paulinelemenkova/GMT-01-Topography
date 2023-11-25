@@ -130,15 +130,15 @@ gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 13.23 -8.83 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
-13.5 -14.82 Lubango
+-F+f11p,0,lightgoldenrodyellow+jLB >> $ps << EOF
+13.7 -14.88 Lubango
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 13.5 -14.92 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,ivory+jLB >> $ps << EOF
-15.73 -12.97 Huambo
+-F+f11p,0,lightgoldenrodyellow+jLB >> $ps << EOF
+15.73 -13.17 Huambo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.73 -12.77 0.20c
@@ -159,13 +159,13 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,0,black+jLB >> $ps << EOF
-20.4 -9.75 Saurimo
+20.50 -9.75 Saurimo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-20.4 -9.65 0.20c
+20.40 -9.65 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,ivory+jLB -Gwhite@70 >> $ps << EOF
+-F+f11p,0,lightgoldenrodyellow+jLB >> $ps << EOF
 16.93 -12.28 Cuíto
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -179,7 +179,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 15.05 -7.62 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,ivory+jLB >> $ps << EOF
+-F+f11p,0,lightgoldenrodyellow+jLB >> $ps << EOF
 17.68 -14.55 Menongue
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -205,7 +205,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y9.7c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y10.2c -N -O \
     -F+f11p,0,black+jLB >> $ps << EOF
 2.5 11.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
