@@ -63,7 +63,7 @@ gmt psclip -C -O -K >> $ps
 #-------------------------<
     
 # Add color legend
-gmt psscale -Dg12.5/-37+w16.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg12.5/-37+w15.5c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=9p,0,black \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_TITLE=8p,0,black \
@@ -96,6 +96,150 @@ gmt psbasemap -R -J \
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
 
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+16.7 -24.8 N A M I B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+21.0 -23.9 B O T S W A N A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB+a90 >> $ps << EOF
+32.5 -26.2 MOZAMBIQUE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,29,gray25+jLB -Gwhite@50 >> $ps << EOF
+27.4 -29.8 LESOTHO
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,29,gray25+jLB -Gwhite@40 >> $ps << EOF
+31.0 -26.8 ESWATINI
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+15.4 -35.5 A T L A N T I C
+15.4 -36.0 O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+25.8 -35.5 I N D I A N
+25.8 -36.0 O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,blue+jLB >> $ps << EOF
+16.5 -32.0 Saint
+16.5 -32.4 Helena
+16.7 -32.8 Bay
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,blue+jLB >> $ps << EOF
+22.3 -34.5 Mossel
+22.3 -34.9 Bay
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,blue+jLB+a-45 >> $ps << EOF
+18.7 -34.6 False Bay
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a40 >> $ps << EOF
+22.80 -29.40 Orange
+EOF
+#
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+25.10 -26.30 Johannesburg
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.04 -26.20 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@50 >> $ps << EOF
+18.52 -33.93 Cape Town
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+18.42 -33.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@50 >> $ps << EOF
+31.15 -29.78 Durban
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+31.05 -29.88 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@50 >> $ps << EOF
+28.30 -25.80 Pretoria
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+28.18 -25.75 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+25.6 -34.25 Gqeberha
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.6 -33.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@70 >> $ps << EOF
+28.03 -26.87 Vereeniging
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.93 -26.67 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+25.64 -25.76 Mafikeng
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+25.64 -25.86 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+27.20 -25.32 Soshanguve
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+28.10 -25.52 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,white+jLB >> $ps << EOF
+28.20 -33.22 East London
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+27.90 -33.02 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,white+jLB >> $ps << EOF
+29.83 -31.83 Port St.Johns
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+29.53 -31.63 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,white+jLB >> $ps << EOF
+30.65 -30.80 Port
+30.65 -31.10 Shepstone
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+30.45 -30.75 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+24.22 -29.41 Bloemfontein
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+26.22 -29.11 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+24.76 -28.60 Kimberly
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+24.76 -28.74 0.20c
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
