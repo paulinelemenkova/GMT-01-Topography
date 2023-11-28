@@ -128,9 +128,9 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,26,blue+jLB >> $ps << EOF
-16.5 -32.0 Saint
-16.5 -32.4 Helena
-16.7 -32.8 Bay
+16.7 -31.9 Saint
+16.7 -32.3 Helena
+16.9 -32.7 Bay
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,26,blue+jLB >> $ps << EOF
@@ -156,9 +156,9 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,0,black+jLB -Gwhite@50 >> $ps << EOF
-18.52 -33.93 Cape Town
+18.52 -33.83 Cape Town
 EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 18.42 -33.93 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
@@ -238,6 +238,57 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 24.76 -28.74 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+16.07 -29.65 Port
+15.67 -29.95 Nolloth
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.87 -29.25 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB >> $ps << EOF
+15.08 -28.98 Alesander
+15.48 -29.30 Bay
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.48 -28.58 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+18.04 -32.99 Saldanha
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+17.94 -32.99 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+18.36 -31.04 Bitterfontein
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+18.26 -31.04 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+22.45 -33.76 George
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+22.45 -33.96 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+18.96 -34.24 Stellenbosch
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+18.86 -33.94 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+20.22 -31.43 Williston
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+20.92 -31.53 0.20c
 EOF
 
 # insert map
