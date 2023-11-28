@@ -26,12 +26,12 @@ gmt makecpt -Cearth -V -T-4282/3439 > pauline.cpt
 
 #####################################################################
 # create mask of vector layer from the DCW of country's polygon
-gmt pscoast -R15/33/-37/-22 -JM6.5i -Dh -M -EAO > SouthAfrica.txt
+gmt pscoast -R15/33/-37/-22 -JM6.5i -Dh -M -EZA > SouthAfrica.txt
 #####################################################################
 
 ps=Topo_ZA.ps
 # Make background transparent image
-gmt grdimage za1_relief.nc -Cpauline.cpt -R15/33/-37/-22 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage za_relief.nc -Cpauline.cpt -R15/33/-37/-22 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour za1_relief.nc -R -J -C500 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -49,7 +49,7 @@ gmt psclip -R15/33/-37/-22 -JM6.5i SouthAfrica.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage za1_relief.nc -Cpauline.cpt -R15/33/-37/-22 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage za_relief.nc -Cpauline.cpt -R15/33/-37/-22 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour za1_relief.nc -R -J -C500 -A1000+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -97,6 +97,10 @@ gmt psbasemap -R -J \
 
 # Texts
 gmt pstext -R -J -N -O -K \
+-F+f15p,29,honeydew+jLB >> $ps << EOF
+19.0 -30.4 S  O  U  T  H    A  F  R  I  C  A
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f13p,29,gray25+jLB >> $ps << EOF
 16.7 -24.8 N A M I B I A
 EOF
@@ -109,7 +113,7 @@ gmt pstext -R -J -N -O -K \
 32.5 -26.2 MOZAMBIQUE
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,29,gray25+jLB -Gwhite@50 >> $ps << EOF
+-F+f10p,29,white+jLB >> $ps << EOF
 27.4 -29.8 LESOTHO
 EOF
 gmt pstext -R -J -N -O -K \
@@ -144,6 +148,10 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,23,blue+jLB+a40 >> $ps << EOF
 22.80 -29.40 Orange
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,blue+jLB+a40 >> $ps << EOF
+27.30 -23.40 Limpopo
 EOF
 #
 # cities
@@ -290,6 +298,50 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 20.92 -31.53 0.20c
 EOF
+#
+# geography
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a10 -Gwhite@70 >> $ps << EOF
+21.00 -32.30 G r e a t
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB -Gwhite@70 >> $ps << EOF
+23.40 -32.00 K a r o o
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f17p,20,salmon4+jLB >> $ps << EOF
+20.4 -26.2 K A L A H A R I
+20.4 -26.9 D E S E R T
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a50 >> $ps << EOF
+28.00 -29.10 DRAKENSBERG
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB+a30 -Gwhite@70 >> $ps << EOF
+27.30 -24.80 Witwatersrand Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,darkred+jLB>> $ps << EOF
+23.60 -27.80 KAAP
+23.00 -28.30 PLATEAU
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,azure1+jLB >> $ps << EOF
+16.40 -33.80 Cape of
+16.20 -34.30 Good Hope
+EOF
+#
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/2.3/2.3 -W1.7p,red -O -K << EOF >> $ps
+19.00 -33.00
+EOF
+#gmt pstext -R -J -N -O -K \
+#-F+f11p,0,red+jLB >> $ps << EOF
+#19.6 -32.80 Study
+#19.6 -33.20 Area
+#EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
