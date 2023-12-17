@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Mali)
+# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Mozambique)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 # http://soliton.vm.bytemark.co.uk/pub/cpt-city/esri/hillshade/tn/illumination.png.index.html
 
@@ -98,10 +98,32 @@ gmt psbasemap -R -J \
 
 # Texts
 #
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+36.0 -10.8 T A N Z A N I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+31.0 -13.5 Z A M B I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+29.7 -18.8 Z I M B A B W E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+29.7 -24.5 SOUTH
+29.7 -25.1 AFRICA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,29,gray25+jLB >> $ps << EOF
+33.2 -13.8 MALAWI
+EOF
+
 # Study area
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-gmt psxy -R -J -Sj-13/2.3/2.3 -W1.7p,red -O -K << EOF >> $ps
-19.00 -33.00
+gmt psxy -R -J -Sj-13/2.7/2.7 -W2.0p,cyan1 -O -K << EOF >> $ps
+34.50 -20.00
 EOF
 #gmt pstext -R -J -N -O -K \
 #-F+f11p,0,red+jLB >> $ps << EOF
