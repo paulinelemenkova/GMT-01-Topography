@@ -119,6 +119,85 @@ gmt pstext -R -J -N -O -K \
 -F+f13p,29,gray25+jLB >> $ps << EOF
 33.2 -13.8 MALAWI
 EOF
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+33.65 -24.95 Xai-Xai
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+33.65 -25.05 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+32.46 -25.86 Matola
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+32.46 -25.96 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+39.26 -15.05 Nampula
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.26 -15.11 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,white+jLB >> $ps << EOF
+34.25 -19.73 Beira
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+34.85 -19.83 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+33.55 -19.22 Chimoio
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+33.45 -19.12 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+33.60 -16.06 Tete
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+33.60 -16.16 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+36.89 -17.77 Quelimane
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.89 -17.87 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+35.23 -13.22 Lichinga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+35.23 -13.32 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+36.98 -16.75 Mocuba
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+36.98 -16.85 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+39.60 -14.35 Nacala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+40.66 -14.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+32.58 -26.06 Maputo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+32.58 -25.96 0.20c
+EOF
+
 
 # Study area
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
@@ -144,7 +223,7 @@ gmt logo -Dx7.0/-1.8+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y16.5c -N -O \
-    -F+f11p,0,black+jLB >> $ps << EOF
+    -F+f12p,0,black+jLB >> $ps << EOF
 2.5 11.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
