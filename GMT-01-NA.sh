@@ -63,7 +63,7 @@ gmt psclip -C -O -K >> $ps
 #-------------------------<
     
 # Add color legend
-gmt psscale -Dg7.8/-30+w15.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg7.8/-30+w15.3c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=9p,0,black \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_TITLE=8p,0,black \
@@ -119,6 +119,70 @@ gmt pstext -R -J -N -O -K \
 EOF
 # rivers
 # cities
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+19.86 -18.32 Rundu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+19.76 -17.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+17.02 -21.68 Okahandja
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.92 -21.98 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+16.05 -18.22 Ondangwa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.95 -17.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+16.75 -20.75 Otjiwarongo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+16.65 -20.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+17.18 -23.72 Rehoboth
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+17.08 -23.32 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+15.78 -17.68 Oshakati
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+15.68 -17.78 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+14.63 -22.38 Swakopmund
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+14.53 -22.68 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+14.6 -22.95 Walvis Bay
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+14.5 -22.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,1,mintcream+jLB >> $ps << EOF
+17.23 -22.66 Windhoek
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+17.08 -22.56 0.45c
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjBL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
