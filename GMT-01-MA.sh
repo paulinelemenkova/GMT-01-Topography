@@ -38,7 +38,7 @@ gmt pscoast -R-15/0/27/37 -JM6.5i -Dh -M -EMA > MA.txt
 ps=Topo_MA.ps
 # Make background transparent image
 
-gmt grdimage ma1_relief.nc -Cpauline.cpt -R-15/0/27/37 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ma_relief.nc -Cpauline.cpt -R-15/0/27/37 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour ma1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -69,7 +69,7 @@ gmt psscale -Dg-15/26+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg500f50a500+l"Colormap: 'geo' [R=-4373/3703, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-4373/3703, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -175,12 +175,12 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 # geography
 gmt pstext -R -J -N -O -K \
--F+f12p,2,lemonchiffon+jLB+a10 >> $ps << EOF
-16.60 -19.70 Rif Mts.
+-F+f12p,2,lemonchiffon+jLB+a-40 >> $ps << EOF
+-5.50 35.30 Rif Mts.
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,2,lemonchiffon+jLB+a32 >> $ps << EOF
--6.70 31.60 A   T   L   A   S
+-6.50 31.40 A   T   L   A   S
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,2,lemonchiffon+jLB+a35 >> $ps << EOF
@@ -193,8 +193,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,23,white+jLB >> $ps << EOF
--11.8 34.6 O C É A N
--13.0 34.2 A T L A N T I Q U E
+-11.80 34.6 O C É A N
+-12.30 34.1 A T L A N T I Q U E
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,23,white+jLB >> $ps << EOF
@@ -203,11 +203,11 @@ EOF
 
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f12p,0,ivory+jLB >> $ps << EOF
--13.0 27.55 SAHARA OCCIDENTAL
+-F+jTL+f12p,0,navajowhite4+jLB >> $ps << EOF
+-13.0 27.15 SAHARA OCCIDENTAL
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f14p,0,tan+jLB >> $ps << EOF
+-F+jTL+f14p,0,navajowhite4+jLB >> $ps << EOF
 -5.0 28.35 A  L  G  É  R  I  E
 EOF
 gmt pstext -R -J -N -O -K \
@@ -216,7 +216,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,2,lemonchiffon+jLB+a45 >> $ps << EOF
--14.60 28.90 Les îles Canaries
+-14.60 29.10 Les îles Canaries
 -14.50 28.70 (Espagne)
 EOF
 gmt pstext -R -J -N -O -K \
@@ -228,7 +228,7 @@ EOF
 # insert map
 gmt psbasemap -R -J -O -K -DjTL+w3.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-7/31N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EMA+gred -Sroyalblue2 -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey --MAP_FRAME_PEN=thin,azure -Rg -JG-7/31N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EMA+gred -Sroyalblue3 -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
