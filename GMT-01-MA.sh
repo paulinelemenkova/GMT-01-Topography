@@ -44,7 +44,7 @@ gmt grdimage ma1_relief.nc -Cpauline.cpt -R-15/0/27/37 -JM6.5i -I+a15+ne0.75 -t4
 gmt grdcontour ma1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers, lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thickest,tomato -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -58,7 +58,7 @@ gmt grdimage ma_relief.nc -Cpauline.cpt -R-15/0/27/37 -JM6.5i -I+a15+ne0.75 -Xc 
 # Add isolines
 gmt grdcontour ma1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thickest,tomato -W0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -69,7 +69,7 @@ gmt psscale -Dg-15/26+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg500f50a500+l"Colormap: 'turbo' Google's Improved Rainbow Colormap for Visualization [R=-4373/3703, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'geo' [R=-4373/3703, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -97,21 +97,21 @@ gmt psbasemap -R -J \
 # Texts
 # Cities -R-15/0/27/37
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
--7.58 33.63 Casablanca
+-F+f11p,0,ivory+jLB >> $ps << EOF
+-7.48 33.50 Casablanca
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -7.58 33.53 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
--5.10 34.14 Fez
+-F+f11p,0,ivory+jLB >> $ps << EOF
+-5.20 33.75 Fez
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.00 34.04 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f11p,0,ivory+jLB >> $ps << EOF
 -9.70 30.53 Agadir
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -125,14 +125,14 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -6.92 30.92 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f11p,0,ivory+jLB >> $ps << EOF
 -10.16 29.08 Guelmim
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -10.06 28.98 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f11p,0,ivory+jLB >> $ps << EOF
 -8.11 31.76 Marrakesh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -146,14 +146,14 @@ gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 -6.84 34.02 0.35c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
--6.46 32.43 Beni Mellal
+-F+f11p,0,ivory+jLB >> $ps << EOF
+-6.26 32.43 Beni Mellal
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -6.36 32.33 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f11p,0,ivory+jLB >> $ps << EOF
 -4.52 32.03 Errachidia
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -161,14 +161,14 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
--5.60 35.77 Tangier
+-5.85 35.45 Tangier
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -5.80 35.77 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,0,black+jLB -Gwhite@60 >> $ps << EOF
--3.0 34.48 Oujda
+-F+f11p,0,ivory+jLB >> $ps << EOF
+-2.8 34.40 Oujda
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -1.91 34.68 0.20c
