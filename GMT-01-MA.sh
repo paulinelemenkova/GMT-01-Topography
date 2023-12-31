@@ -94,6 +94,18 @@ gmt psbasemap -R -J \
     -Lx14.5c/-2.5c+c10+w500k+l"Projection de Mercator. échelle (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+# LAT: 34°36'38.05"N LON: 5°32'33.07"W
+gmt psxy -R -J -Sj-13/2.0/2.0 -W2.0p,deeppink -O -K << EOF >> $ps
+-5.54 34.75
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,21,gold+jLB >> $ps << EOF
+-6.10 34.70 Zone
+-6.20 34.40 d'étude
+EOF
+
 # Texts
 # Cities -R-15/0/27/37
 gmt pstext -R -J -N -O -K \
