@@ -147,7 +147,7 @@ gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,0,ivory+jLB >> $ps << EOF
--6.26 32.43 Beni Mellal
+-7.00 32.43 Beni Mellal
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -6.36 32.33 0.20c
@@ -173,9 +173,60 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -1.91 34.68 0.20c
 EOF
+# geography
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,lemonchiffon+jLB+a10 >> $ps << EOF
+16.60 -19.70 Rif Mts.
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,lemonchiffon+jLB+a32 >> $ps << EOF
+-6.70 31.60 A   T   L   A   S
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,lemonchiffon+jLB+a35 >> $ps << EOF
+-9.00 29.40 Anti Atlas
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,23,blue+jLB >> $ps << EOF
+-7.40 36.1 Détroit de
+-7.40 35.8 Gibraltar
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+-11.8 34.6 O C É A N
+-13.0 34.2 A T L A N T I Q U E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+-3.3 36.3 Mer Méditerranée
+EOF
+
+# countries
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,ivory+jLB >> $ps << EOF
+-13.0 27.55 SAHARA OCCIDENTAL
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,0,tan+jLB >> $ps << EOF
+-5.0 28.35 A  L  G  É  R  I  E
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,0,ivory+jLB >> $ps << EOF
+-5.8 36.7 ESPAGNE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,lemonchiffon+jLB+a45 >> $ps << EOF
+-14.60 28.90 Les îles Canaries
+-14.50 28.70 (Espagne)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,2,lemonchiffon+jLB >> $ps << EOF
+-14.80 33.40 Îles de Madère
+-14.80 33.10 (Portugal)
+EOF
 
 # insert map
-gmt psbasemap -R -J -O -K -DjBR+w3.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjTL+w3.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-7/31N/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EMA+gred -Sroyalblue2 -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
