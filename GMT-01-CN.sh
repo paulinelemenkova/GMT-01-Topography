@@ -38,13 +38,13 @@ gmt pscoast -R70/137/15/55 -JM6.5i -Dh -M -ECN > CN.txt
 ps=Topo_CN.ps
 # Make background transparent image
 
-gmt grdimage cn1_relief.nc -Cpauline.cpt -R70/137/15/55 -JM6.5i -I+a15+ne0.75 -t80 -Xc -P -K > $ps
+gmt grdimage cn1_relief.nc -Cpauline.cpt -R70/137/15/55 -JM6.5i -I+a15+ne0.75 -t70 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour cn1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour cn1_relief.nc -R -J -C2000 -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers, lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinnest,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -56,9 +56,9 @@ gmt psclip -R70/137/15/55 -JM6.5i CN.txt -O -K >> $ps
 # Add raster image
 gmt grdimage cn1_relief.nc -Cpauline.cpt -R70/137/15/55 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour cn1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour cn1_relief.nc -R -J -C2000 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -N1/thickest,tomato -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinnest,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -106,7 +106,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.0c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.3c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 0.5 10.4 Données numériques d'élévation : SRTM/GEBCO, grille de résolution de 15 secondes d'arc
 EOF
