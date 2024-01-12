@@ -38,7 +38,7 @@ gmt pscoast -R70/137/15/55 -JM6.5i -Dh -M -ECN > CN.txt
 ps=Topo_CN.ps
 # Make background transparent image
 
-gmt grdimage cn1_relief.nc -Cpauline.cpt -R70/137/15/55 -JM6.5i -I+a15+ne0.75 -t20 -Xc -P -K > $ps
+gmt grdimage cn1_relief.nc -Cpauline.cpt -R70/137/15/55 -JM6.5i -I+a15+ne0.75 -t80 -Xc -P -K > $ps
 
 # Add isolines
 gmt grdcontour cn1_relief.nc -R -J -C500 -A500+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -69,7 +69,7 @@ gmt psscale -Dg70/10+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg2000f500a2000+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-4373/3703, H, C=RGB]" \
+    -Bg2000f100a2000+l"Colormap: 'geo' Colors for global bathymetry/topography relief [R=-4373/3703, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -82,7 +82,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=13p,0,black \
-    -Bpxf5a10g4 -Bpyg4f5a10 -Bsxg2 -Bsyg2 \
+    -Bpxf5a10g5 -Bpyg5f5a10 -Bsxg5 -Bsyg5 \
     -B+t"Carte topographique du Chine" -O -K >> $ps
     
 # Add scalebar, directional rose
@@ -93,18 +93,6 @@ gmt psbasemap -R -J \
     --MAP_ANNOT_OFFSET=0.1c \
     -Lx14.5c/-2.5c+c10+w2000k+l"Projection de Mercator. échelle (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
-
-# Study area
-# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# LAT: 34°36'38.05"N LON: 5°32'33.07"W
-gmt psxy -R -J -Sj-13/2.0/2.0 -W2.0p,deeppink -O -K << EOF >> $ps
--5.54 34.75
-EOF
-gmt pstext -R -J -N -O -K \
--F+f12p,21,gold+jLB >> $ps << EOF
--6.10 34.70 Zone
-#-6.20 34.40 d'étude
-EOF
 
 # Texts
 
@@ -118,7 +106,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.8c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.0c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 0.5 10.4 Données numériques d'élévation : SRTM/GEBCO, grille de résolution de 15 secondes d'arc
 EOF
