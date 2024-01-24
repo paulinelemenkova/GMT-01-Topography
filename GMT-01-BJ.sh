@@ -45,6 +45,8 @@ gmt grdcontour bj_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkb
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thick,dimgray -W0.1p -Df -O -K >> $ps
+gmt pscoast -R -J \
+    -Ia/thinner,blue -Na -N1/thickest,tomato -W0.1p -Df -O -K >> $ps
     
 #####################################################################
 # CLIPPING
@@ -59,7 +61,7 @@ gmt grdimage bj1_relief.nc -Cpauline.cpt -R0/5/5.5/12.5 -JM5.5i -I+a15+ne0.75 -X
 gmt grdcontour bj1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
-    -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+    -Ia/thinner,blue -Na -N1/thickest,tomato -W0.1p -Df -O -K >> $ps
 #gmt pscoast -R -J \
     -Ia/thinner,blue -Na -W0.1p -Df -O -K >> $ps
 
@@ -134,7 +136,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f15p,0,black+jLB >> $ps << EOF
-1.87 7.30 Bohicon
+1.67 7.30 Bohicon
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 2.06 7.2 0.25c
@@ -146,7 +148,35 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 3.21 9.93 0.25c
 EOF
-
+gmt pstext -R -J -N -O -K \
+-F+f14p,32,white+jLB >> $ps << EOF
+1.7 5.6 Atlantic Ocean
+EOF
+# countries
+gmt pstext -R -J -N -O -K \
+-F+f15p,1,gray25+jLB >> $ps << EOF
+0.8 8.5 T O G O
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,1,gray25+jLB >> $ps << EOF
+0.5 11.8 BURKINA FASO
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,1,gray25+jLB >> $ps << EOF
+3.0 12.3 NIGER
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,1,gray25+jLB >> $ps << EOF
+3.2 8.5 N I G E R I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f18p,1,white+jLB >> $ps << EOF
+1.9 10.2 B  E  N  I  N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,1,gray25+jLB+a90 >> $ps << EOF
+0.3 7.4 G H A N A
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
