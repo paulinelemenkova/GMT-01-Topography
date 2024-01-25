@@ -37,7 +37,7 @@ gmt pscoast -R0/5/5.5/12.5 -JM5.5i -Dh -M -EBJ > Benin.txt
 
 ps=Topo_BJ.ps
 # Make background transparent image
-gmt grdimage bj1_relief.nc -Cpauline.cpt -R0/5/5.5/12.5 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage bj_relief.nc -Cpauline.cpt -R0/5/5.5/12.5 -JM5.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
     
 # Add isolines
 gmt grdcontour bj_relief.nc -R -J -C1000 -A1000+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -56,7 +56,7 @@ gmt psclip -R0/5/5.5/12.5 -JM5.5i Benin.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage bj1_relief.nc -Cpauline.cpt -R0/5/5.5/12.5 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage bj_relief.nc -Cpauline.cpt -R0/5/5.5/12.5 -JM5.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour bj1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -70,7 +70,7 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend
-gmt psscale -Dg-0.8/5.5+w19.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg-0.9/5.5+w19.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=10p,0,black \
     --FONT_ANNOT_PRIMARY=10p,0,black \
     --FONT_TITLE=10p,0,black \
@@ -90,12 +90,12 @@ gmt psbasemap -R -J \
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
-    --FONT_LABEL=8p,0,black \
-    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_LABEL=12p,0,black \
+    --FONT_ANNOT_PRIMARY=12p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx11.7c/-2.0c+c10+w200k+l"Mercator projection. Scale (km)"+f \
-    -UBL/0p/-60p -O -K >> $ps
+    -Lx11.7c/-1.7c+c10+w200k+l"Projection de Mercator. Échelle (km)"+f \
+    -UBL/0p/-40p -O -K >> $ps
 
 # Texts
 # Cities -R0/5/5.5/12.5
@@ -150,7 +150,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,32,white+jLB >> $ps << EOF
-1.7 5.6 Atlantic Ocean
+1.9 5.7 Océan Atlantique
 EOF
 # countries
 gmt pstext -R -J -N -O -K \
@@ -171,11 +171,22 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,1,white+jLB >> $ps << EOF
-1.9 10.2 B  E  N  I  N
+1.9 10.2 B  É  N  I  N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,1,gray25+jLB+a90 >> $ps << EOF
 0.3 7.4 G H A N A
+EOF
+
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/3.7/3.7 -W2.5p,yellow -O -K << EOF >> $ps
+2.80 11.60
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,0,white+jLB >> $ps << EOF
+2.60 11.70 Zone
+2.50 11.50 d'étude
 EOF
 
 # insert map
@@ -187,12 +198,12 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG-1.0/8.0N/$w -Da -Glightgold
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx6.0/-2.5+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx5.5/-2.0+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y14.0c -N -O \
     -F+f12p,0,black+jLB >> $ps << EOF
-0.5 10.0 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
+0.0 10.0 Données numériques d'élévation : GEBCO, résolution: 15 sec d'arc
 EOF
 
 # Convert to image file using GhostScript
