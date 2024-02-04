@@ -8,7 +8,6 @@ exec bash
 # Extract a subset of ETOPO1m for the study area
 gmt grdcut ETOPO1_Ice_g_gmt4.grd -R-12/-6/4/9 -Glr1_relief.nc
 gmt grdcut GEBCO_2023.nc -R-12/-6/4/9 -Glr_relief.nc
-gmt grdcut GEBCO_2019.nc -R-12/-6/4/9 -Glr_relief.nc
 gdalinfo -stats lr_relief.nc
 # Topography: Minimum=-4304.000, Maximum=1637.000, Mean=-360.606, StdDev=1311.081
 
@@ -59,7 +58,7 @@ gmt psscale -Dg-12.8/4+w13.8c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=9p,0,black \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg1000f100a1000+l"Colormap: 'geo', C=RGB" \
+    -Bg1000f100a1000+l"Colormap: 'geo', colors for global bathymetry/topography relief [R=-4304/16370, H, C=RGB]" \
     -I0.2 -By+l"m" -O -K >> $ps
     
 # Add grid
@@ -91,8 +90,8 @@ gmt psxy -R -J -Sj-13/3.7/3.7 -W2.0p,red -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,red+jLB >> $ps << EOF
--9.20 5.45 Study
--9.20 5.25 area
+-9.33 5.45 Study
+-9.28 5.25 area
 EOF
 
 # Texts
@@ -143,91 +142,77 @@ EOF
 #
 # Cities -R-12/-6/4/9
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--10.75 6.31 Monrovia
+-F+f14p,0,black+jLB >> $ps << EOF
+-10.75 6.40 Monrovia
 EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
--10.75 6.31 0.35c
+-10.75 6.31 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB >> $ps << EOF
--9.40 6.94 Gbarnga
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-9.47 6.84 Gbarnga
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -9.47 6.99 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--8.90 7.23 Ganta
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-8.96 7.03 Ganta
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.98 7.18 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--10.14 5.83 Buchanan
+-10.40 5.73 Buchanan
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -10.04 5.88 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--10.40 6.58 Kakata
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--10.35 6.53 0.25c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--8.23 6.06 Zwedru
+-F+f12p,0,black+jLB >> $ps << EOF
+-8.35 6.08 Zwedru
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.13 6.00 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--10.45 6.10 Harbel
+-F+f12p,0,black+jLB >> $ps << EOF
+-10.30 6.10 Harbel
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -10.35 6.28 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--7.82 4.30 Harper
+-7.64 4.22 Harper
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -7.72 4.36 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--8.81 7.26 Sanniquellie
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-8.81 7.18 Sanniquellie
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.71 7.36 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,white+jLB -Gwhite@60 >> $ps << EOF
--10.23 8.15 Foya
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-10.33 8.10 Foya
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -10.23 8.27 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB >> $ps << EOF
--9.83 7.65 Zorzor
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-9.83 7.62 Zorzor
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -9.43 7.78 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--10.56 6.45 Careysburg
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--10.55 6.40 0.25c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f12p,0,black+jLB >> $ps << EOF
 -11.42 6.95 Tubmanburg
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -241,15 +226,15 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -9.03 5.02 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
--8.08 4.44 Grand Cess
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-8.40 4.65 Grand Cess
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -8.08 4.54 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,whie+jLB >> $ps << EOF
--9.99 8.22 Voinjama
+-F+f12p,0,ivory+jLB >> $ps << EOF
+-10.10 8.22 Voinjama
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -9.75 8.42 0.25c
