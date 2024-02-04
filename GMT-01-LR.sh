@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Mali)
+# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Liberia)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 # http://soliton.vm.bytemark.co.uk/pub/cpt-city/esri/hillshade/tn/illumination.png.index.html
 
@@ -14,15 +14,6 @@ gdalinfo -stats lr_relief.nc
 
 # Make color palette
 gmt makecpt -Cgeo -V -T-4304/1637 > pauline.cpt
-#gmt makecpt -Cturbo -V -T-4973/1834 > pauline.cpt
-# gmt makecpt -Cterra -V -T-3395/1434 > pauline.cpt
-# gmt makecpt -Cearth -V -T-3395/1434 > pauline.cpt
-# gmt makecpt -Cdem1 -V -T-3395/1434 > pauline.cpt
-# gmt makecpt -Cgeo -V -T-3395/1434 > pauline.cpt
-# gmt makecpt -Cafrikakarte -V -T-5000/500 > pauline.cpt
-# gmt makecpt -Cafrikakarte -V -T-3395/1000 > pauline.cpt
-# gmt makecpt -Cillumination -V -T-5000/500 -Ic > pauline.cpt
-# gmt makecpt -Cwiki-1.02.cpt -V -T-3000/500 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
 #####################################################################
@@ -57,7 +48,7 @@ gmt grdcontour lr1_relief.nc -R -J -C250 -A500+f7p,26,darkbrown -Wthinnest,darkb
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 # add lakes
-#gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -94,10 +85,15 @@ gmt psbasemap -R -J \
     -UBL/0p/-30p -O -K >> $ps
 
 # Study area
-# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
-#gmt psxy -R -J -Sj1c -W1.7p,red3 -O -K << EOF >> $ps
-#-16.68 14.46 -13 4.0 4.0
-#EOF
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/3.7/3.7 -W2.0p,red -O -K << EOF >> $ps
+-9.16 5.47
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,red+jLB >> $ps << EOF
+-9.20 5.45 Study
+-9.20 5.25 area
+EOF
 
 # Texts
 gmt pstext -R -J -N -O -K \
@@ -145,6 +141,120 @@ gmt pstext -R -J -N -O -K \
 -11.7 4.4 O C E A N
 EOF
 #
+# Cities -R-12/-6/4/9
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-10.75 6.31 Monrovia
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+-10.75 6.31 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+-9.40 6.94 Gbarnga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.47 6.99 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-8.90 7.23 Ganta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.98 7.18 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-10.14 5.83 Buchanan
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.04 5.88 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-10.40 6.58 Kakata
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.35 6.53 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-8.23 6.06 Zwedru
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.13 6.00 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-10.45 6.10 Harbel
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.35 6.28 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-7.82 4.30 Harper
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-7.72 4.36 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-8.81 7.26 Sanniquellie
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.71 7.36 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,white+jLB -Gwhite@60 >> $ps << EOF
+-10.23 8.15 Foya
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.23 8.27 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+-9.83 7.65 Zorzor
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.43 7.78 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-10.56 6.45 Careysburg
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.55 6.40 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-11.42 6.95 Tubmanburg
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.82 6.86 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-9.00 5.07 Greenville
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.03 5.02 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-8.08 4.44 Grand Cess
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-8.08 4.54 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,whie+jLB >> $ps << EOF
+-9.99 8.22 Voinjama
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.75 8.42 0.25c
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.2c+o-0.2c/-0.2c+stmp >> $ps
