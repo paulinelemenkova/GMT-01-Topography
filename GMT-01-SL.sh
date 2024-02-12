@@ -207,11 +207,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 # countries
 gmt pstext -R -J -N -O -K \
--F+f15p,0,gray25+jLB -Gwhite@70 >> $ps << EOF
+-F+f15p,0,gray25+jLB >> $ps << EOF
 -13.4 9.4 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
--F+f15p,0,gray25+jLB -Gwhite@70 >> $ps << EOF
+-F+f15p,0,gray25+jLB >> $ps << EOF
 -10.6 9.3 G U I N E A
 EOF
 gmt pstext -R -J -N -O -K \
