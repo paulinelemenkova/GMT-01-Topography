@@ -73,7 +73,7 @@ gmt psbasemap -R -J \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=12p,0,black \
         -Bpxg1f0.5a1 -Bpyg1f0.5a1 -Bsxg2 -Bsyg1 \
-    -B+t"Topographic map of Liberia" -O -K >> $ps
+    -B+t"Topographic map of Sierra Leone" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
@@ -83,6 +83,80 @@ gmt psbasemap -R -J \
     --MAP_ANNOT_OFFSET=0.1c \
     -Lx14.0c/-1.3c+c10+w100k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-30p -O -K >> $ps
+
+#Texts
+# cities -R-13.5/-10/6.8/10.2
+gmt pstext -R -J -N -O -K \
+-F+f16p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-13.13 8.44 Freetown
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+-13.23 8.48 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-11.76 7.92 Bo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.80 7.90 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-11.15 7.82 Kenema
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.19 7.87 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-11.84 8.93 Makeni
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-12.04 8.88 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-10.93 8.54 Koidu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.97 8.64 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-12.55 8.58 Lunsar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-12.53 8.68 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-12.79 8.80 Port Loko
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-12.79 8.76 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-11.20 7.71 Pandebu-
+-11.20 7.61 Tokpombu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-10.82 7.58 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,ivory+jLB >> $ps << EOF
+-11.55 9.63 Kabala
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.55 9.58 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-11.94 8.63 Magburaka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.94 8.72 0.20c
+EOF
 
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
