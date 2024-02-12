@@ -87,11 +87,11 @@ gmt psbasemap -R -J \
 #Texts
 # cities -R-13.5/-10/6.8/10.2
 gmt pstext -R -J -N -O -K \
--F+f16p,0,black+jLB -Gwhite@60 >> $ps << EOF
--13.13 8.44 Freetown
+-F+f16p,0,ivory+jLB >> $ps << EOF
+-13.13 8.40 Freetown
 EOF
-gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
--13.23 8.48 0.35c
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+-13.23 8.48 0.65c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
@@ -102,7 +102,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
--11.15 7.82 Kenema
+-11.15 7.95 Kenema
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -11.19 7.87 0.20c
@@ -151,13 +151,18 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -11.55 9.58 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
+-F+f14p,0,ivory+jLB >> $ps << EOF
 -11.94 8.63 Magburaka
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -11.94 8.72 0.20c
 EOF
-
+# geography
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,white+jLB >> $ps << EOF
+-13.3 7.1 A T L A N T I C
+-13.3 6.9 O C E A N
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
