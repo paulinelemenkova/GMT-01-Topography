@@ -84,6 +84,12 @@ gmt psbasemap -R -J \
     -Lx14.0c/-1.3c+c10+w100k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-30p -O -K >> $ps
 
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/8.3/8.3 -W2.0p,yellow -O -K << EOF >> $ps
+-11.76 8.67
+EOF
+
 #Texts
 # cities -R-13.5/-10/6.8/10.2
 gmt pstext -R -J -N -O -K \
@@ -98,69 +104,69 @@ gmt pstext -R -J -N -O -K \
 -11.76 7.92 Bo
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--11.80 7.90 0.20c
+-11.80 7.90 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
 -11.15 7.95 Kenema
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--11.19 7.87 0.20c
+-11.19 7.87 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--11.96 8.93 Makeni
+-11.99 8.93 Makeni
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--12.04 8.88 0.20c
+-12.04 8.88 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--10.93 8.54 Koidu
+-11.13 8.74 Koidu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--10.97 8.64 0.20c
+-10.97 8.64 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--12.57 8.58 Lunsar
+-12.57 8.54 Lunsar
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--12.53 8.68 0.20c
+-12.53 8.68 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
 -12.79 8.80 Port Loko
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--12.79 8.76 0.20c
+-12.79 8.76 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
--11.20 7.71 Pandebu-
--11.20 7.61 Tokpombu
+-10.99 7.73 Pandebu-
+-10.99 7.63 Tokpombu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--10.82 7.58 0.20c
+-10.82 7.58 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
 -11.55 9.63 Kabala
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--11.55 9.58 0.20c
+-11.55 9.58 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--11.94 8.63 Magburaka
+-11.94 8.61 Magburaka
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--11.94 8.72 0.20c
+-11.94 8.72 0.30c
 EOF
 # geography
 gmt pstext -R -J -N -O -K \
 -F+f14p,23,white+jLB >> $ps << EOF
--13.3 7.1 A T L A N T I C
+-13.3 7.05 A T L A N T I C
 -13.3 6.9 O C E A N
 EOF
 gmt pstext -R -J -N -O -K \
@@ -199,6 +205,20 @@ gmt pstext -R -J -N -O -K \
 -13.30 8.00 Banana
 -13.30 7.90 Islands
 EOF
+# countries
+gmt pstext -R -J -N -O -K \
+-F+f15p,0,gray25+jLB -Gwhite@70 >> $ps << EOF
+-13.4 9.4 G U I N E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,0,gray25+jLB -Gwhite@70 >> $ps << EOF
+-10.6 9.3 G U I N E A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,0,gray25+jLB -Gwhite@70 >> $ps << EOF
+-11.1 7.1 L I B E R I A
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
