@@ -109,7 +109,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--11.84 8.93 Makeni
+-11.96 8.93 Makeni
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -12.04 8.88 0.20c
@@ -123,7 +123,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,ivory+jLB >> $ps << EOF
--12.55 8.58 Lunsar
+-12.57 8.58 Lunsar
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -12.53 8.68 0.20c
@@ -162,6 +162,26 @@ gmt pstext -R -J -N -O -K \
 -F+f14p,23,white+jLB >> $ps << EOF
 -13.3 7.1 A T L A N T I C
 -13.3 6.9 O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,paleturquoise+jLB+a44 >> $ps << EOF
+-11.50 7.30 Moa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,paleturquoise+jLB+a32 >> $ps << EOF
+-11.98 7.75 Sewa
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,paleturquoise+jLB+a72 >> $ps << EOF
+-12.15 7.95 Taia
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,paleturquoise+jLB+a15 >> $ps << EOF
+-12.20 8.67 Rokel
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,paleturquoise+jLB+a14 >> $ps << EOF
+-12.60 9.26 Kaba
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
