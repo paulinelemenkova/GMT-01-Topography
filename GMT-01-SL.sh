@@ -183,6 +183,22 @@ gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,23,paleturquoise+jLB+a14 >> $ps << EOF
 -12.60 9.26 Kaba
 EOF
+# islands
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,antiquewhite4+jLB+a0 >> $ps << EOF
+-12.90 7.40 Sherbo
+-12.90 7.30 Island
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,antiquewhite4+jLB+a0 >> $ps << EOF
+-13.30 7.60 Turtle
+-13.30 7.50 Islands
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f13p,23,antiquewhite4+jLB+a0 >> $ps << EOF
+-13.30 8.00 Banana
+-13.30 7.90 Islands
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
