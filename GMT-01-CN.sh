@@ -26,7 +26,7 @@ gmt grdinfo -M cn1_relief.nc
 # Minimum=-7795.000, Maximum=8271.000, Mean=332.901, StdDev=802.901
 
 # Make color palette
-gmt makecpt -Cgeo -V -T-7795/8271 > pauline.cpt
+gmt makecpt -Cterra -V -T-7795/8271 > pauline.cpt
 #gmt makecpt -Cturbo -V -T-5141/4038 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
 
@@ -83,7 +83,7 @@ gmt psbasemap -R -J \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=13p,0,black \
     -Bpxf5a10g5 -Bpyg5f5a10 -Bsxg5 -Bsyg5 \
-    -B+t"Carte topographique du Chine" -O -K >> $ps
+    -B+t"Topographic map of China" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
@@ -91,7 +91,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.5c/-2.5c+c10+w2000k+l"Projection de Mercator. échelle (km)"+f \
+    -Lx14.5c/-2.5c+c10+w2000k+l"Mercator Projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -108,7 +108,7 @@ gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y6.3c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
-0.5 10.4 Données numériques d'élévation : SRTM/GEBCO, grille de résolution de 15 secondes d'arc
+0.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
