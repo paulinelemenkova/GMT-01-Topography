@@ -26,7 +26,8 @@ gmt grdinfo -M bd1_relief.nc
 # Minimum=-1485.000, Maximum=3592.000
 
 # Make color palette
-gmt makecpt -Cterra -V -T-1000/1500 > pauline.cpt
+#gmt makecpt -Cterra -V -T-1000/1500 > pauline.cpt
+gmt makecpt -Cetopo1 -V -T-1000/1500 > pauline.cpt
 #gmt makecpt -Cgeo -V -T-1485/3592 > pauline.cpt
 #gmt makecpt -Cturbo -V -T-1485/3592 > pauline.cpt
 # elevation etopo1 world elevation dem1 dem2 dem3 globe geo srtm turbo terra earth
@@ -42,7 +43,7 @@ ps=Topo_BD.ps
 gmt grdimage bd_relief.nc -Cpauline.cpt -R87/93/20/27 -JM6.5i -I+a15+ne0.75 -t50 -Xc -P -K > $ps
 
 # Add isolines
-gmt grdcontour bd1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour bd1_relief.nc -R -J -C200 -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers, lakes
 gmt pscoast -R -J -Ia/thinnest,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
@@ -57,7 +58,7 @@ gmt psclip -R87/93/20/27 -JM6.5i BD.txt -O -K >> $ps
 # Add raster image
 gmt grdimage bd_relief.nc -Cpauline.cpt -R87/93/20/27 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
-gmt grdcontour bd1_relief.nc -R -J -C500 -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour bd1_relief.nc -R -J -C200 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers, lakes
 gmt pscoast -R -J -Ia/thinnest,blue -Na -N1/thick,tomato -W0.1p -Df -O -K >> $ps
 # Add lakes
@@ -72,7 +73,7 @@ gmt psscale -Dg87/19.5+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg2000f100a2000+l"Colormap: 'geo' colormap for topography [R=-5398/8271, H, C=RGB]" \
+    -Bg2000f100a2000+l"Colormap: 'etopo1' colormap for topography [R=-1000/1500, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -113,11 +114,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f16p,0,ivory+jLB >> $ps << EOF
-89.1 23.5 B A N G L A D E S H
+89.1 24.3 B A N G L A D E S H
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
-89.6 26.8 B H U T A N
+89.6 26.85 B H U T A N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,0,black+jLB -Gwhite@60 >> $ps << EOF
@@ -126,18 +127,34 @@ EOF
 # water
 gmt pstext -R -J -N -O -K \
 -F+jTL+f18p,23,royalblue1+jLB >> $ps << EOF
-87.5 20.4 I   N   D   I   A   N          O   C   E   A   N
+87.3 20.4 I   N   D   I   A   N               O   C   E   A   N
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f18p,26,blue+jLB >> $ps << EOF
+-F+jTL+f18p,2,royalblue1+jLB >> $ps << EOF
 90.3 21.1 Bay of Bengal
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+90.47 23.73 Dhaka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+90.39 23.76 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,white+jLB+a-30 >> $ps << EOF
+89.90 23.5 Ganges
+EOF
+
 # Study area
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# LAT: 20°13'46.99"N LON: 85°02'54.24"E
-#gmt psxy -R -J -Sj-13/1.0/1.0 -W1.0p,yellow -O -K << EOF >> $ps
-#85.05 20.23
-#EOF
+# LAT: 23°06'46.30"N LON: 90°23'11.90"E
+gmt psxy -R -J -Sj-13/5.0/5.0 -W2.0p,yellow -O -K << EOF >> $ps
+90.39 23.11
+EOF
+gmt pstext -R -J -N -O -K \
+    -F+f13p,2,yellow+jLB >> $ps << EOF
+89.8 23.10 S t u d y     A r e a
+EOF
 
 # Texts
 # insert map
@@ -152,7 +169,7 @@ gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y14.8c -N -O \
     -F+f12p,0,black+jLB >> $ps << EOF
-3.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
+1.0 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
 
 # Convert to image file using GhostScript
