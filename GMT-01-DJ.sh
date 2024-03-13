@@ -72,7 +72,7 @@ gmt psscale -Dg41.2/10.5+w16.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg500f50a500+l"Colormap: 'etopo1' colormap for topography [R=-1000/1500, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'geo' colormap for topography [R=-1664/1906, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -139,6 +139,77 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB >> $ps << EOF
 43.10 10.8 S O M A L I A
+EOF
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f14p,0,mintcream+jLB >> $ps << EOF
+42.94 11.50 Djibouti
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+43.14 11.58 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.40 11.18 Ali Sabieh
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.72 11.15 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.73 11.15 Dikhil
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.73 11.12 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.78 11.81 Tadjoura
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.88 11.78 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.80 11.45 Arta
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.84 11.52 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+43.18 12.00 Obock
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+43.28 11.96 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.75 11.05 Ali Adde
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.89 11.13 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.85 11.34 Holhol
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.93 11.31 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.50 11.70 Airolaf
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.65 11.76 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+42.56 11.88 Randa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.66 11.85 0.25c
 EOF
 
 # Study area
