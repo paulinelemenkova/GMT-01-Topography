@@ -125,20 +125,91 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,19,darkslategray+jLB -Gwhite@70 >> $ps << EOF
-42.40 17.7 SAUDI ARABIA
+42.55 17.7 SAUDI ARABIA
 EOF
-# cities
-
+#
+# cities -R35.5/44.5/12/18
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+37.72 15.83 Keren
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+38.45 15.77 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+39.13 15.10 Dekemhare
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.03 15.06 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+38.40 15.51 Massawa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.45 15.61 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+37.60 14.89 Mendefera
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+38.81 14.89 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+42.00 12.95 Assab
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+42.74 13.01 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+36.9 15.22 Barentu
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.6 15.12 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+39.47 14.63 Adi Keyh
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+39.37 14.83 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+41.50 13.55 Edd
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+41.70 13.83 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+36.95 15.55 Agordat
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+37.88 15.55 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB -Gwhite@60 >> $ps << EOF
+39.0 15.30 Asmara
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+38.92 15.32 0.30c
+EOF
 # Study area
+#Scene Center Lat DMS     15°54'04.03"N
+#Scene Center Long DMS     39°17'37.82"E
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# LAT: 11°34'03.76"N LON: 42°57'36.36"E
-#gmt psxy -R -J -Sj-13/11.0/11.0 -W2.0p,yellow -O -K << EOF >> $ps
-#42.96 11.57
-#EOF
-#gmt pstext -R -J -N -O -K \
- #   -F+f14p,2,yellow+jLB >> $ps << EOF
-#89.8 23.05 S t u d y     A r e a
-#EOF
+gmt psxy -R -J -Sj-13/3.2/3.2 -W2.0p,blue1 -O -K << EOF >> $ps
+39.29 15.90
+EOF
+#
+gmt pstext -R -J -N -O -K -F+f12p,2,navy+jLB -Gwhite@80>> $ps << EOF
+38.8 15.80 Study Area
+EOF
 
 # Texts
 # insert map -R35.5/44.5/12/18
