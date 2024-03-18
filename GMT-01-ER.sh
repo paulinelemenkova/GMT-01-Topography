@@ -100,7 +100,7 @@ gmt psbasemap -R -J \
 # Texts
 gmt pstext -R -J -N -O -K \
 -F+jTL+f15p,2,blue+jLB >> $ps << EOF
-41.0 15.5 R E D  S E A
+40.3 17.10 R E D  S E A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,26,blue+jLB+a-54 -GLIGHTSKYBLUE1@60 >> $ps << EOF
@@ -130,64 +130,64 @@ EOF
 #
 # cities -R35.5/44.5/12/18
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
-37.72 15.83 Keren
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+37.75 15.83 Keren
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 38.45 15.77 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
 39.13 15.10 Dekemhare
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 39.03 15.06 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
 38.40 15.51 Massawa
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 39.45 15.61 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
 37.60 14.89 Mendefera
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 38.81 14.89 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB >> $ps << EOF
-42.00 12.95 Assab
+-F+f11p,0,mintcream+jLB >> $ps << EOF
+42.55 12.90 Assab
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 42.74 13.01 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB >> $ps << EOF
+-F+f11p,0,mintcream+jLB >> $ps << EOF
 36.9 15.22 Barentu
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 37.6 15.12 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
 39.47 14.63 Adi Keyh
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 39.37 14.83 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB >> $ps << EOF
-41.50 13.55 Edd
+-F+f11p,0,mintcream+jLB >> $ps << EOF
+41.70 13.55 Edd
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 41.70 13.83 0.25c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB >> $ps << EOF
-36.95 15.55 Agordat
+-F+f11p,0,mintcream+jLB >> $ps << EOF
+37.00 15.55 Agordat
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 37.88 15.55 0.25c
@@ -199,11 +199,37 @@ EOF
 gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
 38.92 15.32 0.30c
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,0,mintcream+jLB -Gsaddlebrown@70 >> $ps << EOF
+37.80 16.60 Nakfa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+38.47 16.66 0.25c
+EOF
+# geography
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,darkgreen+jLB >> $ps << EOF
+40.40 15.80 Dahlak
+40.42 15.60 Archipelago
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,cornsilk+jLB+a-45 >> $ps << EOF
+40.85 14.20 D a n a k i l      A l p s
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,navy+jLB+a-45 >> $ps << EOF
+40.20 14.10 Danakil Depresion
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,2,cornsilk+jLB >> $ps << EOF
+40.80 12.40 Afar
+40.40 12.10 Depresion
+EOF
 # Study area
 #Scene Center Lat DMS     15°54'04.03"N
 #Scene Center Long DMS     39°17'37.82"E
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-gmt psxy -R -J -Sj-13/3.2/3.2 -W2.0p,blue1 -O -K << EOF >> $ps
+gmt psxy -R -J -Sj-13/3.2/3.2 -W1.5p,blue1 -O -K << EOF >> $ps
 39.29 15.90
 EOF
 #
