@@ -91,7 +91,7 @@ EOF
 # countries
 gmt pstext -R -J -N -O -K \
 -F+f18p,19,white+jLB >> $ps << EOF
--14.0 20.1 M  A  U  R  I  T  A  N  I  A
+-14.0 19.8 M  A  U  R  I  T  A  N  I  A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB+a60 >> $ps << EOF
@@ -115,11 +115,82 @@ gmt pstext -R -J -N -O -K \
 EOF
 #
 gmt pstext -R -J -N -O -K \
--F+f10p,20,salmon4+jLB >> $ps << EOF
+-F+f12p,20,salmon4+jLB >> $ps << EOF
 -9.8 17.3 Aoukar
 -9.8 16.8 Depression
 EOF
-
+#
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-12.46 22.33 Zouérat
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-12.46 22.73 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-11.40 16.63 Kiffa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.40 16.53 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-16.83 20.93 Nouadhibou
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-17.03 20.93 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-15.81 16.65 Rosso
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-15.81 16.52 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-11.18 15.65 El Aioun
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.18 15.55 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+-15.83 18.09 Nouakchott
+EOF
+gmt psxy -R -J -Ss -W0.5p -Gred -O -K << EOF >> $ps
+-15.97 18.09 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-13.05 20.22 Atar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-13.05 20.52 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+-13.51 16.25 Kaédi
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-13.51 16.15 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gpalegreen3@80 >> $ps << EOF
+-12.68 15.26 Sélibaby
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-12.18 15.16 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-7.25 16.72 Néma
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-7.25 16.62 0.25c
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
