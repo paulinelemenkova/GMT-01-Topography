@@ -21,7 +21,7 @@ gmt pscoast -R-18/-4/14/28 -JM6.5i -Dh -M -EMR > Mauritania.txt
 
 ps=Topo_MR.ps
 # Make background transparent image
-gmt grdimage mr_relief.nc -Cpauline.cpt -R-18/-4/14/28 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage mr1_relief.nc -Cpauline.cpt -R-18/-4/14/28 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 .5i
 # Add isolines
 gmt grdcontour mr1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -37,7 +37,7 @@ gmt psclip -R-18/-4/14/28 -JM6.5i Mauritania.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage mr_relief.nc -Cpauline.cpt -R-18/-4/14/28 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage mr1_relief.nc -Cpauline.cpt -R-18/-4/14/28 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour mr1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -48,12 +48,12 @@ gmt pscoast -R -J \
 gmt psclip -C -O -K >> $ps
 #-------------------------<
     
-# Add color legend
-gmt psscale -Dg-13.3/8.1+w16.5c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+# Add color legend -R-18/-4/14/28
+gmt psscale -Dg-18/13+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
-    --FONT_ANNOT_PRIMARY=7p,0,black \
-    --FONT_TITLE=6p,0,black \
-    -Bg50f10a100+l"Colormap: 'geo' Colors for global topography relief [R=-T29/896, H, C=RGB]" \
+    --FONT_ANNOT_PRIMARY=8p,0,black \
+    --FONT_TITLE=7p,0,black \
+    -Bg500f100a500+l"Colormap: 'geo' Colors for global topography relief [R=-3797/1816, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -79,17 +79,39 @@ gmt psbasemap -R -J \
     -UBL/0p/-70p -O -K >> $ps
 
 # Study area
+# Scene Center Lat DMS     18°47'15.29"N
+# Scene Center Long DMS     15°42'03.89"W
 # Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
-#gmt psxy -R -J -Sj1c -W1.7p,chartreuse -O -K << EOF >> $ps
-#-4.5 14.5 -13 1.5 1.5
-#EOF
+gmt psxy -R -J -Sj-13/2.2/2.2 -W1.5p,yellow1 -O -K << EOF >> $ps
+-15.70 18.78
+EOF
 
 # Texts
 #
 # countries
 gmt pstext -R -J -N -O -K \
--F+f12p,19,gray25+jLB >> $ps << EOF
--11.0 19.1 M A U R I T A N I A
+-F+f18p,19,white+jLB >> $ps << EOF
+-14.0 20.1 M  A  U  R  I  T  A  N  I  A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,darkslategray+jLB+a60 >> $ps << EOF
+-15.0 22.40 W E S T E R N   S A H A R A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,darkslategray+jLB+a90 >> $ps << EOF
+-5.0 19.05 M  A  L  I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,darkslategray+jLB >> $ps << EOF
+-9.0 14.55 M  A  L  I
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,darkslategray+jLB >> $ps << EOF
+-7.00 27.05 A L G E R I A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f14p,19,darkslategray+jLB >> $ps << EOF
+-15.90 14.80 S E N E G A L
 EOF
 #
 gmt pstext -R -J -N -O -K \
@@ -110,7 +132,7 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
-gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y8.7c -N -O \
+gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y11.4c -N -O \
     -F+f10p,0,black+jLB >> $ps << EOF
 2.5 10.4 Digital elevation data: SRTM/GEBCO, 15 arc sec resolution grid
 EOF
