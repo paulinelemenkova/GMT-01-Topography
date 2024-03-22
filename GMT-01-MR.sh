@@ -43,7 +43,8 @@ gmt grdcontour mr1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinnest,darkb
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-
+# Add lakes
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
 #-------------------------<
@@ -99,7 +100,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB+a90 >> $ps << EOF
--5.0 19.05 M  A  L  I
+-5.0 17.85 M  A  L  I
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB >> $ps << EOF
@@ -123,7 +124,7 @@ EOF
 # cities
 gmt pstext -R -J -N -O -K \
 -F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
--12.46 22.33 Zouérat
+-12.46 23.03 Zouérat
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -12.46 22.73 0.25c
@@ -144,7 +145,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
--15.81 16.65 Rosso
+-16.21 16.65 Rosso
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -15.81 16.52 0.25c
@@ -190,6 +191,78 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -7.25 16.62 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-11.52 25.12 Bir Moghrein
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-11.62 25.22 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-9.55 25.70 Ain Ben Tili
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-9.55 25.99 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+-7.28 25.37 Chegga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+-5.78 25.37 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,mediumblue+jLB >> $ps << EOF
+-15.81 16.25 Senegal
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,2,mediumblue+jLB >> $ps << EOF
+-17.5 20.4 Bay of
+-17.5 20.1 Arguin
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+f14p,20,white+jLB >> $ps << EOF
+-11.95 24.2 S      A      H      A      R      A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,20,white+jLB >> $ps << EOF
+-14.4 17.7 S       A       H       E       L
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,19,linen+jLB >> $ps << EOF
+-13.1 21.10 Adrar
+-13.1 20.70 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,darkred+jLB+a40 >> $ps << EOF
+-14.6 19.9 Akchar Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,2,floralwhite+jLB >> $ps << EOF
+-11.25 21.11 Richat Structure
+-11.25 20.86 (Eye of the Sahara)
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,2,floralwhite+jLB >> $ps << EOF
+-12.45 22.30 Mt. Kediet
+-12.45 22.10 ej Jill
+EOF
+gmt psxy -R -J -St -W0.5p -Gred -O -K << EOF >> $ps
+-12.57 22.50 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,19,floralwhite+jLB >> $ps << EOF
+-6.4 20.4 El Djouf
+-6.4 20.2 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,floralwhite+jLB >> $ps << EOF
+-16.3 20.6 Banc d'Arguin
+-16.2 20.3 National
+-16.2 20.0 Park
 EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
