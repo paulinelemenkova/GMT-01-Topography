@@ -29,7 +29,8 @@ gmt grdcontour ne1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinner,darkbr
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
-    
+# Add lakes
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 #------------------------->
 # CLIPPING
 # 1. Start: clip the map by mask to only include country
@@ -79,19 +80,33 @@ gmt psbasemap -R -J \
     -Lx14.0c/-2.4c+c10+w500k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
-# Study area
-# Scene Center Lat DMS     18°47'15.29"N
-# Scene Center Long DMS     15°42'03.89"W
+# Study area -1
+# Scene Center Lat DMS     14°27'24.95"N
+# Scene Center Long DMS     1°53'20.22"E
 # Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
-#gmt psxy -R -J -Sj-13/2.2/2.2 -W1.5p,yellow1 -O -K << EOF >> $ps
-#-15.70 18.78
-#EOF
+gmt psxy -R -J -Sj-13/1.8/1.8 -W1.5p,yellow1 -O -K << EOF >> $ps
+1.88 14.45
+EOF
+# Study area -2
+# Scene Center Lat DMS    18°47'14.42"N
+# Scene Center Long DMS     9°02'00.38"E
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj-13/1.8/1.8 -W1.5p,yellow1 -O -K << EOF >> $ps
+9.03 18.78
+EOF
+# Study area -3
+# Scene Center Lat DMS    21°40'17.80"N
+# Scene Center Long DMS     12°47'19.32"E
+# Rotated rectangle. kwargs: coords, direction degrees, x and y-dimension
+gmt psxy -R -J -Sj-13/1.8/1.8 -W1.5p,yellow1 -O -K << EOF >> $ps
+12.79 21.67
+EOF
 
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f20p,19,lightsteelblue4+jLB >> $ps << EOF
-5.2 16.2 N       I       G       E       R
+-F+jTL+f20p,19,azure4+jLB >> $ps << EOF
+5.2 16.2 N       I        G       E       R
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB -Glemonchiffon2@50 >> $ps << EOF
@@ -133,24 +148,67 @@ EOF
 # geography
 gmt pstext -R -J -N -O -K \
 -F+f13p,22,white+jLB -Ggoldenrod@75 >> $ps << EOF
-8.5 19.0 Aïr
-8.1 18.5 Mountains
+8.6 19.0 Aïr
+8.3 18.5 Massif
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,22,white+jLB -Ggoldenrod@75 >> $ps << EOF
+12.35 21.70 Djado
+12.25 21.30 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,white+jLB+a30 -Ggoldenrod@75 >> $ps << EOF
+8.1 14.20 Damergou
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,22,white+jLB+a40 -Ggoldenrod@80 >> $ps << EOF
+10.1 16.6 Ténéré Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,21,white+jLB+a30 -Ggoldenrod@80 >> $ps << EOF
+7.85 16.25 Tiguidit
+7.85 15.85 Escarpment
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,oldlace+jLB -Ggoldenrod@80 >> $ps << EOF
+13.8 19.8 Erg of
+13.8 19.4 Bilma
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,2,oldlace+jLB -Ggoldenrod@80 >> $ps << EOF
+10.08 14.46 Koutous
+10.08 14.06 Hill
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,2,oldlace+jLB -Ggoldenrod@80 >> $ps << EOF
+14.0 21.5 Tchigaï
+14.0 21.1 Plateau
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,20,floralwhite+jLB >> $ps << EOF
-7.8 20.1 S     A     H     A     R     A
+7.8 20.2 S     A     H     A     R     A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,20,floralwhite+jLB >> $ps << EOF
-7.0 14.2 S     A     H     E     L
+6.7 13.6 S     A     H     E     L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,cornsilk1+jLB >> $ps << EOF
-8.82 18.10 Idoukal-n-
-8.82 17.70 Taghès Mt.
+8.05 17.50 Idoukal-n-
+8.05 17.10 Taghès Mt.
 EOF
-gmt psxy -R -J -St -W0.5p -Ggold -O -K << EOF >> $ps
+gmt psxy -R -J -St -W0.5p -Gred -O -K << EOF >> $ps
 8.72 17.84 0.30c
+EOF
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,azure+jLB+a-45 -Gpalegreen3@60 >> $ps << EOF
+1.55 14.4 Niger
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,azure+jLB >> $ps << EOF
+12.5 14.5 Chad
+12.5 14.1 Lake
 EOF
 
 # insert map
