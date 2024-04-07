@@ -130,6 +130,29 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 -12.46 22.73 0.25c
 EOF
+# geography
+gmt pstext -R -J -N -O -K \
+-F+f13p,22,white+jLB -Ggoldenrod@75 >> $ps << EOF
+8.5 19.0 Aïr
+8.1 18.5 Mountains
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f18p,20,floralwhite+jLB >> $ps << EOF
+6.1 20.1 S     A     H     A     R     A
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f18p,20,darkred+jLB >> $ps << EOF
+5.5 14.5 S     A     H     E     L
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,23,cornsilk1+jLB >> $ps << EOF
+8.82 18.10 Idoukal-n-
+8.82 17.70 Taghès Mt.
+EOF
+gmt psxy -R -J -St -W0.5p -Ggold -O -K << EOF >> $ps
+8.72 17.84 0.30c
+EOF
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey -R0/17/11/24
 gmt psbasemap -R -J -O -K -DjTL+w3.5c+o-0.2c/-0.2c+stmp >> $ps
