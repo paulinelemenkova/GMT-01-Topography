@@ -68,7 +68,7 @@ gmt psbasemap -R -J \
     --FONT_LABEL=8p,25,black \
     --FONT_TITLE=13p,0,black \
         -Bpxg4f1a2 -Bpyg4f2a2 -Bsxg2 -Bsyg2 \
-    -B+t"Topographic map of Mauritania" -O -K >> $ps
+    -B+t"Topographic map of Niger" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
@@ -90,8 +90,8 @@ gmt psbasemap -R -J \
 # Texts
 # countries
 gmt pstext -R -J -N -O -K \
--F+jTL+f20p,19,ivory+jLB >> $ps << EOF
-6.2 17.0 N      I      G      E      R
+-F+jTL+f20p,19,lightsteelblue4+jLB >> $ps << EOF
+5.2 16.2 N       I       G       E       R
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,19,darkslategray+jLB -Glemonchiffon2@50 >> $ps << EOF
@@ -138,11 +138,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,20,floralwhite+jLB >> $ps << EOF
-6.1 20.1 S     A     H     A     R     A
+7.8 20.1 S     A     H     A     R     A
 EOF
 gmt pstext -R -J -N -O -K \
--F+f18p,20,darkred+jLB >> $ps << EOF
-5.5 14.5 S     A     H     E     L
+-F+f18p,20,floralwhite+jLB >> $ps << EOF
+7.0 14.2 S     A     H     E     L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,cornsilk1+jLB >> $ps << EOF
