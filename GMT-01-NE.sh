@@ -21,7 +21,7 @@ gmt pscoast -R0/17/11/24 -JM6.5i -Dh -M -ENE > Niger.txt
 
 ps=Topo_NE.ps
 # Make background transparent image
-gmt grdimage ne1_relief.nc -Cpauline.cpt -R0/17/11/24 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage ne_relief.nc -Cpauline.cpt -R0/17/11/24 -JM6.5i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 .5i
 # Add isolines
 gmt grdcontour ne1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinner,darkbrown -O -K >> $ps
@@ -38,7 +38,7 @@ gmt psclip -R0/17/11/24 -JM6.5i Niger.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage ne1_relief.nc -Cpauline.cpt -R0/17/11/24 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage ne_relief.nc -Cpauline.cpt -R0/17/11/24 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour ne1_relief.nc -R -J -C250 -A250+f7p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
@@ -55,7 +55,7 @@ gmt psscale -Dg0/9.8+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=7p,0,black \
-    -Bg500f50a500+l"Colormap: 'geo' Colors for global topography relief [R=-3797/1816, H, C=RGB]" \
+    -Bg500f50a500+l"Colormap: 'geo' Colors for global topography relief [R=78/2966, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -139,13 +139,84 @@ gmt pstext -R -J -N -O -K \
 EOF
 # cities
 gmt pstext -R -J -N -O -K \
--F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
--12.46 23.03 Zouérat
+-F+f13p,1,mintcream+jLB >> $ps << EOF
+2.21 13.61 Niamey
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
+2.11 13.51 0.35c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+7.1 13.60 Maradi
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
--12.46 22.73 0.25c
+7.1 13.48 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+8.70 13.30 Zinder
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+8.99 13.81 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gsaddlebrown@80 >> $ps << EOF
+5.36 14.99 Tahoua
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.26 14.89 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+6.40 17.07 Agadez
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.99 16.97 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+6.7 18.90 Arlit
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+7.38 18.73 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+3.19 13.14 Dosso
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+3.19 13.04 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB -Gpalegreen3@70 >> $ps << EOF
+3.55 11.99 Gaya
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+3.45 11.89 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,black+jLB >> $ps << EOF
+11.90 13.50 Diffa
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+12.62 13.31 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,0,mintcream+jLB >> $ps << EOF
+4.3 18.90 Assamakka
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+5.77 19.33 0.25c
 EOF
 # geography
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,deepskyblue4+jLB >> $ps << EOF
+11.0 17.6 Fachi
+11.0 17.2 Oasis
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gaquamarine1 -O -K << EOF >> $ps
+11.58 18.1 0.20c
+EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,22,white+jLB -Ggoldenrod@75 >> $ps << EOF
 8.6 19.0 Aïr
@@ -161,8 +232,14 @@ gmt pstext -R -J -N -O -K \
 8.1 14.20 Damergou
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,22,white+jLB+a40 -Ggoldenrod@80 >> $ps << EOF
-10.1 16.6 Ténéré Desert
+-F+f13p,2,darkred+jLB >> $ps << EOF
+10.8 19.0 T é n é r é
+10.8 18.5 D e s e r t
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,2,darkred+jLB >> $ps << EOF
+5.2 18.05 T a l a k
+5.2 17.55 D e s e r t
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,21,white+jLB+a30 -Ggoldenrod@80 >> $ps << EOF
@@ -175,22 +252,32 @@ gmt pstext -R -J -N -O -K \
 13.8 19.4 Bilma
 EOF
 gmt pstext -R -J -N -O -K \
+-F+f12p,2,oldlace+jLB >> $ps << EOF
+10.20 14.30 Koutous
+10.20 13.90 Hill
+EOF
+gmt psxy -R -J -St -W0.5p -Gred -O -K << EOF >> $ps
+10.08 14.46 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f12p,2,oldlace+jLB -Ggoldenrod@80 >> $ps << EOF
-10.08 14.46 Koutous
-10.08 14.06 Hill
+8.72 19.90 Mont Gréboun
+EOF
+gmt psxy -R -J -St -W0.5p -Gred -O -K << EOF >> $ps
+8.59 19.99 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,2,oldlace+jLB -Ggoldenrod@80 >> $ps << EOF
-14.0 21.5 Tchigaï
-14.0 21.1 Plateau
+13.9 21.5 Tchigaï
+13.9 21.1 Plateau
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,20,floralwhite+jLB >> $ps << EOF
-7.8 20.2 S     A     H     A     R     A
+7.8 20.3 S     A     H     A     R     A
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f18p,20,floralwhite+jLB >> $ps << EOF
-6.7 13.6 S     A     H     E     L
+4.3 14.6 S       A       H       E       L
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,cornsilk1+jLB >> $ps << EOF
@@ -203,12 +290,12 @@ EOF
 # rivers
 gmt pstext -R -J -N -O -K \
 -F+f14p,23,azure+jLB+a-45 -Gpalegreen3@60 >> $ps << EOF
-1.55 14.4 Niger
+1.35 14.6 Niger
 EOF
 gmt pstext -R -J -N -O -K \
--F+f14p,23,azure+jLB >> $ps << EOF
-12.5 14.5 Chad
-12.5 14.1 Lake
+-F+f13p,23,blue1+jLB >> $ps << EOF
+12.4 14.5 Lake
+12.4 14.1 Chad
 EOF
 
 # insert map
@@ -220,7 +307,7 @@ gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG9.0/16.0N/$w -Da -Glightgold
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
-gmt logo -Dx7.0/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
+gmt logo -Dx7.1/-3.1+o0.1i/0.1i+w2c -O -K >> $ps
 
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y7.0c -N -O \
