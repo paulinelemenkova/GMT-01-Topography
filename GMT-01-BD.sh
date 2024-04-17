@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: India)
+# Purpose: shaded relief grid raster map from the GEBCO 15 arc sec global data set (here: Bagladesh)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 exec bash
@@ -69,11 +69,11 @@ gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend -R87/93/20/27
-gmt psscale -Dg87/19.5+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg87/19.6+w16.0c/0.15i+h+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=8p,0,black \
     --FONT_ANNOT_PRIMARY=8p,0,black \
     --FONT_TITLE=8p,0,black \
-    -Bg2000f100a2000+l"Colormap: 'etopo1' colormap for topography [R=-1000/1500, H, C=RGB]" \
+    -Bg200f20a200+l"Colormap: 'etopo1' colormap for topography [R=--1000/1500, H, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add grid
@@ -95,7 +95,7 @@ gmt psbasemap -R -J \
     --FONT_ANNOT_PRIMARY=11p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Lx14.5c/-2.5c+c10+w200k+l"Mercator Projection. Scale (km)"+f \
+    -Lx14.5c/-2.6c+c10+w200k+l"Mercator Projection. Scale (km)"+f \
     -UBL/0p/-70p -O -K >> $ps
 
 # Texts
@@ -134,15 +134,100 @@ gmt pstext -R -J -N -O -K \
 90.3 21.1 Bay of Bengal
 EOF
 gmt pstext -R -J -N -O -K \
--F+f13p,0,mintcream+jLB >> $ps << EOF
-90.47 23.73 Dhaka
+-F+f14p,0,mintcream+jLB >> $ps << EOF
+90.47 23.71 Dhaka
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gred -O -K << EOF >> $ps
 90.39 23.76 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f12p,23,white+jLB+a-30 >> $ps << EOF
+-F+f13p,0,black+jLB -Gwhite@70 >> $ps << EOF
+91.64 22.40 Chittagong
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+91.83 22.33 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+90.46 23.99 Gazipur
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+90.38 23.99 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB >> $ps << EOF
+88.83 25.63 Rangpur
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+89.25 25.56 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+90.48 24.75 Mymensingh
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+90.40 24.75 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+90.65 23.30 Comilla
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+91.20 23.45 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+91.96 24.90 Sylhet
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+91.87 24.90 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,black+jLB >> $ps << EOF
+88.40 24.45 Rajshahi
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+88.60 24.36 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+90.25 23.45 Narayanganj
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+90.50 23.62 0.25c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f13p,0,mintcream+jLB >> $ps << EOF
+89.63 22.87 Khulna
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+89.55 22.82 0.25c
+EOF
+
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+f14p,23,CADETBLUE1+jLB+a-30 >> $ps << EOF
 89.90 23.5 Ganges
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,royalblue+jLB+a80 >> $ps << EOF
+89.50 25.05 Jamuna
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,CADETBLUE1+jLB+a-41 >> $ps << EOF
+88.90 23.90 Madhumati
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,CADETBLUE1+jLB+a30 >> $ps << EOF
+91.10 24.10 Meghna
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,royalblue+jLB+a-50 >> $ps << EOF
+88.90 26.05 Tista
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,royalblue+jLB+a15 >> $ps << EOF
+90.00 26.15 Brahmaputra
 EOF
 
 # Study area
@@ -152,8 +237,8 @@ gmt psxy -R -J -Sj-13/5.0/5.0 -W2.0p,yellow -O -K << EOF >> $ps
 90.39 23.11
 EOF
 gmt pstext -R -J -N -O -K \
-    -F+f13p,2,yellow+jLB >> $ps << EOF
-89.8 23.10 S t u d y     A r e a
+    -F+f14p,2,yellow+jLB >> $ps << EOF
+89.8 23.05 S t u d y     A r e a
 EOF
 
 # Texts
@@ -173,4 +258,4 @@ gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y14.8c -N -O \
 EOF
 
 # Convert to image file using GhostScript
-gmt psconvert Topo_BD.ps -A0.5c -E720 -Tj -Z
+gmt psconvert Topo_BD.ps -A0.6c -E720 -Tj -Z
