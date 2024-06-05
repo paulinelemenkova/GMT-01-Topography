@@ -60,6 +60,8 @@ gmt grdcontour it1_relief.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
+# Add lakes
+gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -80,9 +82,9 @@ gmt psbasemap -R -J \
     --MAP_TITLE_OFFSET=0.7c \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_LABEL=10p,25,black \
-    --FONT_TITLE=13p,0,black \
+    --FONT_TITLE=12p,0,black \
         -Bpxg2f1a2 -Bpyg2f1a2 -Bsxg2 -Bsyg1 \
-    -B+t"Location of Foreste Casentinesi National Park on the topographic map of Italy" -O -K >> $ps
+    -B+t"Location of Foreste Casentinesi National Park on the topographic map of Italy: yellow square" -O -K >> $ps
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
@@ -93,12 +95,6 @@ gmt psbasemap -R -J \
     -Lx13.5c/-1.7c+c10+w400k+l"Mercator projection. Scale (km)"+f \
     -UBL/0p/-40p -O -K >> $ps
     
-# Study area
-# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# LAT: 43.8675 LON: 11.779444
-gmt psxy -R -J -Sj0/0.7/0.7 -W2.0p,yellow -O -K << EOF >> $ps
-11.78 43.87
-EOF
 # Texts
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,26,blue+jLB+a-45 >> $ps << EOF
@@ -281,6 +277,20 @@ gmt pstext -R -J -N -O -K \
 13.20 37.6 S i c i l y
 EOF
 
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj-13/2.8/2.8 -W1.5p,cyan -O -K << EOF >> $ps
+# Scene Center Latitude: 43.18485
+# Scene Center Longitude: 12.52475
+12.52 43.18
+EOF
+# Study area
+# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
+gmt psxy -R -J -Sj0/0.5/0.5 -W1.5p,yellow -O -K << EOF >> $ps
+11.78 43.87
+EOF
+#
+
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey
 gmt psbasemap -R -J -O -K -DjTR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
@@ -294,7 +304,7 @@ gmt logo -Dx6.5/-2.1+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.2c -N -O \
     -F+f12p,0,black+jLB >> $ps << EOF
-4.0 10.0 Data: GEBCO grid, resolution: 15 arc sec
+0.2 10.0 Location of Landsat OLI/TIRS 8-9 satellite images: rotated cyan-colored square
 EOF
 
 # Convert to image file using GhostScript
