@@ -98,69 +98,69 @@ gmt psbasemap -R -J \
 # Texts
 gmt pstext -R -J -N -O -K \
 -F+f12p,22,azure2+jLB >> $ps << EOF
-149.20 -35.35 Canberra
+149.40 -35.85 Canberra
 EOF
 gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
 149.13 -35.29 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
-151.25 -33.90 Sydney
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
+151.5 -34.20 Sydney
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 151.21 -33.86 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lightyellow+jLB >> $ps << EOF
-144.96 -37.85 Melbourne
+145.1 -37.8 Melbourne
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 144.96 -37.81 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
-153.08 -27.40 Brisbane
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
+153.3 -27.50 Brisbane
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 153.03 -27.47 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lightyellow+jLB >> $ps << EOF
-116.0 -32.00 Perth
+116.2 -32.00 Perth
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 115.86 -31.95 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lightyellow+jLB >> $ps << EOF
-139.2 -35.2 Adelaide
+139.15 -35.2 Adelaide
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 138.6 -34.93 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
-153.6 -28.2 Gold Coast
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
+153.7 -28.4 Gold Coast
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 153.4 -28.02 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
-151.80 -33.0 Newcastle
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
+152.10 -33.1 Newcastle
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 151.75 -32.93 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
-150.95 -34.50 Wollongong
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
+151.1 -34.80 Wollongong
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 150.89 -34.43 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
+-F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
 153.20 -26.70 Sunshine Coast
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -188,44 +188,77 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,6,royalblue+jLB >> $ps << EOF
-137.6 -13.0 Gulf of
-136.2 -15.6 Carpentaria
+137.6 -14.2 Gulf of
+136.2 -15.5 Carpentaria
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,6,royalblue+jLB >> $ps << EOF
 126.5 -11.8 Timor
-126.5 -12.8 Sea
+126.6 -13.0 Sea
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,23,saddlebrown+jLB >> $ps << EOF
-124.2 -31.1 Nullarbor Plain
+124.4 -31.1 Nullarbor Plain
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,ivory+jLB >> $ps << EOF
+125.8 -26.1 Great Victoria
+125.8 -27.8 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,ivory+jLB >> $ps << EOF
+122.8 -24.1 Gibson Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,6,azure+jLB >> $ps << EOF
+137.7 -27.8 Lake Eyre
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,ivory+jLB >> $ps << EOF
+123.0 -18.1 Great Sandy
+123.0 -19.1 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,ivory+jLB >> $ps << EOF
+136.5 -24.1 Simpson
+136.5 -25.1 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,saddlebrown+jLB >> $ps << EOF
+141.9 -15.8 Cape York
+141.9 -17.4 Peninsula
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,6,ivory+jLB+a-27 >> $ps << EOF
+117.5 -22.8 Hamersley Range
+EOF
+
 # states
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
-118.8 -26.8 WESTERN
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
+118.8 -26.9 WESTERN
 118.8 -28.6 AUSTRALIA
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
-130.2 -20.8 NORTHERN
+130.2 -20.9 NORTHERN
 130.2 -22.6 TERRITORY
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
 140.2 -23.8 QUEENSLAND
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
 142.2 -32.0 NEW SOUTH
-142.2 -33.6 WALES
+143.8 -33.6 WALES
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
 141.1 -37.0 VICTORIA
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
 130.8 -28.6 SOUTH
 130.8 -29.9 AUSTRALIA
 EOF
@@ -240,7 +273,7 @@ EOF
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey -R110/160/-45/-10
 gmt psbasemap -R -J -O -K -DjBL+w2.5c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG140/25.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EAU+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG140/25.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EAU+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
