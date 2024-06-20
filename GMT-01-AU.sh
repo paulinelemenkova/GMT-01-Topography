@@ -61,14 +61,14 @@ gmt grdcontour au1_relief.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 # Add lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na/thicker,yellow -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
 #####################################################################
     
 # Add color legend -R110/160/-45/-10
-gmt psscale -Dg102/-42+w12.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
+gmt psscale -Dg102/-45+w13.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
     --FONT_LABEL=10p,0,black \
     --FONT_ANNOT_PRIMARY=10p,0,black \
     --FONT_TITLE=10p,0,black \
@@ -96,20 +96,149 @@ gmt psbasemap -R -J \
     -UBL/0p/-40p -O -K >> $ps
     
 # Texts
+gmt pstext -R -J -N -O -K \
+-F+f12p,22,azure2+jLB >> $ps << EOF
+149.20 -35.35 Canberra
+EOF
+gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+149.13 -35.29 0.40c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+151.25 -33.90 Sydney
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+151.21 -33.86 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+144.96 -37.85 Melbourne
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+144.96 -37.81 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+153.08 -27.40 Brisbane
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+153.03 -27.47 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+116.0 -32.00 Perth
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+115.86 -31.95 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+139.2 -35.2 Adelaide
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+138.6 -34.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+153.6 -28.2 Gold Coast
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+153.4 -28.02 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+151.80 -33.0 Newcastle
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+151.75 -32.93 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+150.95 -34.50 Wollongong
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+150.89 -34.43 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+153.20 -26.70 Sunshine Coast
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+153.09 -26.65 0.20c
+EOF
+# geography
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,white+jLB -Groyalblue@90 >> $ps << EOF
+125.3 -35.5 Great Australian
+128.1 -36.5 Bight
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,23,royalblue+jLB >> $ps << EOF
+144.3 -39.6 Bass Straight
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+152.1 -38.6 P A C I F I C
+152.1 -40.6 O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,26,white+jLB >> $ps << EOF
+113.8 -12.6 I N D I A N
+113.8 -14.6 O C E A N
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,6,royalblue+jLB >> $ps << EOF
+137.6 -13.0 Gulf of
+136.2 -15.6 Carpentaria
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,6,royalblue+jLB >> $ps << EOF
+126.5 -11.8 Timor
+126.5 -12.8 Sea
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,23,saddlebrown+jLB >> $ps << EOF
+124.2 -31.1 Nullarbor Plain
+EOF
+# states
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
+118.8 -26.8 WESTERN
+118.8 -28.6 AUSTRALIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
+130.2 -20.8 NORTHERN
+130.2 -22.6 TERRITORY
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
+140.2 -23.8 QUEENSLAND
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
+142.2 -32.0 NEW SOUTH
+142.2 -33.6 WALES
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
+141.1 -37.0 VICTORIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,26,royalblue+jLB >> $ps << EOF
+130.8 -28.6 SOUTH
+130.8 -29.9 AUSTRALIA
+EOF
 
 # Study area
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# gmt psxy -R -J -Sj-13/2.8/2.8 -W1.5p,cyan -O -K << EOF >> $ps
-# 12.52 43.18
-# EOF
-# Study area
-# Rotated rectangle. kwargs: -Sjdirection/width/height, coords
-# gmt psxy -R -J -Sj0/0.5/0.5 -W1.5p,yellow -O -K << EOF >> $ps
-# 11.78 43.87
-# EOF
+# Scene Center Long DMS: 144°23'46.54"E; Scene Center Lat DMS: 37°28'27.84"S
+gmt psxy -R -J -Sj-13/0.8/0.8 -W1.0p,TURQUOISE1 -O -K << EOF >> $ps
+144.4 -37.5
+EOF
 # insert map
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey -R110/160/-45/-10
-gmt psbasemap -R -J -O -K -DjTR+w3.5c+o-0.2c/-0.2c+stmp >> $ps
+gmt psbasemap -R -J -O -K -DjBL+w2.5c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
 gmt pscoast --MAP_GRID_PEN_PRIMARY=thin,grey -Rg -JG140/25.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EAU+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
@@ -117,10 +246,5 @@ gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 # Add GMT logo
 gmt logo -Dx6.5/-2.1+o0.1i/0.1i+w2c -O -K >> $ps
 
-# Add subtitle
-# gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.2c -N -O \
-  #  -F+f12p,0,black+jLB >> $ps << EOF
-# 0.2 10.0 Location of Landsat OLI/TIRS 8-9 satellite images: rotated cyan-colored  # square
-# EOF
 # Convert to image file using GhostScript
-gmt psconvert Topo_AU.ps -A1.0c -E720 -Tj -Z
+gmt psconvert Topo_AU.ps -A0.3c -E720 -Tj -Z
