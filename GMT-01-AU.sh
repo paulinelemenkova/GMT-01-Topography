@@ -36,7 +36,7 @@ gmt pscoast -R110/160/-45/-10 -JM6.5i -Dh -M -EAU > Australia.txt
 
 ps=Topo_AU.ps
 # Make background transparent image
-gmt grdimage au1_relief.nc -Cpauline.cpt -R110/160/-45/-10 -JM6.5i -I+a15+ne0.75 -t40 -Xc -K > $ps
+gmt grdimage au_relief.nc -Cpauline.cpt -R110/160/-45/-10 -JM6.5i -I+a15+ne0.75 -t40 -Xc -K > $ps
     
 # Add isolines
 gmt grdcontour au1_relief.nc -R -J -C1000 -A1000+f6p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
@@ -54,14 +54,14 @@ gmt psclip -R110/160/-45/-10 -JM6.5i Australia.txt -O -K >> $ps
 
 # 2. create map within mask
 # Add raster image
-gmt grdimage au1_relief.nc -Cpauline.cpt -R110/160/-45/-10 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
+gmt grdimage au_relief.nc -Cpauline.cpt -R110/160/-45/-10 -JM6.5i -I+a15+ne0.75 -Xc -P -O -K >> $ps
 # Add isolines
 gmt grdcontour au1_relief.nc -R -J -C1000 -Wthinnest,darkbrown -O -K >> $ps
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
     -Ia/thinner,blue -Na -N1/thicker,tomato -W0.1p -Df -O -K >> $ps
 # Add lakes
-gmt pscoast -R -J -Ia/thinner,blue -Na/thicker,yellow -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
+gmt pscoast -R -J -Ia/thinner,blue -Na/thick,yellow -Sroyalblue1 -W2/thin,blue,0.1p -Df -O -K >> $ps
 
 # 3: Undo the clipping
 gmt psclip -C -O -K >> $ps
@@ -79,7 +79,7 @@ gmt psscale -Dg102/-45+w13.0c/0.15i+v+o0.3/0i+ml+e -R -J -Cpauline.cpt \
 gmt psbasemap -R -J \
     --MAP_FRAME_AXES=wESN \
     --FORMAT_GEO_MAP=ddd:mm:ssF \
-    --MAP_TITLE_OFFSET=0.7c \
+    --MAP_TITLE_OFFSET=0.5c \
     --FONT_ANNOT_PRIMARY=9p,0,black \
     --FONT_LABEL=10p,25,black \
     --FONT_TITLE=12p,0,black \
@@ -88,7 +88,7 @@ gmt psbasemap -R -J \
     
 # Add scalebar, directional rose
 gmt psbasemap -R -J \
-    --FONT_LABEL=11p,0,black \
+    --FONT_LABEL=10p,0,black \
     --FONT_ANNOT_PRIMARY=10p,0,black \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
@@ -97,10 +97,10 @@ gmt psbasemap -R -J \
     
 # Texts
 gmt pstext -R -J -N -O -K \
--F+f12p,22,azure2+jLB >> $ps << EOF
-149.40 -35.85 Canberra
+-F+f13p,27,azure2+jLB >> $ps << EOF
+149.40 -36.1 Canberra
 EOF
-gmt psxy -R -J -Sa -W0.5p -Gred -O -K << EOF >> $ps
+gmt psxy -R -J -Sa -W0.5p,white -Gred -O -K << EOF >> $ps
 149.13 -35.29 0.40c
 EOF
 gmt pstext -R -J -N -O -K \
@@ -125,7 +125,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 153.03 -27.47 0.20c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f11p,21,lightyellow+jLB >> $ps << EOF
+-F+f11p,21,lightyellow+jLB -Gsaddlebrown@80 >> $ps << EOF
 116.2 -32.00 Perth
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
@@ -154,7 +154,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f11p,21,lightyellow+jLB -Groyalblue@80 >> $ps << EOF
-151.1 -34.80 Wollongong
+151.2 -35.0 Wollongong
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 150.89 -34.43 0.20c
@@ -166,6 +166,34 @@ EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 153.09 -26.65 0.20c
 EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB -Gwhite@70 >> $ps << EOF
+130.90 -12.30 Darwin
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+130.84 -12.45 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+130.1 -23.2 Alice Springs
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+133.87 -23.7 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+142.4 -16.9 Cairns
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+145.78 -16.92 0.20c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f11p,21,lightyellow+jLB >> $ps << EOF
+142.0 -19.15 Townsville
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+146.82 -19.25 0.20c
+EOF
 # geography
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,23,white+jLB -Groyalblue@90 >> $ps << EOF
@@ -173,8 +201,8 @@ gmt pstext -R -J -N -O -K \
 128.1 -36.5 Bight
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,23,royalblue+jLB >> $ps << EOF
-144.3 -39.6 Bass Straight
+-F+jTL+f10p,23,royalblue+jLB >> $ps << EOF
+143.7 -39.55 Bass Straight
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,26,white+jLB >> $ps << EOF
@@ -206,8 +234,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,23,ivory+jLB >> $ps << EOF
-125.8 -26.1 Great Victoria
-125.8 -27.8 Desert
+125.8 -25.9 Great Victoria
+125.8 -27.5 Desert
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,23,ivory+jLB >> $ps << EOF
@@ -216,50 +244,62 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,6,azure+jLB >> $ps << EOF
 138.1 -27.8 Lake
-138.1 -28.3 Eyre
+138.1 -28.5 Eyre
 EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,23,ivory+jLB >> $ps << EOF
-123.0 -18.1 Great Sandy
-123.0 -19.1 Desert
+-F+f8p,23,ivory+jLB >> $ps << EOF
+122.7 -18.1 Great Sandy
+122.7 -19.1 Desert
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f10p,23,ivory+jLB >> $ps << EOF
-136.5 -24.1 Simpson
-136.5 -25.1 Desert
+136.5 -24.4 Simpson
+136.5 -25.4 Desert
 EOF
 gmt pstext -R -J -N -O -K \
--F+f9p,21,ivory+jLB >> $ps << EOF
-141.9 -15.8 Cape York
-141.9 -17.4 Peninsula
+-F+f8p,21,ivory+jLB >> $ps << EOF
+141.8 -15.0 Cape York
+141.8 -16.0 Peninsula
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,22,ivory+jLB+a-27 >> $ps << EOF
-117.5 -22.8 Hamersley Range
+117.0 -22.6 Hamersley Range
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,23,ivory+jLB >> $ps << EOF
-125.7 -15.8 Kimberley
-125.7 -16.8 Plateau
+125.6 -15.8 Kimberley
+125.6 -16.8 Plateau
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f9p,23,ivory+jLB >> $ps << EOF
-133.2 -13.8 Arnhem
-133.2 -14.8 Land
+133.0 -13.8 Arnhem
+133.0 -14.8 Land
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,22,ivory+jLB+a-27 >> $ps << EOF
-135.8 -17.4 Barky Tableand
+135.5 -17.4 Barky Tableand
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,22,royalblue+jLB+a-45 >> $ps << EOF
-145.8 -13.8 Great Barrier
+-F+jTL+f9p,0,navyblue+jLB+a-65 >> $ps << EOF
+145.2 -13.0 Great Barrier
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f9p,22,royalblue+jLB+a-17 >> $ps << EOF
-148.0 -18.1 Reef
+-F+jTL+f9p,0,navyblue+jLB+a-17 >> $ps << EOF
+148.0 -18.2 Reef
 EOF
-
+# rivers
+gmt pstext -R -J -N -O -K \
+-F+f9p,23,mintcream+jLB+a40 >> $ps << EOF
+143.1 -31.35 Darling
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,23,mintcream+jLB+a35 >> $ps << EOF
+144 -34.0 Lachlan
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,23,mintcream+jLB+a10 >> $ps << EOF
+140.3 -34.0 Murray
+EOF
 # states
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
@@ -268,8 +308,8 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
-130.2 -20.9 NORTHERN
-130.2 -22.6 TERRITORY
+130.2 -18.9 NORTHERN
+130.2 -20.9 TERRITORY
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
@@ -277,8 +317,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
-142.2 -32.0 NEW SOUTH
-143.8 -33.6 WALES
+141.8 -32.1 NEW SOUTH WALES
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
@@ -288,6 +327,10 @@ gmt pstext -R -J -N -O -K \
 -F+jTL+f9p,26,floralwhite+jLB >> $ps << EOF
 130.8 -28.6 SOUTH
 130.8 -29.9 AUSTRALIA
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f7p,21,ivory+jLB >> $ps << EOF
+145.0 -42.0 TASMANIA
 EOF
 
 # Study area
@@ -300,7 +343,7 @@ EOF
 # Countries codes: ISO 3166-1 alpha-2. Continent codes AF (Africa), AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA (South America). -EEU+ggrey -R110/160/-45/-10
 gmt psbasemap -R -J -O -K -DjBL+w2.5c+o-0.2c/-0.2c+stmp >> $ps
 read x0 y0 w h < tmp
-gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white -Rg -JG140/25.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EAU+gred -Sdodgerblue -O -K -X$x0 -Y$y0 >> $ps
+gmt pscoast --MAP_GRID_PEN_PRIMARY=thinner,white --MAP_FRAME_PEN=thin,white -Rg -JG140/25.0S/$w -Da -Glightgoldenrod1 -A5000 -Bga -Wfaint -EAU+gred -Sdeepskyblue4 -O -K -X$x0 -Y$y0 >> $ps
 gmt psxy -R -J -O -K -T  -X-${x0} -Y-${y0} >> $ps
 
 # Add GMT logo
