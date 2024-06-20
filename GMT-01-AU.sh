@@ -197,6 +197,10 @@ gmt pstext -R -J -N -O -K \
 126.6 -13.0 Sea
 EOF
 gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,6,white+jLB >> $ps << EOF
+149.5 -13.5 Coral Sea
+EOF
+gmt pstext -R -J -N -O -K \
 -F+f10p,23,saddlebrown+jLB >> $ps << EOF
 124.4 -31.1 Nullarbor Plain
 EOF
@@ -211,10 +215,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,6,azure+jLB >> $ps << EOF
-137.7 -27.8 Lake Eyre
+138.1 -27.8 Lake
+138.1 -28.3 Eyre
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,23,ivory+jLB >> $ps << EOF
+-F+f9p,23,ivory+jLB >> $ps << EOF
 123.0 -18.1 Great Sandy
 123.0 -19.1 Desert
 EOF
@@ -224,13 +229,35 @@ gmt pstext -R -J -N -O -K \
 136.5 -25.1 Desert
 EOF
 gmt pstext -R -J -N -O -K \
--F+f10p,23,saddlebrown+jLB >> $ps << EOF
+-F+f9p,21,ivory+jLB >> $ps << EOF
 141.9 -15.8 Cape York
 141.9 -17.4 Peninsula
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,6,ivory+jLB+a-27 >> $ps << EOF
+-F+jTL+f10p,22,ivory+jLB+a-27 >> $ps << EOF
 117.5 -22.8 Hamersley Range
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,23,ivory+jLB >> $ps << EOF
+125.7 -15.8 Kimberley
+125.7 -16.8 Plateau
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,23,ivory+jLB >> $ps << EOF
+133.2 -13.8 Arnhem
+133.2 -14.8 Land
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,22,ivory+jLB+a-27 >> $ps << EOF
+135.8 -17.4 Barky Tableand
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,22,royalblue+jLB+a-45 >> $ps << EOF
+145.8 -13.8 Great Barrier
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,22,royalblue+jLB+a-17 >> $ps << EOF
+148.0 -18.1 Reef
 EOF
 
 # states
