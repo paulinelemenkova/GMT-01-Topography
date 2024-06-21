@@ -36,7 +36,7 @@ gmt pscoast -R138/152/-44/-33 -JM6.0i -Dh -M -EAU > Australia.txt
 
 ps=Topo_AU_M.ps
 # Make background transparent image
-gmt grdimage au1_relief_M.nc -Cpauline.cpt -R138/152/-44/-33 -JM6.0i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
+gmt grdimage au_relief_M.nc -Cpauline.cpt -R138/152/-44/-33 -JM6.0i -I+a15+ne0.75 -t40 -Xc -P -K > $ps
 # gmt grdimage au_relief_M.nc -Cpauline.cpt -R138/152/-44/-33 -JM6.0i -I+a15+ne0.75 -t40 -Xc -K > $ps
     
 # Add isolines
@@ -99,14 +99,14 @@ gmt psbasemap -R -J \
 # Texts
 gmt pstext -R -J -N -O -K \
 -F+f18p,31,black+jLB -Gwhite@80 >> $ps << EOF
-147.8 -35.1 Canberra
+147.3 -34.9 Canberra
 EOF
 gmt psxy -R -J -Sa -W0.5p,white -Gyellow1 -O -K << EOF >> $ps
 149.13 -35.29 0.70c
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
-150.5 -34.30 Sydney
+150.5 -33.70 Sydney
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 151.21 -33.86 0.30c
@@ -127,7 +127,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
-149.7 -34.8 Wollongong
+149.7 -34.30 Wollongong
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 150.89 -34.43 0.30c
@@ -172,7 +172,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f16p,26,darkred+jLB -Gwhite@60 >> $ps << EOF
-145.6 -42.1 TASMANIA
+145.35 -42.1 TASMANIA
 EOF
 
 # Study area
