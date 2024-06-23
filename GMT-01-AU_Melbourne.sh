@@ -40,7 +40,7 @@ gmt grdimage au_relief_M.nc -Cpauline.cpt -R138/152/-44/-33 -JM6.0i -I+a15+ne0.7
 # gmt grdimage au_relief_M.nc -Cpauline.cpt -R138/152/-44/-33 -JM6.0i -I+a15+ne0.75 -t40 -Xc -K > $ps
     
 # Add isolines
-gmt grdcontour au_relief_M.nc -R -J -C500 -A1000+f6p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
+gmt grdcontour au1_relief_M.nc -R -J -C500 -A1000+f6p,26,darkbrown -Wthinnest,darkbrown -O -K >> $ps
 
 # Add coastlines, borders, rivers
 gmt pscoast -R -J \
@@ -101,7 +101,7 @@ gmt pstext -R -J -N -O -K \
 -F+f18p,31,black+jLB -Gwhite@80 >> $ps << EOF
 147.3 -34.9 Canberra
 EOF
-gmt psxy -R -J -Sa -W0.5p,white -Gyellow1 -O -K << EOF >> $ps
+gmt psxy -R -J -Sa -W0.7p,white -Gred -O -K << EOF >> $ps
 149.13 -35.29 0.70c
 EOF
 gmt pstext -R -J -N -O -K \
@@ -112,15 +112,8 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 151.21 -33.86 0.30c
 EOF
 gmt pstext -R -J -N -O -K \
--F+f16p,21,black+jLB -Gwhite@70 >> $ps << EOF
-143.6 -37.65 Melbourne
-EOF
-gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
-144.96 -37.81 0.30c
-EOF
-gmt pstext -R -J -N -O -K \
--F+f16p,21,black+jLB >> $ps << EOF
-138.75 -35.2 Adelaide
+-F+f16p,22,black+jLB >> $ps << EOF
+138.6 -34.7 Adelaide
 EOF
 gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 138.6 -34.93 0.30c
@@ -154,7 +147,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f13p,23,navy+jLB+a12 >> $ps << EOF
-140.3 -34.2 Murray
+140.3 -34.1 Murray
 EOF
 # states
 gmt pstext -R -J -N -O -K \
@@ -163,10 +156,10 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f16p,26,darkred+jLB >> $ps << EOF
-142.2 -36.3 VICTORIA
+141.9 -35.9 VICTORIA
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f16p,26,darkred+jLB >> $ps << EOF
+-F+jTL+f14p,26,darkred+jLB >> $ps << EOF
 138.1 -33.4 SOUTH
 138.1 -33.8 AUSTRALIA
 EOF
@@ -174,12 +167,137 @@ gmt pstext -R -J -N -O -K \
 -F+f16p,26,darkred+jLB -Gwhite@60 >> $ps << EOF
 145.35 -42.1 TASMANIA
 EOF
+# islands
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,30,midnightblue+jLB >> $ps << EOF
+146.3 -40.2 Furneaux
+146.3 -40.5 Group
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f12p,30,midnightblue+jLB >> $ps << EOF
+146.55 -39.0 Wilsons
+146.55 -39.3 Promontory
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,30,midnightblue+jLB >> $ps << EOF
+143.8 -40.4 Hunter Island
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,30,midnightblue+jLB >> $ps << EOF
+143.1 -39.5 King Island
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f16p,23,royalblue+jLB >> $ps << EOF
+143.9 -38.9 Port
+143.9 -39.2 Phillip Bay
+EOF
+# arrow
+gmt psxy -R -J -Sv0.5c+bt+ea -Gyellow1@30 -W1.0p -O -K << EOF >> $ps
+144.4 -38.6 50 0.9c
+EOF
+# cities
+gmt pstext -R -J -N -O -K \
+-F+f15p,21,black+jLB -Gwhite@80 >> $ps << EOF
+142.3 -37.46 Ballarat
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+143.85 -37.56 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,21,black+jLB -Gwhite@80 >> $ps << EOF
+143.05 -38.0 Geelong
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+144.35 -38.15 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,21,black+jLB -Gwhite@80 >> $ps << EOF
+144.16 -36.60 Bendigo
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+144.26 -36.75 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f15p,21,black+jLB -Gwhite@80 >> $ps << EOF
+146.0 -35.88 Albury-Wodonga
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+146.91 -36.08 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+142.06 -34.08 Mildura
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+142.16 -34.18 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+140.4 -34.6 Renmark
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+140.74 -34.17 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+139.37 -35.22 Mount Gambier
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+139.27 -35.12 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+140.5 -37.3 Murray
+140.5 -37.7 Bridge
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+140.78 -37.83 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+141.5 -38.25 Portland
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+141.6 -38.33 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@80 >> $ps << EOF
+138.3 -36.05 Victor
+138.3 -36.35 Harbor
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+138.52 -35.55 0.30c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f16p,21,black+jLB -Gwhite@60 >> $ps << EOF
+146.53 -42.68 Hobart
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+147.33 -42.88 0.30c
+EOF
+# Mnt
+gmt pstext -R -J -N -O -K \
+-F+f12p,23,gold+jLB -Gsaddlebrown@70 >> $ps << EOF
+148.4 -36.35 Mt.
+148.4 -36.65 Kosciuszko
+EOF
+gmt psxy -R -J -St -W0.5p,white -Gred -O -K << EOF >> $ps
+148.26 -36.45 0.40c
+EOF
 
 # Study area
 # Rotated rectangle. kwargs: -Sjdirection/width/height, coords
 # Scene Center Long DMS: 144°23'46.54"E; Scene Center Lat DMS: 37°28'27.84"S
 gmt psxy -R -J -Sj-13/2.7/2.7 -W1.8p,red -O -K << EOF >> $ps
 144.4 -37.5
+EOF
+
+gmt pstext -R -J -N -O -K \
+-F+f16p,22,black+jLB -Gwhite@70 >> $ps << EOF
+144.2 -37.65 Melbourne
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+144.96 -37.81 0.30c
 EOF
 # insert map
 
